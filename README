@@ -1,0 +1,29 @@
+Codetch
+====================
+
+A code editing extension to Firefox, Flock, etc.
+
+Download and install
+====================
+Visit http://codetch.com/download in your Gecko browser and click the install link. After it installs, restart your browser. Done!
+
+How to run the edge, repo version
+===================
+
+Download from repository:
+
+  $ git clone git://github.com/riah/codetch-ext.git
+
+Create a new file named "{420ed894-c19f-4318-a83f-bacae374db28}" in your browser's profile extensions directory. In my case, it could look like:
+
+  $ touch /home/zach/.mozilla/firefox/{random}.default/extensions/{420ed894-c19f-4318-a83f-bacae374db28}
+
+Note: I suggest using a diffrent profile than your default, in case something in the build is a mess.
+
+In that new file, put the path to where you downloaded your repository. For me:
+
+  /home/zach/xul/codetch-ext
+
+Note: no extra spaces or any other lines, just the path.
+
+Restart your browser and it should be installed and ready to use/hack. 
