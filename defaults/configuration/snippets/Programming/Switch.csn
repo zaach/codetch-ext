@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="Switch" description="Replace the numbers with actual comparison value" type="block" preview="code"><insertText location="beforeSelection"><![CDATA[switch()
+{
+	case 1:
+	break;
+
+	case 2:
+	break;
+
+	default:
+	break;
+}]]></insertText><insertText location="afterSelection"><![CDATA[]]></insertText></snippet>

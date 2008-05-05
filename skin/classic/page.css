@@ -1,0 +1,31 @@
+html {
+	margin:0;padding:0;
+	background: url(watermark.png) -moz-Dialog fixed no-repeat top right;
+}
+
+body{
+	margin:0;padding:10px;
+  color: -moz-DialogText;
+  font: message-box;
+}
+
+p {
+	line-height: 1.5;
+}
+
+#welcome{
+   background: -moz-Dialog;
+   padding: 7px;
+   color: #000000;
+}
+
+a, .url {color: blue; text-decoration: underline !important; cursor: pointer}
+
+iframe {
+	background-color: transparent!important;
+}
+.loading {
+	list-style-image: url("chrome://codetch/skin/Throbber.gif");
+	-moz-image-region: rect(0px, 20px, 20px, 0px); /*()*/
+	-moz-box-direction: reverse;
+}

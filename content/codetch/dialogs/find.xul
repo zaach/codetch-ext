@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://codetch/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://codetch/content/controller.css" type="text/css"?>
+
+<!DOCTYPE window [
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd">
+%codetchDTD;
+]>
+
+<window 
+   xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   xmlns:xbl  = "http://www.mozilla.org/xbl"
+   xmlns:rdf  = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"  
+   title      = "&label.findandreplace;"
+   id         = "codetch-find"
+   width      = "500"
+   height     = "250"
+   onload     = "initDialog()"
+   onclose    = "doCancel()"
+   persist    = "screenX screenY width height">
+
+<script type="application/x-javascript" src="chrome://global/content/globalOverlay.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/prefs.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/utilities.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/clipboard.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/rdfds.js" />
+<script type="application/x-javascript" src="find.js" />
+
+<tabbox id="tabbox" flex="1" class="findpane">
+<tabs>
+	<tab id="find" label="&label.find;" linkedpanel="findreplace" oncommand="this.parentNode.parentNode.className='findpane'" />
+	<tab id="replace" label="&label.replace;" linkedpanel="findreplace" oncommand="this.parentNode.parentNode.className='replacepane'" />
+</tabs>
+<tabpanels flex="1">
+<hbox id="findreplace" flex="1">
+<vbox flex="1">
+	<grid flex="1"><columns><column align="end" /><column flex="1"/></columns>
+	<rows>
+		<row flex="1"><label value="&label.find;:" accesskey="&label.find.accesskey;" control="query" /><textbox id="query" multiline="true" wrap="off" onfocus="this.select()" flex="1" /></row>
+		<row class="replace-space" flex="1"><label value="&label.replacewith;:" accesskey="&label.replacewith.accesskey;" control="replacetext" /><textbox id="replacetext" wrap="off" multiline="true" onfocus="this.select()" flex="1" /></row>
+	</rows>
+	</grid>
+	<hbox>
+	<groupbox flex="1">
+		<caption label="&label.options;"/>
+	<checkbox id="case" label="&label.case;" persist="checked" accesskey="&label.case.accesskey;" />
+	<checkbox id="regex" label="&label.regex;" persist="checked" accesskey="&label.regex.accesskey;" />
+	<checkbox id="wrap" label="&label.wrap;" persist="checked" checked="true" accesskey="&label.wrap.accesskey;" />
+	
+	</groupbox>
+	<groupbox flex="1">
+		<caption label="&label.matchallin;"/>
+	     <radiogroup id="radiogroup" orient="vertical">
+            <radio id="currentfile" selected="true" label="&label.currentfile;" group="radiogroup"/>
+			<radio id="selection" label="&label.inselection;" group="radiogroup" accesskey="&label.inselection.accesskey;" />
+
+            <radio id="allopendocs" label="&label.allopendocs;" group="radiogroup"/>
+         </radiogroup>
+	</groupbox>
+	</hbox>
+</vbox>
+<vbox>
+	<button label="&label.findnext;" accesskey="&label.findnext.accesskey;" oncommand="doFind()"/>
+	<button label="&label.findall;" class="find" accesskey="&label.findall.accesskey;" oncommand="doFindAll()"/>
+	<button label="&label.replace;" class="replace" accesskey="&label.replace.accesskey;" oncommand="doReplace()"/>
+	<button label="&label.replaceall;" class="replace" accesskey="&label.replaceall.accesskey;" oncommand="doReplaceAll()"/>
+	<spacer flex="1"/>
+	<button label="&menu.close;" accesskey="&menu.close.accesskey;" oncommand="close()"/>
+</vbox>
+</hbox>
+
+</tabpanels>
+</tabbox>
+
+</window>

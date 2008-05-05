@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<bindings id="colorBindings"
+          xmlns="http://www.mozilla.org/xbl"
+          xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns:xbl="http://www.mozilla.org/xbl">
+
+  <binding id="colorbutton" extends="chrome://global/content/bindings/toolbarbutton.xml#toolbarbutton">
+	<content>
+		<xul:image xbl:inherits="disabled"/>
+		<xul:colorpicker type="button" class="button-colorpicker" xbl:inherits="disabled,onchange=oncolorchange" onclick="event.stopPropagation();"/>
+	</content>
+	<handlers>
+		<handler event="command">
+			document.getAnonymousNodes(this)[1].showPopup();
+		</handler>
+	</handlers>
+  </binding>
+</bindings>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="XSL Stylesheet" description="" type="block" preview="code"><insertText location="beforeSelection"><![CDATA[<?xml-stylesheet href="mystylesheet.xsl" type="text/xsl"?>]]></insertText><insertText location="afterSelection"><![CDATA[]]></insertText></snippet>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://codetch/skin/overlay.css" type="text/css"?>
+<?xml-stylesheet href="chrome://codetch/skin/toolbar-button.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://codetch/locale/overlay.dtd">
+<overlay id="codetchOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+
+<script src="chrome://codetch/content/ext/overlay.js"/>
+
+	<!-- Thunderbird Menu Overlay -->
+	
+	<menupopup id="taskPopup">
+		<menuitem insertafter="addressBook" oncommand="Codetch.run();" label="&menu-codetch;" accesskey="&codetch.accesskey;" 
+				id="codetch-menu" class="menuitem-iconic" key="key_newcodetch" />
+	</menupopup>
+  <keyset id="navigationKeys">
+    <key id="key_newcodetch" keycode="VK_F9" modifiers="accel" command="cmd_newcodetch"/>
+  </keyset>
+
+  <commandset id="commands">
+    <command id="cmd_newcodetch" oncommand="Codetch.run();"/>
+  </commandset>
+
+  <keyset id="mainKeyset">
+    <key id="key_newcodetch" keycode="VK_F9" modifiers="accel" command="cmd_newcodetch"/>
+  </keyset>
+
+  <commandset id="mainCommandSet">
+    <command id="cmd_newcodetch" oncommand="Codetch.run();"/>
+  </commandset>
+	<!-- Thunderbird Toolbar Overlay -->
+	<toolbarpalette id="MailToolbarPalette">
+	<toolbarbutton
+		id="codetch-button"
+		label="&toolbar-codetch;"
+		accesskey="&codetch.accesskey;"
+		class="toolbarbutton-1"
+		oncommand="runCodetch()"
+		tooltiptext="&tooltip-codetch;" />
+	</toolbarpalette>
+
+	<toolbarpalette id="MsgComposeToolbarPalette">
+	<toolbarbutton
+		id="codetch-button"
+		label="&toolbar-codetch;"
+		accesskey="&codetch.accesskey;"
+		class="toolbarbutton-1"
+		oncommand="Codetch.run();"
+		tooltiptext="&tooltip-codetch;" />
+	</toolbarpalette>
+
+</overlay>

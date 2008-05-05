@@ -1,0 +1,45 @@
+
+/*------------------------------------------------------
+This CSS  will control display of elements by
+setting certain attributes and classes to
+cut down on JS observations and such.
+------------------------------------------------------*/
+
+/* main window
+------------------------------------------------------*/
+
+.base-html-show {
+	visibility: collapse;
+}
+#workarea[basetype="html"] .base-html-show {
+	visibility: visible;
+}
+
+#editor-arena tab, #editor-arena tabpanel {
+	visibility: collapse;
+}
+
+
+
+/* find
+------------------------------------------------------*/
+
+.replacepane .find, .findpane .replace {
+	visibility: collapse;
+}
+.replacepane .find-space, .findpane .replace-space {
+	visibility: collapse;
+}
+.findpane .find, .replacepane .replace {
+	visibility: visible;
+}
+
+/* snippets
+------------------------------------------------------*/
+
+.insert-block .wrap, .insert-wrap .block {
+	visibility: collapse;
+}
+.insert-block .block, .insert-wrap .wrap {
+	visibility: visible;
+}

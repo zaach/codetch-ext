@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://codetch/skin/codetch.css" type="text/css"?>
+
+<!DOCTYPE window [
+<!ENTITY % codetchprefsDTD SYSTEM "chrome://codetch/locale/codetchPrefs.dtd" >
+%codetchprefsDTD;
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd" >
+%codetchDTD;
+]>
+
+<dialog
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	title="&label.editbrowsers;"
+	onload="initDialog()"
+	ondialogaccept="return onAccept()"
+	ondialogcancel="return onCancel()">
+	
+	<script type="application/x-javascript" src="chrome://codetch/content/scripts/jsio.js" />
+	<script type="application/x-javascript" src="chrome://codetch/content/scripts/utilities.js" />
+	<script type="application/x-javascript" src="chrome://codetch/content/scripts/prefs.js" />
+	<script type="application/x-javascript" src="chrome://codetch/content/dialogs/previewBrowsers.js" />
+
+	<vbox width="400">
+		<listbox id="borwser-list" rows="10">
+			<listitem id="extension-browser-menuitem" label="&label.extensionbrowser;" value="" onclick="newEdit()" ondblclick="setDefault()" />
+		</listbox>
+		<hbox>
+			<button label="&label.setdefault;" oncommand="setDefault()"/>
+			<button label="&label.remove;" oncommand="removeBrowser()"/>
+		</hbox>
+		<groupbox flex="1">
+			<caption label="&label.addbrowser;"/>
+			<grid>
+				<columns>
+					<column/>
+					<column flex="1"/>
+					<column/>
+				</columns>
+				<rows>
+					<row><label value="&label.path;" control="path" /><textbox id="path"/><toolbarbutton oncommand="this.previousSibling.value = getFilePath();" class="browse-button toolbarbutton-1" /></row>
+					<row><label value="&label.name;" control="name" /><textbox id="name"/></row>
+				</rows>
+			</grid>
+			<hbox>
+				<button label="&label.new;" oncommand="newEdit()"/>
+				<button label="&label.changebrowser;" oncommand="addBrowser()"/>
+			</hbox>
+		</groupbox>
+	</vbox>
+</dialog>

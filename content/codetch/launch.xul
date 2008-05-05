@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<window
+   title      = "Codetch"
+   id         = "xul-window"
+   xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   orient     = "vertical"
+   >
+
+
+<script type="application/x-javascript">
+<![CDATA[
+window.openDialog('chrome://codetch/content/codetch.xul','codetch','chrome,dialog=no,resizable=yes');
+window.close();
+]]>
+</script>
+</window>

@@ -1,0 +1,37 @@
+<!ENTITY prefs.title "Codetch Einstellungen">
+<!ENTITY label.general "Allgemein">
+<!ENTITY label.format "Formatierung">
+<!ENTITY label.configuration "Configuration">
+<!ENTITY label.snippets "Snippets">
+<!ENTITY label.codeformat "Code Editor">
+<!ENTITY prefs.defaultdoctype "Standard Dateierweiterung">
+<!ENTITY prefs.loadtabset "Tabs wiederherstellen beim starten">
+<!ENTITY prefs.filehistorylength "Max. Anzahl der zuletzt geöffneten Dateien">
+<!ENTITY prefs.clearlist "Liste leeren">
+<!ENTITY prefs.tabchar "Tabbing Character(s)">
+<!ENTITY prefs.autorefresh "Echteit Vorschau">
+<!ENTITY prefs.codewrap "Zeilenumbruch (funktioniert nicht!)">
+<!ENTITY prefs.codefont "Schriftart">
+<!ENTITY prefs.codefontsize "Schriftgröße">
+<!ENTITY prefs.codecolor "Textfarbe">
+<!ENTITY prefs.codebg "Hintergrundfarbe">
+<!ENTITY prefs.codelinenumcolor "Line Number Color">
+<!ENTITY prefs.codelinenumbg "Line Number Background">
+<!ENTITY prefs.codecss "Benutzerdefinierte CSS Styles">
+<!ENTITY prefs.codecssdescription "Tragen sie hier alle CSS Styles ein die in der Code Box erscheinen sollen.">
+<!ENTITY prefs.previewtmp "Externe Vorschau mit temprären Dateien">
+<!ENTITY prefs.openinreference "Lade Verifizierungen im Bezugsfenster">
+<!ENTITY prefs.welcomescreen "Enable welcome screen">
+<!ENTITY label.browseconfig "Browse configuration directory">
+<!ENTITY label.directories "Directories">
+<!ENTITY prefs.snippetdir "Snippet directory">
+<!ENTITY prefs.templatedir "Template directory">
+<!ENTITY prefs.projectdir "Project directory">
+<!ENTITY label.editbrowsers "Externe Browser Liste">
+<!ENTITY label.setdefault "Als Stadard setzen">
+<!ENTITY label.remove "Entfernen">
+<!ENTITY label.addbrowser "Browser Hinzufügen/Bearbeiten">
+<!ENTITY label.changebrowser "Hinzufügen/Ändern">
+<!ENTITY label.path "Pfad">
+<!ENTITY label.name "Name">
+<!ENTITY label.new "Leeren">

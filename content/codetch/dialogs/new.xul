@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://codetch/skin/" type="text/css"?>
+
+<!DOCTYPE window [
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd">
+%codetchDTD;
+]>
+
+<dialog 
+   xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   xmlns:xbl  = "http://www.mozilla.org/xbl"
+   xmlns:rdf  = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"  
+   title      = "Create New File"
+   id         = "new-window"
+	buttons="accept,cancel,help"
+	onload="initDialog()"
+	ondialogaccept="return onAccept()"
+	ondialogcancel="return onCancel()"
+	ondialoghelp="return onEdit()">
+
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/os.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/jsio.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/initfiles.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/prefs.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/utilities.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/rdfds.js" />
+<script type="application/x-javascript" src="new.js" />
+
+<vbox id="new" height="300" width="350" flex="1">
+<tabbox flex="1">
+<tabs>
+	<tab label="New Document" />
+	<tab label="Templates" />
+</tabs>
+<tabpanels id="new-panels" flex="1">
+<tree id="main-tree" flex="1" seltype="single" hidecolumnpicker="true"
+	onclick="treeEvent(this, event);" ondblclick="if(openNew())window.close();"
+	datasources="" ref="http://doctypes.codetch.com/all-doctypes">
+
+  <treecols>
+    <treecol id="Name" label="Name" primary="true" flex="1"/>
+    <treecol id="description" label="Description" flex="1" hidden="true"/>
+    <treecol id="ext" label="Default extension" flex="1" hidden="true"/>
+    <treecol id="exts" label="Extensions" flex="1" hidden="true"/>
+    <treecol id="type" label="Base type" flex="1" hidden="true"/>
+    <treecol id="default" label="Default File" flex="1" hidden="true"/>
+    <treecol id="server" label="Server" flex="1" hidden="true"/>
+  </treecols>
+
+  <template>
+    <rule>
+      <treechildren>
+       <treeitem uri="rdf:*">
+         <treerow>
+           <treecell label="rdf:http://doctypes.codetch.com/rdf#Name"/>
+           <treecell label="rdf:http://doctypes.codetch.com/rdf#description"/>
+           <treecell label="rdf:http://doctypes.codetch.com/rdf#ext"/>
+           <treecell label="rdf:http://doctypes.codetch.com/rdf#exts"/>
+           <treecell label="rdf:http://doctypes.codetch.com/rdf#type"/>
+           <treecell label="rdf:http://doctypes.codetch.com/rdf#default"/>
+           <treecell label="rdf:http://doctypes.codetch.com/rdf#server"/>
+         </treerow>
+       </treeitem>
+      </treechildren>
+    </rule>
+
+  </template>
+</tree>
+<!-- 
+<tree id="template-tree" flex="1" seltype="single" hidecolumnpicker="true"
+	onclick="treeEvent(this, event);" ondblclick="if(openTemplate(event))window.close();"
+	datasources="../templates.rdf" ref="urn:root"
+    containment="http://templates.codetch.com/rdf#list">
+
+  <treecols>
+    <treecol id="Name" label="Name" primary="true" flex="1"/>
+    <treecol id="file" label="File" flex="1" hidden="true"/>
+  </treecols>
+
+  <template>
+    <rule>
+      <conditions>
+        <content uri="?uri"/>
+        <triple subject="?uri"
+                 predicate="http://templates.codetch.com/rdf#list"
+                 object="?list" />
+        <member container="?list" child="?subheading"/>
+      </conditions>
+      <bindings>
+        <binding subject="?subheading"
+                 predicate="http://templates.codetch.com/rdf#Name"
+                 object="?Name" />
+        <binding subject="?subheading"
+                 predicate="http://templates.codetch.com/rdf#file"
+                 object="?file" />
+      </bindings>
+
+      <action>
+      <treechildren>
+       <treeitem uri="?subheading">
+         <treerow>
+           <treecell label="?Name"/>
+           <treecell label="?file"/>
+         </treerow>
+       </treeitem>
+      </treechildren>
+	  </action>
+    </rule>
+
+  </template>
+</tree>
+-->
+<tree id="template-tree" flex="1" onclick="treeEvent(this, event);" ondblclick="if(openTemplate())window.close();"
+			datasources="rdf:files" ref="" flags="dont-build-content" seltype="single" hidecolumnpicker="true">
+			<treecols>
+				<treecol id="Name" label="Name" sort="rdf:http://home.netscape.com/NC-rdf#Name" primary="true" flex="1"/>
+			</treecols>
+
+			<template>
+				<rule>
+					<treechildren flex="1">
+						<treeitem uri="rdf.*">
+							<treerow>
+								<treecell label="rdf:http://home.netscape.com/NC-rdf#Name" value="rdf:http://home.netscape.com/NC-rdf#URL"/>
+							</treerow>
+						</treeitem>
+					</treechildren>
+				</rule>
+			</template>
+</tree>
+
+</tabpanels>
+</tabbox>
+
+
+<description id="file-description" value="" />
+</vbox>
+
+</dialog>

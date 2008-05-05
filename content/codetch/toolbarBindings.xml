@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<bindings id="toolbarBindings"
+          xmlns="http://www.mozilla.org/xbl"
+          xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns:xbl="http://www.mozilla.org/xbl">
+  <binding id="toolbarBtnToggle" extends="chrome://global/content/bindings/toolbar.xml#toolbar">
+    <content>
+		<children/>
+		<xul:spacer flex="1"/>
+		<xul:toolbarbutton type="menu" class="toolbarbutton-1">
+			<xul:menupopup onpopupshowing="this.parentNode.parentNode.fillToggleMenu(this)"  oncommand="this.parentNode.parentNode.toggleButton(event.target.value)"/>
+		</xul:toolbarbutton>
+    </content>
+	<implementation>
+		<method name="fillToggleMenu">
+			<parameter name="menuPopup"/>
+			<body><![CDATA[
+				while(menuPopup.lastChild)menuPopup.removeChild(menuPopup.lastChild);
+				var btns = this.childNodes,
+				itemNode,
+				label;
+				for(var i=0;i<btns.length;i++){
+					if(btns[i].hasAttribute('id')){
+					label = btns[i].hasAttribute('label')?btns[i].getAttribute('label'):btns[i].hasAttribute('tooltiptext')?btns[i].getAttribute('tooltiptext'):btns[i].localName=='toolbarseparator'?'----Separator----':btns[i].getAttribute('id');
+					itemNode = document.createElementNS(XULNS, "menuitem");
+					itemNode.setAttribute("label", label);
+					itemNode.setAttribute("value", btns[i].getAttribute('id'));
+        			itemNode.setAttribute("type", "checkbox");
+        			if(!btns[i].hidden)itemNode.setAttribute("checked", "true");
+					menuPopup.appendChild(itemNode);
+					}
+				}
+			]]>
+			</body>
+		</method>
+		<method name="toggleButton">
+			<parameter name="id"/>
+			<body>
+				var btn = document.getElementById(id);
+				var isHidden = btn.hidden;
+				btn.hidden = !isHidden;
+				document.persist(id, 'hidden');
+			</body>
+		</method>
+	</implementation>
+  </binding>
+</bindings>

@@ -1,0 +1,29 @@
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/alerts/alert.css" type="text/css"?>
+
+<window id="alertInfo"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        windowtype="alert:alert"
+        align="start"
+        onload="//prefill()">
+  
+  <script type="application/x-javascript" src="info.js"/>
+  <script type="application/x-javascript" src="utilities.js"/>
+
+  <hbox id="alertBox" class="alertBox">
+
+    <hbox class="alertImageBox" align="center" valign="center">
+      <image id="alertImage" autostretch="never"/>
+    </hbox>
+
+    <vbox id="alertTextBox" class="alertTextBox">
+      <label id="alertTitleLabel" class="alertTitle plain"/>
+      <label id="alertTextLabel" class="alertText plain"/>
+    </vbox>
+
+  </hbox>
+
+  <!-- This method is called inline because we want to make sure we establish the width
+       and height of the alert before we fire the onload handler. -->
+  <script type="application/x-javascript">prefill();</script>
+</window>

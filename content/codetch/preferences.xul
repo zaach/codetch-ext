@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://codetch/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://codetch/content/editorBindings.css" type="text/css"?>
+<!DOCTYPE window [
+<!ENTITY % prefDTD SYSTEM "chrome://codetch/locale/codetchPrefs.dtd" >
+%prefDTD;
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd" >
+%codetchDTD;
+]>
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="codetch-pref-window"
+	title="&prefs.title;"
+    windowtype = "codetch:prefs"
+	buttons="accept,cancel,help"
+	onload="initPrefWin()"
+	ondialogaccept="return setPrefs()"
+	ondialoghelp="setPrefs()">
+
+	<script type="application/x-javascript" src="chrome://codetch/content/scripts/jsio.js"/>
+	<script type="application/x-javascript" src="chrome://codetch/content/scripts/utilities.js"/>
+	<script type="application/x-javascript" src="chrome://codetch/content/scripts/initfiles.js"/>
+	<script type="application/x-javascript" src="chrome://codetch/content/scripts/prefs.js"/>
+	<script type="application/x-javascript" src="chrome://codetch/content/preferences.js"/>
+
+	<tabbox flex="1" id="pref-tabs">
+		<tabs>
+			<tab label="&label.general;" selected="true"/>
+			<tab label="&label.format;"/>
+			<tab label="&label.configuration;"/>
+		</tabs>
+		<tabpanels flex="1">
+			<tabpanel id="general-pane" orient="vertical">
+				<grid>
+					<columns>
+						<column/>
+						<column flex="1"/>
+					</columns>
+					<rows>
+						<row>
+							<label value="&prefs.defaultdoctype;:" control="defaultdoctype" /><textbox id="defaultdoctype" preftype="string"/>
+						</row>
+						<row>
+							<label value="&prefs.filehistorylength;:" control="filehistorylength" /><hbox><textbox id="filehistorylength" preftype="int"/><button id="clearlist" label="&prefs.clearlist;" oncommand="clearHistory()"/></hbox>
+						</row>
+						<row><label value="&prefs.tabchar;:" control="tabchar" /><textbox id="tabchar" preftype="string"/></row>
+					</rows>
+				</grid>
+				<seperator />
+				<!-- <checkbox id="codewrap" label="&prefs.codewrap;"/> -->
+				<checkbox id="loadtabset" label="&prefs.loadtabset;" preftype="bool"/>
+				<checkbox id="autorefresh" label="&prefs.autorefresh;" preftype="bool"/>
+				<checkbox id="previewtmp" label="&prefs.previewtmp;" preftype="bool"/>
+				<checkbox id="openinreference" label="&prefs.openinreference;" preftype="bool"/>
+				<checkbox id="welcomescreen" label="&prefs.welcomescreen;" preftype="bool"/>
+			</tabpanel>
+			<tabpanel id="format-pane" orient="vertical">
+				<groupbox flex="1">
+					<caption label="&label.codeformat;"/>
+					<grid>
+					<columns>
+						<column/>
+						<column flex="1"/>
+					</columns>
+					<rows>
+						<row>
+							<label value="&prefs.codefont;:" control="codefont" />
+							<menulist id="codefont" editable="true" preftype="string"
+							onchange="setCodeFormat();" oncommand="setCodeFormat();">
+								<menupopup onpopupshowing="initLocalFontFaceMenu(this)">
+								</menupopup>
+							</menulist>
+						</row>
+						<row>
+							<label value="&prefs.codefontsize;:" control="codefontsize" />
+							<hbox>
+								<textbox id="codefontsize" preftype="string" flex="1" onchange="setCodeFormat();"/>
+								<toolbarbutton  class="toolbarbutton-1 down-button" oncommand="changeSize(this.previousSibling, -1)" />
+								<toolbarbutton  class="toolbarbutton-1 up-button" oncommand="changeSize(this.previousSibling.previousSibling, 1)"/>
+							</hbox>
+						</row>
+						<row>
+							<label value="&prefs.codecolor;:" control="codecolor" />
+							<hbox>
+								<textbox id="codecolor" preftype="string" onchange="setCodeFormat();" flex="1"/>
+								<toolbarbutton tooltiptext="&prefs.codecolor;" class="forecolor-btn toolbarbutton-1" oncolorchange="this.parentNode.previousSibling.value=this.color;setCodeFormat();" />
+							</hbox>
+						</row>
+						<row>
+							<label value="&prefs.codebg;:" control="codebg" />
+							<hbox>
+								<textbox id="codebg" preftype="string" onchange="setCodeFormat();" flex="1"/>
+								<toolbarbutton tooltiptext="&prefs.codebg;" class="bgcolor-btn toolbarbutton-1" oncolorchange="this.parentNode.previousSibling.value=this.color;setCodeFormat();" />
+							</hbox>
+						</row>
+						<row>
+							<label value="&prefs.codelinenumcolor;:" control="codelinenumcolor" />
+							<hbox>
+								<textbox id="codelinenumcolor" preftype="string" onchange="setCodeFormat();" flex="1"/>
+								<toolbarbutton tooltiptext="&prefs.codelinenumcolor;" class="forecolor-btn toolbarbutton-1" oncolorchange="this.parentNode.previousSibling.value=this.color;setCodeFormat();" />
+							</hbox>
+						</row>
+						<row>
+							<label value="&prefs.codelinenumbg;:" control="codelinenumbg" />
+							<hbox>
+								<textbox id="codelinenumbg" preftype="string" onchange="setCodeFormat();" flex="1"/>
+								<toolbarbutton tooltiptext="&prefs.codelinenumbg;" class="bgcolor-btn toolbarbutton-1" oncolorchange="this.parentNode.previousSibling.value=this.color;setCodeFormat();" />
+							</hbox>
+						</row>
+						<row>
+							<label value="&prefs.codecss;:" control="codecss" />
+							<textbox id="codecss" multiline="true" preftype="string" onchange="setCodeFormat();"/>
+						</row>
+					</rows>
+				</grid>
+				</groupbox>
+				<groupbox flex="1">
+					<caption label="&label.preview;"/>
+				<hbox dir="rtl" class="editor-code" flex="1">
+					<textbox id="samplecode" readonly="true" class="cb" multiline="true" flex="1" rows="4" wrap="off" height="100"/>
+					<textbox id="samplelines" class="lines" multiline="true" flex="0" rows="4" cols="4" wrap="off" height="100"/>
+				</hbox>
+				</groupbox>
+			</tabpanel>
+			<tabpanel id="configuration-pane" orient="vertical">
+				<groupbox>
+					<caption label="&label.directories;"/>
+					<grid flex="1">
+						<columns>
+							<column/>
+							<column flex="1"/>
+						</columns>
+						<rows>
+							<row>
+								<label value="&prefs.snippetdir;:" control="snippetdir" />
+								<hbox>
+									<textbox id="snippetdir" flex="1" preftype="file"/>
+									<toolbarbutton class="browse-button toolbarbutton-1"
+										oncommand="var f=getFolder(this.previousSibling.value);if(f){this.previousSibling.value=f.path;this.previousSibling.file=f}"/>
+								</hbox>
+							</row>
+							<row>
+								<label value="&prefs.templatedir;:" control="templatedir" />
+								<hbox>
+									<textbox id="templatedir" flex="1" preftype="file"/>
+									<toolbarbutton class="browse-button toolbarbutton-1"
+										oncommand="var f=getFolder(this.previousSibling.value);if(f){this.previousSibling.value=f.path;this.previousSibling.file=f}"/>
+								</hbox>
+							</row><!--
+							<row>
+								<label value="&prefs.projectdir;:" control="projectdir" />
+								<hbox>
+									<textbox id="projectdir" flex="1" preftype="file"/>
+									<toolbarbutton class="browse-button toolbarbutton-1"
+										oncommand="var f=getFolder(this.previousSibling.value);if(f){this.previousSibling.value=f.path;this.previousSibling.file=f}"/>
+								</hbox>
+							</row>-->
+						</rows>
+					</grid>
+				</groupbox>
+				<hbox><button label="&label.browseconfig;" oncommand="browseConfig();" class="browse-button" /></hbox>
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+</dialog>

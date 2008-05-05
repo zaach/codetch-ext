@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<bindings id="editorboxBindings"
+          xmlns="http://www.mozilla.org/xbl"
+          xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns:xbl="http://www.mozilla.org/xbl">
+  <binding id="editorbox" extends="chrome://global/content/bindings/tabbox.xml#tabs">
+    <content>
+		<children/>
+    </content>
+	<handlers>
+		<handler event="select" phase="target">
+		<![CDATA[
+		goUpdateSwitchMenuItems();
+		codetch.setWindowTitle(codetch.fileLongName());
+		debugLog("select tab:"+codetch.fileLongName());
+		codetch.setTabGroup(event.target.selectedItem.getAttribute('tabgroup'), false, true);
+		var doc = codetch.docs[event.target.selectedItem.linkedPanel];
+		
+		if(event.target.selectedItem && event.target.selectedItem.className.match('editor-tab')){
+			codetch.setWorkAreaDoctypes(doc.basedoctype, doc.doctype, doc.filehandler);
+			document.getElementById('line-type-status').removeAttribute('collapsed');
+		}else if(event.target.selectedItem){
+			codetch.setWorkAreaDoctypes();
+			document.getElementById('line-type-status').setAttribute('collapsed', true);
+		}
+		if(doc && doc.panel && doc.panel.setStatus)doc.panel.setStatus();
+		]]></handler>
+	</handlers>
+  </binding>
+</bindings>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="XHTML 1.0 Frameset" description="XHTML 1.0 Frameset doctype declaration." type="block" preview="code"><insertText location="beforeSelection"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+]]></insertText><insertText location="afterSelection"><![CDATA[]]></insertText></snippet>

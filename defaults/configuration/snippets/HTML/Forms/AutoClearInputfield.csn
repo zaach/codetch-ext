@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="Auto clear and recall textbox" description="Clears the inputfield's default value on focus and recalls it on blur if field is empty." type="block" preview="html"><insertText location="beforeSelection"><![CDATA[<input type="text" value="Hello, World!" 
+onfocus="if(this.value==this.defaultValue)this.value=''" 
+onblur="if(this.value=='')this.value=this.defaultValue"/>]]></insertText><insertText location="afterSelection"><![CDATA[]]></insertText></snippet>

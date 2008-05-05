@@ -1,0 +1,449 @@
+<!ENTITY window.title "Codetch">
+<!ENTITY window.welcome "Welcome to Codetch">
+<!ENTITY menu.file "Filer">
+<!ENTITY menu.file.accesskey "F">
+<!ENTITY menu.open "Åben...">
+<!ENTITY menu.open.key "O">
+<!ENTITY menu.open.accesskey "Å">
+<!ENTITY menu.openremote "Åben adresse...">
+<!ENTITY menu.openremote.key "U">
+<!ENTITY menu.openremote.accesskey "A">
+<!ENTITY menu.openrecent "Åben sidste">
+<!ENTITY menu.openrecent.accesskey "S">
+<!ENTITY menu.openallrecent "Åben alle sidste">
+<!ENTITY menu.openallrecent.accesskey "E">
+<!ENTITY menu.close "Luk">
+<!ENTITY menu.close.key "W">
+<!ENTITY menu.close.accesskey "L">
+<!ENTITY menu.closeall "Luk alle">
+<!ENTITY menu.closeall.accesskey "A">
+<!ENTITY menu.closeallbut "Luk alle undtagen den nuværende">
+<!ENTITY menu.closeallbut.accesskey "U">
+<!ENTITY menu.closetabgroup "Close All in Group">
+<!ENTITY menu.closetabgroup.accesskey "G">
+<!ENTITY menu.save "Gem">
+<!ENTITY menu.save.key "S">
+<!ENTITY menu.save.accesskey "G">
+<!ENTITY menu.saveas "Gem som...">
+<!ENTITY menu.saveas.key "k">
+<!ENTITY menu.saveas.accesskey "S">
+<!ENTITY menu.saveastemplate "Gem som skabelon...">
+<!ENTITY menu.saveastemplate.accesskey "K">
+<!ENTITY menu.saveall "Gem alle">
+<!ENTITY menu.saveall.accesskey "E">
+<!ENTITY label.revert "Gendan fra gemt fil">
+<!ENTITY label.revert.accesskey "G">
+<!ENTITY label.revertopen "Gendan fra åben fil">
+<!ENTITY label.revertopen.accesskey "G">
+<!ENTITY menu.import "Importer...">
+<!ENTITY menu.import.accesskey "I">
+<!ENTITY menu.import.key "I">
+<!ENTITY menu.newdef "Ny standard">
+<!ENTITY menu.newdef.key "N">
+<!ENTITY menu.newdef.accesskey "N">
+<!ENTITY menu.new "Ny...">
+<!ENTITY menu.new.key "N">
+<!ENTITY menu.new.accesskey "N">
+<!ENTITY menu.print "Print">
+<!ENTITY menu.print.accesskey "P">
+<!ENTITY menu.print.key "P">
+<!ENTITY menu.groupwith "Group With">
+<!ENTITY menu.groupwith.accesskey "G">
+<!ENTITY label.rename "Rename">
+<!ENTITY label.rename.accesskey "R">
+<!ENTITY menu.exit "Afslut">
+<!ENTITY menu.exit.key "Q">
+<!ENTITY menu.exit.accesskey "A">
+<!ENTITY menu.edit "Rediger">
+<!ENTITY menu.edit.accesskey "R">
+<!ENTITY menu.undo "Fortryd">
+<!ENTITY menu.undo.key "Z">
+<!ENTITY menu.undo.accesskey "F">
+<!ENTITY menu.redo "Genskab">
+<!ENTITY menu.redo.key "Y">
+<!ENTITY menu.redo.accesskey "G">
+<!ENTITY menu.cut "Klip">
+<!ENTITY menu.cut.key "X">
+<!ENTITY menu.cut.accesskey "K">
+<!ENTITY menu.copy "Kopier">
+<!ENTITY menu.copy.key "C">
+<!ENTITY menu.copy.accesskey "K">
+<!ENTITY menu.paste "Sæt ind">
+<!ENTITY menu.paste.key "V">
+<!ENTITY menu.paste.accesskey "S">
+<!ENTITY menu.selectall "Vælg alt">
+<!ENTITY menu.selectall.key "A">
+<!ENTITY menu.selectall.accesskey "V">
+<!ENTITY menu.delete "Slet">
+<!ENTITY menu.delete.accesskey "S">
+<!ENTITY menu.duplicateline "Duplicate line">
+<!ENTITY menu.duplicateline.accesskey "D">
+<!ENTITY menu.duplicateline.key "D">
+<!ENTITY menu.joinlines "Join lines">
+<!ENTITY menu.joinlines.accesskey "J">
+<!ENTITY menu.joinlines.key "J">
+<!ENTITY menu.toupper "To Upper case">
+<!ENTITY menu.toupper.accesskey "U">
+<!ENTITY menu.toupper.key "U">
+<!ENTITY menu.tolower "To Lower case">
+<!ENTITY menu.tolower.accesskey "l">
+<!ENTITY menu.tolower.key "l">
+<!ENTITY menu.totitle "To Title case">
+<!ENTITY menu.totitle.accesskey "T">
+<!ENTITY menu.totitle.key "T">
+<!ENTITY menu.prefs "Indstillinger...">
+<!ENTITY menu.prefs.key "P">
+<!ENTITY menu.prefs.accesskey "I">
+<!ENTITY menu.search "Search">
+<!ENTITY menu.search.accesskey "S">
+<!ENTITY menu.gotoline "Gå til linje...">
+<!ENTITY menu.gotoline.key "G">
+<!ENTITY menu.gotoline.accesskey "G">
+<!ENTITY menu.modify "Modificer">
+<!ENTITY menu.modify.accesskey "M">
+<!ENTITY menu.lineformat "Line Format">
+<!ENTITY menu.lineformat.accesskey "F">
+<!ENTITY label.windows "Windows">
+<!ENTITY label.windows.accesskey "W">
+<!ENTITY label.unix "Unix">
+<!ENTITY label.unix.accesskey "U">
+<!ENTITY label.mac "Mac">
+<!ENTITY label.mac.accesskey "M">
+<!ENTITY menu.view "Vis">
+<!ENTITY menu.view.accesskey "V">
+<!ENTITY menu.linenums "Linjenumre">
+<!ENTITY menu.linenums.key "L">
+<!ENTITY menu.linenums.accesskey "L">
+<!ENTITY menu.sidebardir "Sidebar on Right">
+<!ENTITY menu.sidebardir.accesskey "b">
+<!ENTITY menu.help "Hjælp">
+<!ENTITY menu.help.accesskey "H">
+<!ENTITY menu.helpcontents "Hjælp indhold">
+<!ENTITY menu.helpcontents.accesskey "H">
+<!ENTITY menu.about "Om Codetch">
+<!ENTITY menu.about.accesskey "O">
+<!ENTITY file.html "HTML dokument">
+<!ENTITY file.html.accesskey "H">
+<!ENTITY file.xml "XML fil">
+<!ENTITY file.xml.accesskey "X">
+<!ENTITY file.xul "XUL dokument">
+<!ENTITY file.xul.accesskey "U">
+<!ENTITY file.php "PHP dokument">
+<!ENTITY file.php.accesskey "P">
+<!ENTITY file.css "CSS fil">
+<!ENTITY file.css.accesskey "C">
+<!ENTITY file.js "Javascript fil">
+<!ENTITY file.js.accesskey "J">
+<!ENTITY file.txt "Tekst fil">
+<!ENTITY file.txt.accesskey "T">
+<!ENTITY label.view "Vis">
+<!ENTITY label.view.accesskey "V">
+<!ENTITY label.views "Views">
+<!ENTITY label.views.accesskey "V">
+<!ENTITY label.code "Kode">
+<!ENTITY label.code.accesskey "O">
+<!ENTITY label.design "Design">
+<!ENTITY label.design.accesskey "D">
+<!ENTITY label.preview "Fremvisning">
+<!ENTITY label.preview.accesskey "F">
+<!ENTITY label.reference "Reference">
+<!ENTITY label.reference.accesskey "R">
+<!ENTITY label.codedesign "Kode + design">
+<!ENTITY label.codedesign.accesskey "o">
+<!ENTITY label.codepreview "Kode + fremvisning">
+<!ENTITY label.codepreview.accesskey "e">
+<!ENTITY label.codereference "Kode + reference">
+<!ENTITY label.codereference.accesskey "f">
+<!ENTITY label.orientation "Orientation">
+<!ENTITY label.orientation.accesskey "o">
+<!ENTITY label.orientation.tooltip "Orientation of split views">
+<!ENTITY label.sidebar "Sidebar">
+<!ENTITY label.sidebar.accesskey "S">
+<!ENTITY label.results "Results">
+<!ENTITY label.results.accesskey "R">
+<!ENTITY label.inserttoolbox "Indsæt værktøjsboks">
+<!ENTITY label.inserttoolbox.accesskey "I">
+<!ENTITY label.insert "Indsæt">
+<!ENTITY label.insert.accesskey "I">
+<!ENTITY label.toolbox "Toolbox">
+<!ENTITY label.toolbox.accesskey "T">
+<!ENTITY label.toolbars "Toolbars">
+<!ENTITY label.toolbars.accesskey "b">
+<!ENTITY label.toolboxdock "Dock toolbars under tabs">
+<!ENTITY label.toolboxdock.accesskey "d">
+<!ENTITY label.filetoolbar "File Toolbar">
+<!ENTITY label.filetoolbar.accesskey "F">
+<!ENTITY label.tabgroups "Tab Groups">
+<!ENTITY label.tabgroups.accesskey "G">
+<!ENTITY label.newtabgroup "New Tab Group">
+<!ENTITY label.newtabgroup.accesskey "N">
+<!ENTITY label.files "Filer">
+<!ENTITY label.files.accesskey "F">
+<!ENTITY label.localfiles "Lokale filer">
+<!ENTITY label.localfiles.accesskey "L">
+<!ENTITY menu.style "Layout">
+<!ENTITY menu.style.accesskey "S">
+<!ENTITY label.nostyle "Fjern layout">
+<!ENTITY label.nostyle.accesskey "R">
+<!ENTITY label.bold "Fed">
+<!ENTITY label.bold.key "B">
+<!ENTITY label.bold.accesskey "B">
+<!ENTITY label.italic "Kursiv">
+<!ENTITY label.italic.key "I">
+<!ENTITY label.italic.accesskey "I">
+<!ENTITY label.underline "Understregning">
+<!ENTITY label.underline.accesskey "U">
+<!ENTITY label.strike "Gennemstregning">
+<!ENTITY label.strike.accesskey "S">
+<!ENTITY label.tt "Teletype">
+<!ENTITY label.tt.accesskey "T">
+<!ENTITY label.em "Fremhævning">
+<!ENTITY label.em.key "E">
+<!ENTITY label.em.accesskey "E">
+<!ENTITY label.strong "Stærk">
+<!ENTITY label.strong.accesskey "g">
+<!ENTITY label.cite "Citering">
+<!ENTITY label.cite.accesskey "C">
+<!ENTITY label.sub "Subskrift">
+<!ENTITY label.sub.accesskey "R">
+<!ENTITY label.sup "Superskrift">
+<!ENTITY label.sup.accesskey "p">
+<!ENTITY label.abbr "Forkortelse">
+<!ENTITY label.abbr.accesskey ".">
+<!ENTITY label.acronym "Akronym">
+<!ENTITY label.acronym.accesskey "y">
+<!ENTITY label.var "Variabel">
+<!ENTITY label.var.accesskey "V">
+<!ENTITY label.samp "Skabelon">
+<!ENTITY label.samp.accesskey "M">
+<!ENTITY label.big "Forøg skriftstørrelse">
+<!ENTITY label.big.accesskey "I">
+<!ENTITY label.small "Formindsk skriftstørrelse">
+<!ENTITY label.small.accesskey "D">
+<!ENTITY menu.paragraph "Paragraf format">
+<!ENTITY menu.paragraph.accesskey "P">
+<!ENTITY menu.headings "Overskrifter">
+<!ENTITY menu.headings.accesskey "H">
+<!ENTITY label.heading1 "Overskrift 1">
+<!ENTITY label.heading1.accesskey "1">
+<!ENTITY label.heading2 "Overskrift 2">
+<!ENTITY label.heading2.accesskey "2">
+<!ENTITY label.heading3 "Overskrift 3">
+<!ENTITY label.heading3.accesskey "3">
+<!ENTITY label.heading4 "Overskrift 4">
+<!ENTITY label.heading4.accesskey "4">
+<!ENTITY label.heading5 "Overskrift 5">
+<!ENTITY label.heading5.accesskey "5">
+<!ENTITY label.heading6 "Overskrift 6">
+<!ENTITY label.heading6.accesskey "6">
+<!ENTITY label.bodytext "Ingen">
+<!ENTITY label.bodytext.accesskey "N">
+<!ENTITY label.paragraph "Paragraf">
+<!ENTITY label.paragraph.accesskey "P">
+<!ENTITY label.paragraph.key "P">
+<!ENTITY label.pre "Preformatteret">
+<!ENTITY label.pre.accesskey "m">
+<!ENTITY label.address "Address">
+<!ENTITY label.address.accesskey "A">
+<!ENTITY menu.align "Justering">
+<!ENTITY menu.align.accesskey "A">
+<!ENTITY label.alignright "Højre">
+<!ENTITY label.alignright.accesskey "R">
+<!ENTITY label.aligncenter "Centreret">
+<!ENTITY label.aligncenter.accesskey "C">
+<!ENTITY label.alignleft "Venstre">
+<!ENTITY label.alignleft.accesskey "L">
+<!ENTITY label.alignfull "Udlign">
+<!ENTITY label.alignfull.accesskey "J">
+<!ENTITY menu.lists "Lister">
+<!ENTITY menu.lists.accesskey "L">
+<!ENTITY label.removelist "Fjern liste">
+<!ENTITY label.removelist.accesskey "R">
+<!ENTITY label.ul "Usorteret liste">
+<!ENTITY label.ul.accesskey "U">
+<!ENTITY label.ol "Sorteret liste">
+<!ENTITY label.ol.accesskey "O">
+<!ENTITY label.li "Liste enhed">
+<!ENTITY label.li.accesskey "I">
+<!ENTITY label.dl "Definitions liste">
+<!ENTITY label.dl.accesskey "L">
+<!ENTITY label.dt "Definitions term">
+<!ENTITY label.dt.accesskey "T">
+<!ENTITY label.dd "Definitions beskrivelse">
+<!ENTITY label.dd.accesskey "D">
+<!ENTITY label.blockquote "Blok citat">
+<!ENTITY label.blockquote.accesskey "B">
+<!ENTITY label.unblockquote "Fjern blok citat">
+<!ENTITY label.unblockquote.accesskey "Q">
+<!ENTITY menu.fontface "Skrifttype">
+<!ENTITY menu.fontface.accesskey "F">
+<!ENTITY menu.fontsize "Skriftstørrelse">
+<!ENTITY menu.fontsize.accesskey "o">
+<!ENTITY label.fontsize1 "X-lille">
+<!ENTITY label.fontsize1.accesskey "a">
+<!ENTITY label.fontsize2 "Lille">
+<!ENTITY label.fontsize2.accesskey "S">
+<!ENTITY label.fontsize3 "Mellem">
+<!ENTITY label.fontsize3.accesskey "M">
+<!ENTITY label.fontsize4 "Stor">
+<!ENTITY label.fontsize4.accesskey "L">
+<!ENTITY label.fontsize5 "X-stor">
+<!ENTITY label.fontsize5.accesskey "X">
+<!ENTITY label.fontsize6 "XX-stor">
+<!ENTITY label.fontsize6.accesskey "r">
+<!ENTITY label.fontsize7 "Størst">
+<!ENTITY label.fontsize7.accesskey "g">
+<!ENTITY label.forecolor "Forgrundsfarve">
+<!ENTITY label.forecolor.accesskey "F">
+<!ENTITY label.bgcolor "Baggrundsfarve">
+<!ENTITY label.bgcolor.accesskey "B">
+<!ENTITY menu.insert "Indsæt">
+<!ENTITY menu.insert.accesskey "I">
+<!ENTITY menu.datetime "Dato/Tid">
+<!ENTITY menu.datetime.accesskey "D">
+<!ENTITY label.date "Dato">
+<!ENTITY label.date.accesskey "D">
+<!ENTITY label.time "Tid">
+<!ENTITY label.time.accesskey "T">
+<!ENTITY label.gmtdate "GMT dato">
+<!ENTITY label.gmtdate.accesskey "G">
+<!ENTITY label.shortdate "Kort dato">
+<!ENTITY label.shortdate.accesskey "S">
+<!ENTITY label.timestamp "Tidsstempel">
+<!ENTITY label.timestamp.accesskey "s">
+<!ENTITY menu.fileinfo "Filinformation">
+<!ENTITY menu.fileinfo.accesskey "F">
+<!ENTITY label.filename "Navn">
+<!ENTITY label.filename.accesskey "n">
+<!ENTITY label.fullpath "Fuld sti">
+<!ENTITY label.fullpath.accesskey "F">
+<!ENTITY label.filedir "Forrige mappe">
+<!ENTITY label.filedir.accesskey "P">
+<!ENTITY label.common "Almen">
+<!ENTITY label.common.accesskey "C">
+<!ENTITY label.text "Tekst">
+<!ENTITY label.text.accesskey "T">
+<!ENTITY label.image "Billede">
+<!ENTITY label.image.accesskey "I">
+<!ENTITY label.hr "Vandret streg">
+<!ENTITY label.hr.accesskey "H">
+<!ENTITY label.link "Link">
+<!ENTITY label.link.accesskey "L">
+<!ENTITY label.removelink "Fjern link">
+<!ENTITY label.removelink.accesskey "R">
+<!ENTITY label.anchor "Navngivet anker">
+<!ENTITY label.anchor.accesskey "A">
+<!ENTITY label.bookmarks "Reference bogmærke">
+<!ENTITY label.bookmarks.accesskey "R">
+<!ENTITY menu.tools "Værktøjer">
+<!ENTITY menu.tools.accesskey "T">
+<!ENTITY label.inspect "DOM Inspecter">
+<!ENTITY label.inspect.accesskey "D">
+<!ENTITY label.validateHTML "Valider HTML">
+<!ENTITY label.validateHTML.accesskey "H">
+<!ENTITY label.validateRDF "Valider RDF">
+<!ENTITY label.validateRDF.accesskey "R">
+<!ENTITY label.validateCSS "Valider CSS">
+<!ENTITY label.validateCSS.accesskey "C">
+<!ENTITY label.validateXML "Valider XML">
+<!ENTITY label.validateXML.accesskey "X">
+<!ENTITY label.refresh "Opdater visning">
+<!ENTITY label.refresh.accesskey "R">
+<!ENTITY label.externalpreview "Start ekstern fremvisning">
+<!ENTITY label.externalpreview.accesskey "E">
+<!ENTITY label.editbrowserlist "Rediger browser liste...">
+<!ENTITY label.editbrowserlist.accesskey "E">
+<!ENTITY label.previewin "Fremvis i">
+<!ENTITY label.extensionbrowser "Installations standard">
+<!ENTITY label.extensionbrowser.accesskey "I">
+<!ENTITY label.extensionbrowsertip "browseren eller programmet som Codetch er installeret i (Firefox, Mozilla, eller Thunderbird)">
+<!ENTITY label.usetempfile "Anvend midlertidige filer">
+<!ENTITY label.usetempfile.accesskey "U">
+<!ENTITY label.print "Print">
+<!ENTITY label.print.accesskey "P">
+<!ENTITY label.launch "">
+<!ENTITY label.launch.accesskey "">
+<!ENTITY label.run "">
+<!ENTITY label.run.accesskey "">
+<!ENTITY label.browsertoolbar "Browser Toolbar">
+<!ENTITY label.browsertoolbar.accesskey "B">
+<!ENTITY label.reload "Reload">
+<!ENTITY label.reload.accesskey "R">
+<!ENTITY label.back "Back">
+<!ENTITY label.back.accesskey "B">
+<!ENTITY label.forward "Forward">
+<!ENTITY label.forward.accesskey "F">
+<!ENTITY label.stop "Stop">
+<!ENTITY label.stop.accesskey "S">
+<!ENTITY label.go "Go">
+<!ENTITY label.go.accesskey "G">
+<!ENTITY label.loaduri "Load URI">
+<!ENTITY label.loaduri.accesskey "L">
+<!ENTITY label.source "Source">
+<!ENTITY label.source.accesskey "u">
+<!ENTITY menu.find "Find...">
+<!ENTITY menu.find.accesskey "F">
+<!ENTITY menu.find.key "F">
+<!ENTITY menu.replace "Erstat...">
+<!ENTITY menu.replace.accesskey "R">
+<!ENTITY menu.replace.key "R">
+<!ENTITY label.findandreplace "Find og erstat">
+<!ENTITY label.findandreplace.accesskey "F">
+<!ENTITY label.find "Find">
+<!ENTITY label.find.accesskey "F">
+<!ENTITY label.findall "Find alle">
+<!ENTITY label.findall.accesskey "A">
+<!ENTITY label.replacewith "Erstat med">
+<!ENTITY label.replacewith.accesskey "R">
+<!ENTITY label.replace "Erstat">
+<!ENTITY label.replace.accesskey "R">
+<!ENTITY label.replaceall "Erstat alle">
+<!ENTITY label.replaceall.accesskey "A">
+<!ENTITY label.currentfile "Nuværende dokument">
+<!ENTITY label.currentfile.accesskey "C">
+<!ENTITY label.allopendocs "Alle åbne dokumenter">
+<!ENTITY label.allopendocs.accesskey "A">
+<!ENTITY label.case "Forskel på store og små bogstaver">
+<!ENTITY label.case.accesskey "M">
+<!ENTITY label.wrap "Ombryd">
+<!ENTITY label.wrap.accesskey "W">
+<!ENTITY label.regex "Anvend regex">
+<!ENTITY label.regex.accesskey "U">
+<!ENTITY label.inselection "Valgt tekst">
+<!ENTITY label.inselection.accesskey "s">
+<!ENTITY label.findnext "Find næste">
+<!ENTITY label.findnext.accesskey "N">
+<!ENTITY label.matchallin "Find alle i">
+<!ENTITY label.options "Indstillinger">
+<!ENTITY label.snippets "Snippets">
+<!ENTITY label.snippets.accesskey "S">
+<!ENTITY label.snippet "Snippet">
+<!ENTITY label.snippet.accesskey "S">
+<!ENTITY label.insertsnippet "Indsæt Snippet">
+<!ENTITY label.new "Ny">
+<!ENTITY label.newfolder "Ny Directory">
+<!ENTITY label.name "Name">
+<!ENTITY label.name.accesskey "N">
+<!ENTITY label.description "Description">
+<!ENTITY label.description.accesskey "D">
+<!ENTITY label.type "Type">
+<!ENTITY label.type.accesskey "S">
+<!ENTITY label.insertblock "Indsæt block">
+<!ENTITY label.insertblock.accesskey "b">
+<!ENTITY label.wrapselection "Wrap selection">
+<!ENTITY label.wrapselection.accesskey "w">
+<!ENTITY label.insertcode "Indsæt code">
+<!ENTITY label.insertcode.accesskey "I">
+<!ENTITY label.insertbefore "Indsæt before">
+<!ENTITY label.insertbefore.accesskey "B">
+<!ENTITY label.insertafter "Indsæt after">
+<!ENTITY label.insertafter.accesskey "A">
+<!ENTITY label.previewtype "Preview type">
+<!ENTITY label.previewtype.accesskey "P">
+<!ENTITY label.setastreeroot "Set as Tree Root">
+<!ENTITY label.setastreeroot.accesskey "S">
+<!ENTITY label.uponelevel "Up One Level">
+<!ENTITY label.uponelevel.accesskey "U">
+<!ENTITY label.tags "Tags">
+<!ENTITY label.tags.accesskey "T">
+<!ENTITY description.tags "Tags are descriptive, space seperated keywords that help in categorization. (ie &apos;PHP MySQL class&apos;)">

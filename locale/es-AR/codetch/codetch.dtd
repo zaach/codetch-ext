@@ -1,0 +1,449 @@
+<!ENTITY window.title "Codetch">
+<!ENTITY window.welcome "Bienvenido a Codetch">
+<!ENTITY menu.file "Archivo">
+<!ENTITY menu.file.accesskey "A">
+<!ENTITY menu.open "Abrir...">
+<!ENTITY menu.open.key "O">
+<!ENTITY menu.open.accesskey "A">
+<!ENTITY menu.openremote "Abrir dirección...">
+<!ENTITY menu.openremote.key "U">
+<!ENTITY menu.openremote.accesskey "d">
+<!ENTITY menu.openrecent "Abrir reciente">
+<!ENTITY menu.openrecent.accesskey "R">
+<!ENTITY menu.openallrecent "Abrir todos los recientes">
+<!ENTITY menu.openallrecent.accesskey "t">
+<!ENTITY menu.close "Cerrar">
+<!ENTITY menu.close.key "W">
+<!ENTITY menu.close.accesskey "C">
+<!ENTITY menu.closeall "Cerrar todo">
+<!ENTITY menu.closeall.accesskey "e">
+<!ENTITY menu.closeallbut "Cerrar los otros archivos">
+<!ENTITY menu.closeallbut.accesskey "r">
+<!ENTITY menu.closetabgroup "Cerrar todo en grupo">
+<!ENTITY menu.closetabgroup.accesskey "g">
+<!ENTITY menu.save "Guardar">
+<!ENTITY menu.save.key "S">
+<!ENTITY menu.save.accesskey "G">
+<!ENTITY menu.saveas "Guardar como...">
+<!ENTITY menu.saveas.key "k">
+<!ENTITY menu.saveas.accesskey "u">
+<!ENTITY menu.saveastemplate "Guardar como plantilla...">
+<!ENTITY menu.saveastemplate.accesskey "p">
+<!ENTITY menu.saveall "Guardar todo">
+<!ENTITY menu.saveall.accesskey "d">
+<!ENTITY label.revert "Revertir cambios no guardados">
+<!ENTITY label.revert.accesskey "R">
+<!ENTITY label.revertopen "Revertir cambios guardados">
+<!ENTITY label.revertopen.accesskey "R">
+<!ENTITY menu.import "Importar...">
+<!ENTITY menu.import.accesskey "I">
+<!ENTITY menu.import.key "I">
+<!ENTITY menu.newdef "Nuevo predeterminado">
+<!ENTITY menu.newdef.key "N">
+<!ENTITY menu.newdef.accesskey "N">
+<!ENTITY menu.new "Nuevo...">
+<!ENTITY menu.new.key "N">
+<!ENTITY menu.new.accesskey "N">
+<!ENTITY menu.print "Imprimir">
+<!ENTITY menu.print.accesskey "P">
+<!ENTITY menu.print.key "P">
+<!ENTITY menu.groupwith "Agrupar con">
+<!ENTITY menu.groupwith.accesskey "G">
+<!ENTITY label.rename "Renombrar">
+<!ENTITY label.rename.accesskey "R">
+<!ENTITY menu.exit "Salir">
+<!ENTITY menu.exit.key "Q">
+<!ENTITY menu.exit.accesskey "S">
+<!ENTITY menu.edit "Edición">
+<!ENTITY menu.edit.accesskey "E">
+<!ENTITY menu.undo "Deshacer">
+<!ENTITY menu.undo.key "Z">
+<!ENTITY menu.undo.accesskey "D">
+<!ENTITY menu.redo "Rehacer">
+<!ENTITY menu.redo.key "Y">
+<!ENTITY menu.redo.accesskey "R">
+<!ENTITY menu.cut "Cortar">
+<!ENTITY menu.cut.key "X">
+<!ENTITY menu.cut.accesskey "t">
+<!ENTITY menu.copy "Copiar">
+<!ENTITY menu.copy.key "C">
+<!ENTITY menu.copy.accesskey "C">
+<!ENTITY menu.paste "Pegar">
+<!ENTITY menu.paste.key "V">
+<!ENTITY menu.paste.accesskey "P">
+<!ENTITY menu.selectall "Seleccionar todo">
+<!ENTITY menu.selectall.key "A">
+<!ENTITY menu.selectall.accesskey "S">
+<!ENTITY menu.delete "Borrar">
+<!ENTITY menu.delete.accesskey "B">
+<!ENTITY menu.duplicateline "Duplicar linea">
+<!ENTITY menu.duplicateline.accesskey "D">
+<!ENTITY menu.duplicateline.key "D">
+<!ENTITY menu.joinlines "Unir lineas">
+<!ENTITY menu.joinlines.accesskey "J">
+<!ENTITY menu.joinlines.key "J">
+<!ENTITY menu.toupper "A Mayúsculas">
+<!ENTITY menu.toupper.accesskey "U">
+<!ENTITY menu.toupper.key "U">
+<!ENTITY menu.tolower "A Minúsculas">
+<!ENTITY menu.tolower.accesskey "l">
+<!ENTITY menu.tolower.key "l">
+<!ENTITY menu.totitle "Capitalizar">
+<!ENTITY menu.totitle.accesskey "T">
+<!ENTITY menu.totitle.key "T">
+<!ENTITY menu.prefs "Opciones...">
+<!ENTITY menu.prefs.key "P">
+<!ENTITY menu.prefs.accesskey "O">
+<!ENTITY menu.search "Buscar">
+<!ENTITY menu.search.accesskey "S">
+<!ENTITY menu.gotoline "Ir a la línea...">
+<!ENTITY menu.gotoline.key "G">
+<!ENTITY menu.gotoline.accesskey "I">
+<!ENTITY menu.modify "Modificar">
+<!ENTITY menu.modify.accesskey "M">
+<!ENTITY menu.lineformat "Formato de línea">
+<!ENTITY menu.lineformat.accesskey "F">
+<!ENTITY label.windows "Windows">
+<!ENTITY label.windows.accesskey "W">
+<!ENTITY label.unix "Unix">
+<!ENTITY label.unix.accesskey "U">
+<!ENTITY label.mac "Mac">
+<!ENTITY label.mac.accesskey "M">
+<!ENTITY menu.view "Ver">
+<!ENTITY menu.view.accesskey "V">
+<!ENTITY menu.linenums "Números de línea">
+<!ENTITY menu.linenums.key "L">
+<!ENTITY menu.linenums.accesskey "L">
+<!ENTITY menu.sidebardir "Barra lateral a la derecha">
+<!ENTITY menu.sidebardir.accesskey "b">
+<!ENTITY menu.help "Ayuda">
+<!ENTITY menu.help.accesskey "y">
+<!ENTITY menu.helpcontents "Contenido de la ayuda">
+<!ENTITY menu.helpcontents.accesskey "C">
+<!ENTITY menu.about "Acerca de Codetch">
+<!ENTITY menu.about.accesskey "A">
+<!ENTITY file.html "Documento HTML">
+<!ENTITY file.html.accesskey "H">
+<!ENTITY file.xml "Archivo XML">
+<!ENTITY file.xml.accesskey "X">
+<!ENTITY file.xul "Documento XUL">
+<!ENTITY file.xul.accesskey "U">
+<!ENTITY file.php "Documento PHP">
+<!ENTITY file.php.accesskey "P">
+<!ENTITY file.css "Archivo CSS">
+<!ENTITY file.css.accesskey "C">
+<!ENTITY file.js "Archivo JavaScript">
+<!ENTITY file.js.accesskey "J">
+<!ENTITY file.txt "Archivo de texto">
+<!ENTITY file.txt.accesskey "T">
+<!ENTITY label.view "Ver">
+<!ENTITY label.view.accesskey "V">
+<!ENTITY label.views "Vistas">
+<!ENTITY label.views.accesskey "V">
+<!ENTITY label.code "Código">
+<!ENTITY label.code.accesskey "d">
+<!ENTITY label.design "Diseño">
+<!ENTITY label.design.accesskey "D">
+<!ENTITY label.preview "Vista previa">
+<!ENTITY label.preview.accesskey "V">
+<!ENTITY label.reference "Referencias">
+<!ENTITY label.reference.accesskey "R">
+<!ENTITY label.codedesign "Código + Diseño">
+<!ENTITY label.codedesign.accesskey "d">
+<!ENTITY label.codepreview "Código + Vista previa">
+<!ENTITY label.codepreview.accesskey "i">
+<!ENTITY label.codereference "Código + Referencias">
+<!ENTITY label.codereference.accesskey "f">
+<!ENTITY label.orientation "Orientación">
+<!ENTITY label.orientation.accesskey "o">
+<!ENTITY label.orientation.tooltip "Orientación de vista dividida">
+<!ENTITY label.sidebar "Barra lateral">
+<!ENTITY label.sidebar.accesskey "B">
+<!ENTITY label.results "Resultados">
+<!ENTITY label.results.accesskey "R">
+<!ENTITY label.inserttoolbox "Insertar caja de herramientas">
+<!ENTITY label.inserttoolbox.accesskey "I">
+<!ENTITY label.insert "Insertar">
+<!ENTITY label.insert.accesskey "I">
+<!ENTITY label.toolbox "Toolbox">
+<!ENTITY label.toolbox.accesskey "T">
+<!ENTITY label.toolbars "Toolbars">
+<!ENTITY label.toolbars.accesskey "b">
+<!ENTITY label.toolboxdock "Bloquear barras de herramientas debajo de pestañas">
+<!ENTITY label.toolboxdock.accesskey "d">
+<!ENTITY label.filetoolbar "Barra de archivo">
+<!ENTITY label.filetoolbar.accesskey "F">
+<!ENTITY label.tabgroups "Grupos de pestañas">
+<!ENTITY label.tabgroups.accesskey "G">
+<!ENTITY label.newtabgroup "Nuevo grupo de pestañas">
+<!ENTITY label.newtabgroup.accesskey "N">
+<!ENTITY label.files "Archivos">
+<!ENTITY label.files.accesskey "A">
+<!ENTITY label.localfiles "Archivos locales">
+<!ENTITY label.localfiles.accesskey "L">
+<!ENTITY menu.style "Estilo">
+<!ENTITY menu.style.accesskey "E">
+<!ENTITY label.nostyle "Remover estilo">
+<!ENTITY label.nostyle.accesskey "R">
+<!ENTITY label.bold "Negrita">
+<!ENTITY label.bold.key "B">
+<!ENTITY label.bold.accesskey "N">
+<!ENTITY label.italic "Cursiva">
+<!ENTITY label.italic.key "I">
+<!ENTITY label.italic.accesskey "C">
+<!ENTITY label.underline "Subrayado">
+<!ENTITY label.underline.accesskey "S">
+<!ENTITY label.strike "Tachado">
+<!ENTITY label.strike.accesskey "S">
+<!ENTITY label.tt "Ancho fijo">
+<!ENTITY label.tt.accesskey "f">
+<!ENTITY label.em "Enfasis">
+<!ENTITY label.em.key "n">
+<!ENTITY label.em.accesskey "n">
+<!ENTITY label.strong "Fuerte">
+<!ENTITY label.strong.accesskey "e">
+<!ENTITY label.cite "Cita">
+<!ENTITY label.cite.accesskey "a">
+<!ENTITY label.sub "Subíndice">
+<!ENTITY label.sub.accesskey "S">
+<!ENTITY label.sup "Superíndice">
+<!ENTITY label.sup.accesskey "p">
+<!ENTITY label.abbr "Abreviatura">
+<!ENTITY label.abbr.accesskey "t">
+<!ENTITY label.acronym "Acrónimo">
+<!ENTITY label.acronym.accesskey "r">
+<!ENTITY label.var "Variable">
+<!ENTITY label.var.accesskey "V">
+<!ENTITY label.samp "Sencillo">
+<!ENTITY label.samp.accesskey "M">
+<!ENTITY label.big "Aumentar letra">
+<!ENTITY label.big.accesskey "l">
+<!ENTITY label.small "Disminuir letra">
+<!ENTITY label.small.accesskey "c">
+<!ENTITY menu.paragraph "Formato de párrafo">
+<!ENTITY menu.paragraph.accesskey "P">
+<!ENTITY menu.headings "Encabezados">
+<!ENTITY menu.headings.accesskey "E">
+<!ENTITY label.heading1 "Encabezado 1">
+<!ENTITY label.heading1.accesskey "1">
+<!ENTITY label.heading2 "Encabezado 2">
+<!ENTITY label.heading2.accesskey "2">
+<!ENTITY label.heading3 "Encabezado 3">
+<!ENTITY label.heading3.accesskey "3">
+<!ENTITY label.heading4 "Encabezado 4">
+<!ENTITY label.heading4.accesskey "4">
+<!ENTITY label.heading5 "Encabezado 5">
+<!ENTITY label.heading5.accesskey "5">
+<!ENTITY label.heading6 "Encabezado 6">
+<!ENTITY label.heading6.accesskey "6">
+<!ENTITY label.bodytext "Ninguno">
+<!ENTITY label.bodytext.accesskey "N">
+<!ENTITY label.paragraph "Párrafo">
+<!ENTITY label.paragraph.accesskey "P">
+<!ENTITY label.paragraph.key "P">
+<!ENTITY label.pre "Pre-formateado">
+<!ENTITY label.pre.accesskey "m">
+<!ENTITY label.address "Dirección">
+<!ENTITY label.address.accesskey "A">
+<!ENTITY menu.align "Alineación">
+<!ENTITY menu.align.accesskey "A">
+<!ENTITY label.alignright "Derecha">
+<!ENTITY label.alignright.accesskey "D">
+<!ENTITY label.aligncenter "Centro">
+<!ENTITY label.aligncenter.accesskey "C">
+<!ENTITY label.alignleft "Izquierda">
+<!ENTITY label.alignleft.accesskey "I">
+<!ENTITY label.alignfull "Justificar">
+<!ENTITY label.alignfull.accesskey "J">
+<!ENTITY menu.lists "Listas">
+<!ENTITY menu.lists.accesskey "L">
+<!ENTITY label.removelist "Remover lista">
+<!ENTITY label.removelist.accesskey "R">
+<!ENTITY label.ul "Lista de viñetas">
+<!ENTITY label.ul.accesskey "v">
+<!ENTITY label.ol "Lista numerada">
+<!ENTITY label.ol.accesskey "n">
+<!ENTITY label.li "Item de lista">
+<!ENTITY label.li.accesskey "t">
+<!ENTITY label.dl "Lista de definición">
+<!ENTITY label.dl.accesskey "L">
+<!ENTITY label.dt "Término de definición">
+<!ENTITY label.dt.accesskey "T">
+<!ENTITY label.dd "Descripción de definición">
+<!ENTITY label.dd.accesskey "D">
+<!ENTITY label.blockquote "Cita de bloque">
+<!ENTITY label.blockquote.accesskey "B">
+<!ENTITY label.unblockquote "Remover cita de bloque">
+<!ENTITY label.unblockquote.accesskey "Q">
+<!ENTITY menu.fontface "Fuente">
+<!ENTITY menu.fontface.accesskey "F">
+<!ENTITY menu.fontsize "Tamaño">
+<!ENTITY menu.fontsize.accesskey "T">
+<!ENTITY label.fontsize1 "Muy Pequeño">
+<!ENTITY label.fontsize1.accesskey "a">
+<!ENTITY label.fontsize2 "Pequeño">
+<!ENTITY label.fontsize2.accesskey "S">
+<!ENTITY label.fontsize3 "Mediano">
+<!ENTITY label.fontsize3.accesskey "M">
+<!ENTITY label.fontsize4 "Grande">
+<!ENTITY label.fontsize4.accesskey "L">
+<!ENTITY label.fontsize5 "Muy grande">
+<!ENTITY label.fontsize5.accesskey "X">
+<!ENTITY label.fontsize6 "Extra grande">
+<!ENTITY label.fontsize6.accesskey "r">
+<!ENTITY label.fontsize7 "El más grande">
+<!ENTITY label.fontsize7.accesskey "g">
+<!ENTITY label.forecolor "Color de texto">
+<!ENTITY label.forecolor.accesskey "F">
+<!ENTITY label.bgcolor "Color de fondo">
+<!ENTITY label.bgcolor.accesskey "B">
+<!ENTITY menu.insert "Insertar">
+<!ENTITY menu.insert.accesskey "I">
+<!ENTITY menu.datetime "Fecha/Hora">
+<!ENTITY menu.datetime.accesskey "e">
+<!ENTITY label.date "Fecha">
+<!ENTITY label.date.accesskey "F">
+<!ENTITY label.time "Hora">
+<!ENTITY label.time.accesskey "H">
+<!ENTITY label.gmtdate "Hora GMT">
+<!ENTITY label.gmtdate.accesskey "G">
+<!ENTITY label.shortdate "Fecha en formato corto">
+<!ENTITY label.shortdate.accesskey "c">
+<!ENTITY label.timestamp "Insertar Fecha y Hora Actual">
+<!ENTITY label.timestamp.accesskey "s">
+<!ENTITY menu.fileinfo "Información de archivo">
+<!ENTITY menu.fileinfo.accesskey "I">
+<!ENTITY label.filename "Nombre">
+<!ENTITY label.filename.accesskey "N">
+<!ENTITY label.fullpath "Ubicación completa">
+<!ENTITY label.fullpath.accesskey "U">
+<!ENTITY label.filedir "Carpeta de nivel superior">
+<!ENTITY label.filedir.accesskey "C">
+<!ENTITY label.common "Común">
+<!ENTITY label.common.accesskey "C">
+<!ENTITY label.text "Texto">
+<!ENTITY label.text.accesskey "T">
+<!ENTITY label.image "Imagen">
+<!ENTITY label.image.accesskey "I">
+<!ENTITY label.hr "Línea horizontal">
+<!ENTITY label.hr.accesskey "H">
+<!ENTITY label.link "Link">
+<!ENTITY label.link.accesskey "L">
+<!ENTITY label.removelink "Remover Link">
+<!ENTITY label.removelink.accesskey "R">
+<!ENTITY label.anchor "Ancla">
+<!ENTITY label.anchor.accesskey "A">
+<!ENTITY label.bookmarks "Marcadores">
+<!ENTITY label.bookmarks.accesskey "M">
+<!ENTITY menu.tools "Herramientas">
+<!ENTITY menu.tools.accesskey "H">
+<!ENTITY label.inspect "Inspector DOM">
+<!ENTITY label.inspect.accesskey "D">
+<!ENTITY label.validateHTML "Validar HTML">
+<!ENTITY label.validateHTML.accesskey "H">
+<!ENTITY label.validateRDF "Validar RDF">
+<!ENTITY label.validateRDF.accesskey "R">
+<!ENTITY label.validateCSS "Validar CSS">
+<!ENTITY label.validateCSS.accesskey "C">
+<!ENTITY label.validateXML "Validar XML">
+<!ENTITY label.validateXML.accesskey "X">
+<!ENTITY label.refresh "Actualizar vista">
+<!ENTITY label.refresh.accesskey "A">
+<!ENTITY label.externalpreview "Actualizar vista externa">
+<!ENTITY label.externalpreview.accesskey "e">
+<!ENTITY label.editbrowserlist "Modificar lista de navegadores...">
+<!ENTITY label.editbrowserlist.accesskey "E">
+<!ENTITY label.previewin "Vista previa en">
+<!ENTITY label.extensionbrowser "Navegador predeterminado">
+<!ENTITY label.extensionbrowser.accesskey "I">
+<!ENTITY label.extensionbrowsertip "El navegador en el que Codetch está instalado (Firefox, Mozilla o Thunderbird)">
+<!ENTITY label.usetempfile "Usar archivos temporales">
+<!ENTITY label.usetempfile.accesskey "U">
+<!ENTITY label.print "Imprimir">
+<!ENTITY label.print.accesskey "I">
+<!ENTITY label.launch "">
+<!ENTITY label.launch.accesskey "">
+<!ENTITY label.run "">
+<!ENTITY label.run.accesskey "">
+<!ENTITY label.browsertoolbar "Barra de Navegación">
+<!ENTITY label.browsertoolbar.accesskey "B">
+<!ENTITY label.reload "Recargar">
+<!ENTITY label.reload.accesskey "R">
+<!ENTITY label.back "Atrás">
+<!ENTITY label.back.accesskey "B">
+<!ENTITY label.forward "Adelante">
+<!ENTITY label.forward.accesskey "F">
+<!ENTITY label.stop "Detener">
+<!ENTITY label.stop.accesskey "S">
+<!ENTITY label.go "Ir">
+<!ENTITY label.go.accesskey "G">
+<!ENTITY label.loaduri "Cargar URI">
+<!ENTITY label.loaduri.accesskey "L">
+<!ENTITY label.source "Fuente">
+<!ENTITY label.source.accesskey "u">
+<!ENTITY menu.find "Buscar...">
+<!ENTITY menu.find.accesskey "B">
+<!ENTITY menu.find.key "F">
+<!ENTITY menu.replace "Reemplazar...">
+<!ENTITY menu.replace.accesskey "R">
+<!ENTITY menu.replace.key "R">
+<!ENTITY label.findandreplace "Buscar y reemplazar">
+<!ENTITY label.findandreplace.accesskey "u">
+<!ENTITY label.find "Buscar">
+<!ENTITY label.find.accesskey "B">
+<!ENTITY label.findall "Buscar todo">
+<!ENTITY label.findall.accesskey "t">
+<!ENTITY label.replacewith "Reemplazar con">
+<!ENTITY label.replacewith.accesskey "R">
+<!ENTITY label.replace "Reemplazar">
+<!ENTITY label.replace.accesskey "R">
+<!ENTITY label.replaceall "Reemplazar todo">
+<!ENTITY label.replaceall.accesskey "t">
+<!ENTITY label.currentfile "Documento actual">
+<!ENTITY label.currentfile.accesskey "D">
+<!ENTITY label.allopendocs "Todos los documentos abiertos">
+<!ENTITY label.allopendocs.accesskey "s">
+<!ENTITY label.case "Mayúsculas/Minúsculas">
+<!ENTITY label.case.accesskey "M">
+<!ENTITY label.wrap "Ajustar">
+<!ENTITY label.wrap.accesskey "A">
+<!ENTITY label.regex "Usar regex">
+<!ENTITY label.regex.accesskey "U">
+<!ENTITY label.inselection "Texto seleccionado">
+<!ENTITY label.inselection.accesskey "s">
+<!ENTITY label.findnext "Buscar siguiente">
+<!ENTITY label.findnext.accesskey "N">
+<!ENTITY label.matchallin "Buscar todo en">
+<!ENTITY label.options "Opciones">
+<!ENTITY label.snippets "Snippets">
+<!ENTITY label.snippets.accesskey "S">
+<!ENTITY label.snippet "Snippet">
+<!ENTITY label.snippet.accesskey "S">
+<!ENTITY label.insertsnippet "Insertar Snippet">
+<!ENTITY label.new "Nuevo">
+<!ENTITY label.newfolder "Directorio Nuevo">
+<!ENTITY label.name "Name">
+<!ENTITY label.name.accesskey "N">
+<!ENTITY label.description "Descripción">
+<!ENTITY label.description.accesskey "D">
+<!ENTITY label.type "Type">
+<!ENTITY label.type.accesskey "S">
+<!ENTITY label.insertblock "Insertar bloque">
+<!ENTITY label.insertblock.accesskey "b">
+<!ENTITY label.wrapselection "Envolver Selección">
+<!ENTITY label.wrapselection.accesskey "w">
+<!ENTITY label.insertcode "Insertar codigo">
+<!ENTITY label.insertcode.accesskey "I">
+<!ENTITY label.insertbefore "Insertar antés">
+<!ENTITY label.insertbefore.accesskey "B">
+<!ENTITY label.insertafter "Insertar despues">
+<!ENTITY label.insertafter.accesskey "A">
+<!ENTITY label.previewtype "Previsualizar type">
+<!ENTITY label.previewtype.accesskey "P">
+<!ENTITY label.setastreeroot "Establecer como raiz">
+<!ENTITY label.setastreeroot.accesskey "S">
+<!ENTITY label.uponelevel "Subir un nivel">
+<!ENTITY label.uponelevel.accesskey "U">
+<!ENTITY label.tags "Etiquetas">
+<!ENTITY label.tags.accesskey "T">
+<!ENTITY description.tags "Las etiquetas son plabras descriptivas separadas por espacios uqe ayudan a la categorización. (ie &apos;PHP MySQL clase&apos;)">

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="If-Then-Else" description="" type="wrap" preview="code"><insertText location="beforeSelection"><![CDATA[if(){
+]]></insertText><insertText location="afterSelection"><![CDATA[
+}else{
+
+}]]></insertText></snippet>

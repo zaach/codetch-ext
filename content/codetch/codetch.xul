@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://codetch/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://codetch/content/controller.css" type="text/css"?>
+<?xml-stylesheet href="chrome://codetch/content/panels.css" type="text/css"?>
+<?xml-stylesheet href="chrome://codetch/content/editorBindings.css" type="text/css"?>
+
+<?xul-overlay href="chrome://codetch/content/commandOverlay.xul"?>
+<?xul-overlay href="chrome://codetch/content/toolOverlay.xul"?>
+<?xul-overlay href="chrome://codetch/content/overlays/htmlOverlay.xul"?>
+
+<!DOCTYPE window [
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd" >
+%codetchDTD;
+]>
+
+<window
+   title      = "&window.title;"
+   id         = "codetch-main"
+   xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   xmlns:xbl  = "http://www.mozilla.org/xbl"
+   xmlns:html = "http://www.w3.org/1999/xhtml"
+   xmlns:rdf  = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   orient     = "vertical"
+   onload     = "init();"
+   onclose    = "return closeMainWindow();"
+   onunload   = "return unloadApp();"
+   windowtype = "mozilla:codetch"
+   sizemode   = "maximized"
+   width      = "800"
+   height     = "600"
+   persist    = "sizemode screenX screenY width height">
+
+<script type="application/x-javascript" src="chrome://global/content/globalOverlay.js" />
+<script type="application/x-javascript" src="chrome://global/content/nsDragAndDrop.js"/>
+<script type="application/x-javascript" src="chrome://global/content/nsTransferable.js"/>
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/rdfds.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/XPCU.js" />
+
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/os.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/jsio.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/initfiles.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/utilities.js" />
+
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/prefs.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/executable.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/console.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/xml.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/httprequest.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/clipboard.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/codetchobjs.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/codetch.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/commands.js" />
+
+<stringbundleset id="mainstrings"/>
+
+  <commandset commandupdater="true"
+              events="focus"
+              oncommandupdate="goUpdateFocusMenuItems();"/>
+  <commandset commandupdater="true"
+              events="select"
+              oncommandupdate="goUpdateSelectMenuItems();"/>
+  <commandset commandupdater="true"
+              events="undo"
+              oncommandupdate="goUpdateUndoMenuItems();"/>
+  <commandset commandupdater="true"
+              events="clipboard"
+              oncommandupdate="goUpdatePasteMenuItems();"/>
+
+<commandset id="maincommands"/>
+<keyset id="mainkeys"/>
+<broadcasterset id="mainbroadcasterset">
+	<broadcaster id="codeInsertion" disabled="true" ondraggesture="nsDragAndDrop.startDrag(event,cmdDragObserver);"/>
+	<broadcaster id="sourceEdit" disabled="true"/>
+	<broadcaster id="brd_sidebar" persist="hidden"/>
+	<broadcaster id="brd_bottombar" persist="hidden"/>
+	<broadcaster id="brd_insertbar" persist="hidden"/>
+	<broadcaster id="brd_toolbox" persist="hidden"/>
+</broadcasterset>
+<popupset id="mainpopups">
+</popupset>
+<vbox id="workarea" flex="1">
+<toolbox id="main-toolbox" context="toolbars-popup">
+<menubar id="codetch-menubar" context=""/>
+</toolbox>
+<hbox id="workcolumns" flex="1" dir="ltr" persist="dir">
+	<vbox id="toolboxPanel" persist="width collapsed" width="200" observes="brd_sidebar" guitype="panel_area" />
+	<splitter id="toolbox-splitter" collapse="before" resizeafter="farthest" persist="state" observes="brd_sidebar"><!--<grippy observes="brd_sidebar" />--></splitter>
+	<vbox id="doc-area" flex="1">
+	<vbox class="panel-box" id="insert-panel" label="&menu.insert;" accesskey="&menu.insert.accesskey;" persist="collapsed" observes="brd_insertbar" guitype="panel_area" onclose="cmd_toggleInsertbar">
+		<tabbox flex="1" id="insert-tabbox">
+			<tabs id="insert-tabs" />
+			<tabpanels id="insert-panels" flex="1"/>
+		</tabbox>
+	</vbox>
+	<vbox id="editpanels" flex="1">
+		<tabbox flex="1" id="editor-arena" persist="tabgroup">
+			<tabs id="editor-tabs" context="tab-group-popup" class="tabeditor-tabs" />
+			<toolbox id="editor-toolbox" observes="brd_toolbox" dock="tabs" persist="dock" />
+			<tabpanels id="editor-panels" flex="1"/>
+		</tabbox>
+	</vbox>
+	<splitter id="support-splitter" collapse="after" resizebefore="closest"  resizeafter="closest" persist="state" observes="brd_bottombar"><!--<grippy />--></splitter>
+	<vbox id="support-panels" persist="collapsed height" observes="brd_bottombar" guitype="panel_area">
+		<vbox label="Results" id="results-panel" class="panel-box" persist="collapsed lastHeight" flex="1" onclose="cmd_toggleBottombar" height="150" lastHeight="150">
+		<tabbox flex="1">
+			<tabs>
+				<tab id="jsconsole" label="Error Console" linkedpanel="jsconsole-frame" />
+				<tab id="find-results" label="Search" linkedpanel="search-result-panel" />
+				<tab id="output" label="Output" linkedpanel="output-panel" />
+			</tabs>
+			<tabpanels flex="1">
+				<browser id="jsconsole-frame" src="chrome://global/content/console.xul" flex="1" />
+				<tabpanel id="search-result-panel" flex="1" orient="vertical" />
+				<tabpanel id="output-panel" flex="1" orient="vertical">
+					<textbox id="output-buffer" readonly="true" multiline="true" flex="1" />
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+		</vbox>
+	</vbox>
+	<!--
+	<editor id="utility-editor" src="about:blank" collapsed="true"/>
+			 -->
+	</vbox>
+</hbox>
+<statusbar id="statusbar" align="center">
+  <statuspanel id="edit-statusbar">
+    <label id="edit-status" value=""/>
+  </statuspanel>
+  <toolbarbutton id="line-type-status" label="" collapsed="true" type="menu" tooltiptext="&menu.lineformat;" observes="cmd_filesOpen">
+		<menupopup id="lineformat-menu-popup" observes="cmd_filesOpen" oncommand="codetch.doc.lineFormat = event.target.getAttribute('value');" onpopupshowing="lineFormatPopup()">
+			<menuitem label="&label.windows; (LF)" type="radio" value="win" accesskey="&label.windows.accesskey;" />
+			<menuitem label="&label.unix; (L)" type="radio" value="unix" accesskey="&label.unix.accesskey;" />
+			<menuitem label="&label.mac; (F)" type="radio" value="mac" accesskey="&label.mac.accesskey;" />
+		</menupopup>
+  </toolbarbutton>
+  <spacer flex="1"/>
+  <statuspanel id="status">
+    <label id="generalstatus" value="Ready"/>
+  </statuspanel>
+</statusbar>
+</vbox>
+
+<iframe id="utility-frame" src="about:blank" collapsed="true"/>
+</window>

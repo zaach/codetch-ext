@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+
+  <RDF:Seq about="urn:mozilla:package:root">
+    <RDF:li resource="urn:mozilla:package:codetch"/>
+  </RDF:Seq>
+
+  <RDF:Description about="urn:mozilla:package:codetch"
+        chrome:displayName="Codetch"
+        chrome:author="Zachary Carter"
+		chrome:authorURL="http://zachcarter.info"
+		chrome:description="Code editing application."
+        chrome:name="codetch"
+		chrome:extension="true"
+		>
+  </RDF:Description>
+
+  <RDF:Seq about="urn:mozilla:overlays">
+    <RDF:li resource="chrome://communicator/content/tasksOverlay.xul"/> <!-- Mozilla -->
+    <RDF:li resource="chrome://browser/content/browser.xul"/><!-- Firebird -->
+    <RDF:li resource="chrome://messenger/content/mailWindowOverlay.xul"/><!-- Thunderbird -->
+  </RDF:Seq>
+
+  <!-- Mozilla -->
+  <RDF:Seq about="chrome://communicator/content/tasksOverlay.xul">
+    <RDF:li>chrome://codetch/content/ext/ff_overlay.xul</RDF:li>
+  </RDF:Seq> 
+  <!-- Firefox -->
+  <RDF:Seq about="chrome://browser/content/browser.xul">
+    <RDF:li>chrome://codetch/content/ext/ff_overlay.xul</RDF:li>
+  </RDF:Seq>
+  <!-- Thunderbird -->
+  <RDF:Seq about="chrome://messenger/content/mailWindowOverlay.xul">
+    <RDF:li>chrome://codetch/content/ext/tb_overlay.xul</RDF:li>
+  </RDF:Seq>
+</RDF:RDF>

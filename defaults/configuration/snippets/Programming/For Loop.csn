@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="For Loop" description="Basic setup would be:
+for([set variables];[condition];[do operations]){
+[code to execute while condition is true]
+}" type="wrap" preview="code"><insertText location="beforeSelection"><![CDATA[for(){
+]]></insertText><insertText location="afterSelection"><![CDATA[
+}]]></insertText></snippet>

@@ -1,0 +1,11 @@
+
+#codetch-button {
+  list-style-image: url("chrome://codetch/skin/ce24.png");
+  -moz-image-region: rect(0 24px 24px 0);
+}
+
+toolbar[iconsize="small"] #codetch-button {
+  list-style-image: url("chrome://codetch/skin/ce16.png");
+  -moz-image-region: rect(0 16px 16px 0);
+
+}

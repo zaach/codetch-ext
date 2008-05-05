@@ -1,0 +1,15 @@
+<!ENTITY newtabgroup.title "New Tab Group">
+<!ENTITY newtabgroup.organize "Organize your file sets... with Tab Groups!">
+<!ENTITY newtabgroup.info.part.one "You have created a new Tab Group!">
+<!ENTITY newtabgroup.info.part.two "While you may have other files open in the background, only the documents you open within the current group will be visible. Click on the">
+<!ENTITY newtabgroup.info.part.three "to switch between tab groups or create a new one.">
+<!ENTITY ref.title "Glossary">
+<!ENTITY ref.resources "Resources">
+<!ENTITY welcome.title "Welcome">
+<!ENTITY welcome.message "Welcome to Codetch">
+<!ENTITY welcome.revamp "Look for a revamp of Codetch.com... eventually!">
+<!ENTITY welcome.site "Official Site">
+<!ENTITY welcome.mozupdate.page "Mozilla Update download page">
+<!ENTITY welcome.thanks "Thanks for using Codetch! Contact us at">
+<!ENTITY welcome.sendbugs "or send bugs to ">
+

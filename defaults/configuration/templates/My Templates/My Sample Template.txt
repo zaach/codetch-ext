@@ -1,0 +1,2 @@
+
+This is a sample custom template file. You can make more like this and modify existing ones too.

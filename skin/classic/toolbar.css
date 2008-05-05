@@ -1,0 +1,227 @@
+toolbarbutton  .toolbarbutton-text{
+  margin-right: 0px;
+}
+
+.browserButton {
+	-moz-box-orient: vertical;
+	min-width: 0px;
+	list-style-image: url("chrome://browser/skin/Toolbar.png");
+}
+
+.toolbarbutton-1, .browserButton, .toolbarbutton-menubutton-button {
+ 	padding: 5px !important;
+	margin: 0px !important;
+	min-width: 10px !important;
+	width: auto !important;
+}
+[type="menu-button"].toolbarbutton-1{
+ 	padding: 0px !important;
+	margin: 0px !important;
+}
+[type="menu-button"].toolbarbutton-1 toolbarbutton{
+ 	padding: 5px !important;
+	padding-right: 1px!important;
+}
+
+.toolbarbutton-1 .toolbarbutton-icon,
+.browserButton .toolbarbutton-icon {
+  margin-right: 0px;
+}
+
+
+.toolbarbutton-1 .toolbarbutton-text, .no-text .toolbarbutton-text{
+	display: none;
+}
+
+#new-tabset-btn {
+	list-style-image: url("chrome://codetch/skin/newicons/newtab.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+#new-doc-btn {
+	list-style-image: url("chrome://codetch/skin/newicons/new.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+#open-doc-btn {
+	list-style-image: url("chrome://codetch/skin/newicons/open.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+
+toolbarbutton[command="cmd_open"]{
+	list-style-image: url("chrome://codetch/skin/newicons/open.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_save"]{
+	list-style-image: url("chrome://codetch/skin/newicons/save.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_saveAs"]{
+	list-style-image: url("chrome://codetch/skin/newicons/saveas.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_close"]{
+	list-style-image: url("chrome://codetch/skin/newicons/close.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_cut"]{
+	list-style-image: url("chrome://codetch/skin/newicons/cut.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_copy"]{
+	list-style-image: url("chrome://codetch/skin/newicons/copy.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_paste"]{
+	list-style-image: url("chrome://codetch/skin/newicons/paste.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_undo"]{
+	list-style-image: url("chrome://codetch/skin/newicons/undo.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_redo"]{
+	list-style-image: url("chrome://codetch/skin/newicons/redo.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+
+toolbarbutton[command="cmd_find"]{
+	list-style-image: url("chrome://codetch/skin/newicons/search.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_replace"]{
+	list-style-image: url("chrome://codetch/skin/newicons/replace.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+
+toolbarbutton[command="cmd_refresh"]{
+	list-style-image: url("chrome://codetch/skin/newicons/reload.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_print"]{
+	list-style-image: url("chrome://codetch/skin/newicons/print.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+#external-preview-btn {
+	list-style-image: url("chrome://codetch/skin/newicons/web.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_toggleSidebar"]{
+	list-style-image: url("chrome://codetch/skin/newicons/sidebar.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_toggleLineNumbers"]{
+	list-style-image: url("chrome://codetch/skin/newicons/ol.gif");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+
+toolbarbutton[command="cmd_toggleLivePreview"]{
+	list-style-image: url("chrome://codetch/skin/newicons/live-mode.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+
+toolbarbutton[command="cmd_insertHR"]{
+	list-style-image: url("chrome://codetch/skin/newicons/hr.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+#common-html-forecolor-btn{
+	list-style-image: url("chrome://codetch/skin/newicons/textcolor.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+	-moz-binding: url("chrome://codetch/content/colorBindings.xml#colorbutton");
+	-moz-box-pack: end;
+	-moz-box-align: end;
+}
+
+#common-html-bgcolor-btn{
+	-moz-binding: url("chrome://codetch/content/colorBindings.xml#colorbutton");
+	list-style-image: url("chrome://codetch/skin/newicons/bgcolor.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+	-moz-box-pack: end;
+	-moz-box-align: end;
+}
+
+toolbarbutton[command="cmd_insertLink"]{
+	list-style-image: url("chrome://codetch/skin/newicons/link.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_insertAnchor"]{
+	list-style-image: url("chrome://codetch/skin/newicons/anchor.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_removeLinks"]{
+	list-style-image: url("chrome://codetch/skin/newicons/unlink.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_insertImage"]{
+	list-style-image: url("chrome://codetch/skin/newicons/image.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_removeStyles"]{
+	list-style-image: url("chrome://codetch/skin/newicons/removeformat.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+
+toolbarbutton[command="cmd_bold"]{
+	list-style-image: url("chrome://codetch/skin/newicons/bold.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_italic"]{
+	list-style-image: url("chrome://codetch/skin/newicons/italic.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_strikethrough"]{
+	list-style-image: url("chrome://codetch/skin/newicons/strikethrough.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_underline"]{
+	list-style-image: url("chrome://codetch/skin/newicons/underline.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_subscript"]{
+	list-style-image: url("chrome://codetch/skin/newicons/subscript.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_superscript"]{
+	list-style-image: url("chrome://codetch/skin/newicons/superscript.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_increaseFont"]{
+	list-style-image: url("chrome://codetch/skin/newicons/font-inc.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_decreaseFont"]{
+	list-style-image: url("chrome://codetch/skin/newicons/font-dec.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_indent"]{
+	list-style-image: url("chrome://codetch/skin/newicons/indent.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_outdent"]{
+	list-style-image: url("chrome://codetch/skin/newicons/outdent.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+
+#html-align-toolbar, menuitem[value="left"]{
+	list-style-image: url("chrome://codetch/skin/newicons/justifyleft.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+
+menuitem[value="center"]{
+	list-style-image: url("chrome://codetch/skin/newicons/justifycenter.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+menuitem[value="right"]{
+	list-style-image: url("chrome://codetch/skin/newicons/justifyright.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+menuitem[value="full"]{
+	list-style-image: url("chrome://codetch/skin/newicons/justifyfull.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_ul"]{
+	list-style-image: url("chrome://codetch/skin/newicons/ul.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}
+toolbarbutton[command="cmd_ol"]{
+	list-style-image: url("chrome://codetch/skin/newicons/ol.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+}

@@ -1,0 +1,7 @@
+
+@import url("chrome://codetch/skin/toolbar-button.css");
+
+#codetch-menu, #codetch-contextmenu {
+  list-style-image: url("chrome://codetch/skin/ce16.png");
+  -moz-image-region: rect(0 16px 16px 0);
+}

@@ -1,0 +1,87 @@
+/* 
+Editor Bindings
+*/
+
+.broswer-page-box {
+  -moz-binding: url("chrome://codetch/content/editorbindings/panelRoot.xml#rootBrowserPage");
+}
+.local-page-box {
+  -moz-binding: url("chrome://codetch/content/editorbindings/panelRoot.xml#rootChromePage");
+}
+
+tabpanel[filehandler="default"]  {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#editorBox");
+}
+.editor-box tab[command] {
+	-moz-user-focus: ignore !important;
+}
+
+.editor-deck > *{
+	visibility: collapse;
+}
+.editor-deck > *[selected],.editor-deck > *[visibility="visible"]{
+	visibility: visible;
+}
+.editor-box[viewmode="dual"] splitter{
+	visibility: visible !important;
+}
+.toggle-bar toolbarbutton[panel]{
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#toggleViewButton");
+}
+
+tabpanel[filehandler="default"] .editor-code{
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#codeViewBox");
+}
+.editor-code textbox{
+	margin:0;
+	padding: 0;
+	border:0 !important;
+	padding: 3px !important;
+	-moz-appearance: none;
+}
+
+.editor-code textarea{
+	font-family: -moz-fixed;
+	font-size: 10pt;
+	margin:0;
+	border:0;
+	line-height: 1.5em;
+}
+.editor-code .lines *, .editor-code .lines{
+	background: Highlight!important;
+	color: HighlightText!important;
+	overflow: -moz-scrollbars-none!important;
+	text-align: right;
+	padding-right: 0px;
+	cursor: default;
+	-moz-user-select: none;
+	-moz-user-input: disabled;
+	-moz-user-focus: ignore;
+}
+.lines-off .lines {
+	visibility: collapse;
+}
+
+tabpanel[filehandler="default"] .editor-preview {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#previewViewBox");
+}
+tabpanel[filehandler="default"] .editor-reference{
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#referenceViewBox");
+}
+
+tabpanel[basedoctype="html"]  .editor-code{
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#codeEditorHTML");
+}
+tabpanel[basedoctype="html"] .editor-design{
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#designViewBox");
+}
+tabpanel[basedoctype="html"] .editor-preview {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#previewHTML");
+}
+
+tabpanel[basedoctype="xml"] .editor-preview {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#previewXML");
+}
+tabpanel[doctype="xul"] .editor-preview {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#previewXUL");
+}

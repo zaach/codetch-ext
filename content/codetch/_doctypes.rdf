@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+
+
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:DOCTYPES="http://doctypes.codetch.com/rdf#">
+
+   <RDF:Description RDF:about="http://docgroup.codetch.com/web" DOCTYPES:type="Folder">
+     <DOCTYPES:Name>Web documents</DOCTYPES:Name>
+   </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/html" DOCTYPES:type="html"
+		DOCTYPES:ext="html" DOCTYPES:exts="html htm" DOCTYPES:default="default.html">
+         <DOCTYPES:Name>HTML</DOCTYPES:Name>
+         <DOCTYPES:description>Hyper Text Markup Language (HTML) document</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/javascript" DOCTYPES:type="txt"
+		DOCTYPES:ext="js" DOCTYPES:exts="js" DOCTYPES:default="default.js">
+         <DOCTYPES:Name>JavaScript</DOCTYPES:Name>
+         <DOCTYPES:description>JavaScript document</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/css" DOCTYPES:type="txt"
+		DOCTYPES:ext="css" DOCTYPES:exts="css" DOCTYPES:default="default.css">
+         <DOCTYPES:Name>CSS</DOCTYPES:Name>
+         <DOCTYPES:description>Cascading Style Sheet (CSS) document</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/wml" DOCTYPES:type="xml"
+		DOCTYPES:ext="wml" DOCTYPES:exts="wml" DOCTYPES:default="default.wml">
+         <DOCTYPES:Name>WML</DOCTYPES:Name>
+         <DOCTYPES:description>Wireless Markup Language (WML) document</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/actionscript" DOCTYPES:type="txt"
+		DOCTYPES:ext="as" DOCTYPES:exts="as" DOCTYPES:default="default.as">
+         <DOCTYPES:Name>ActionScript</DOCTYPES:Name>
+         <DOCTYPES:description>Flash ActionScript document</DOCTYPES:description>
+       </RDF:Description>
+
+   <RDF:Description RDF:about="http://docgroup.codetch.com/server" DOCTYPES:type="Folder">
+     <DOCTYPES:Name>Server documents</DOCTYPES:Name>
+   </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/php" DOCTYPES:type="txt"
+		DOCTYPES:ext="php" DOCTYPES:exts="php php3 php4 php5 phtml" DOCTYPES:default="default.php" DOCTYPES:server="true">
+         <DOCTYPES:Name>PHP</DOCTYPES:Name>
+         <DOCTYPES:description>Pre Hypertext Processor (PHP) document</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/jsp" DOCTYPES:type="txt"
+		DOCTYPES:ext="jsp" DOCTYPES:exts="jsp jhtml" DOCTYPES:default="default.jsp" DOCTYPES:server="true">
+         <DOCTYPES:Name>JSP</DOCTYPES:Name>
+         <DOCTYPES:description>JavaServer Page (JSP)</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/asp_vb" DOCTYPES:type="txt"
+		DOCTYPES:ext="asp" DOCTYPES:exts="asp" DOCTYPES:default="default_vb.asp" DOCTYPES:server="true">
+         <DOCTYPES:Name>VBScript ASP</DOCTYPES:Name>
+         <DOCTYPES:description>Active Server Page using VBScript</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/asp_js" DOCTYPES:type="txt"
+		DOCTYPES:ext="asp" DOCTYPES:exts="asp" DOCTYPES:default="default_js.asp" DOCTYPES:server="true">
+         <DOCTYPES:Name>JScript ASP</DOCTYPES:Name>
+         <DOCTYPES:description>Active Server Page using JScript</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/aspx_cs" DOCTYPES:type="txt"
+		DOCTYPES:ext="aspx" DOCTYPES:exts="aspx" DOCTYPES:default="default_cs.aspx" DOCTYPES:server="true">
+         <DOCTYPES:Name>C# ASP.NET</DOCTYPES:Name>
+         <DOCTYPES:description>.NET Active Server Page using C#</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/aspx_vb" DOCTYPES:type="txt"
+		DOCTYPES:ext="aspx" DOCTYPES:exts="aspx" DOCTYPES:default="default_vb.aspx" DOCTYPES:server="true">
+         <DOCTYPES:Name>VB ASP.NET</DOCTYPES:Name>
+         <DOCTYPES:description>.NET Active Server Page using Visual Basic</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/perl" DOCTYPES:type="txt"
+		DOCTYPES:ext="pl" DOCTYPES:exts="pl cgi" DOCTYPES:default="default.pl" DOCTYPES:server="true">
+         <DOCTYPES:Name>Perl</DOCTYPES:Name>
+         <DOCTYPES:description>Perl document</DOCTYPES:description>
+       </RDF:Description>
+
+   <RDF:Description RDF:about="http://docgroup.codetch.com/xml" DOCTYPES:type="Folder">
+     <DOCTYPES:Name>XML documents</DOCTYPES:Name>
+   </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/xml" DOCTYPES:type="xml"
+		DOCTYPES:ext="xml" DOCTYPES:exts="xml xsml" DOCTYPES:default="default.xml">
+         <DOCTYPES:Name>XML</DOCTYPES:Name>
+         <DOCTYPES:description>eXtensible Markup Language document</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/xml" DOCTYPES:type="xml"
+		DOCTYPES:ext="xml" DOCTYPES:exts="xsl xslt" DOCTYPES:default="default.xsl">
+         <DOCTYPES:Name>XSL</DOCTYPES:Name>
+         <DOCTYPES:description>eXtensible Stylesheet Language document</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/xul" DOCTYPES:type="xml"
+		DOCTYPES:ext="xul" DOCTYPES:exts="xul" DOCTYPES:default="default.xul">
+         <DOCTYPES:Name>XUL</DOCTYPES:Name>
+         <DOCTYPES:description>eXtensible User Interface Language document</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/rdf" DOCTYPES:type="xml"
+		DOCTYPES:ext="rdf" DOCTYPES:exts="rdf" DOCTYPES:default="default.rdf">
+         <DOCTYPES:Name>RDF</DOCTYPES:Name>
+         <DOCTYPES:description>Resource Description Framework document</DOCTYPES:description>
+       </RDF:Description>
+
+   <RDF:Description RDF:about="http://docgroup.codetch.com/compile" DOCTYPES:type="Folder">
+     <DOCTYPES:Name>Compiled languages</DOCTYPES:Name>
+   </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/cs" DOCTYPES:type="txt"
+		DOCTYPES:ext="cs" DOCTYPES:exts="cs" DOCTYPES:default="default.cs">
+         <DOCTYPES:Name>C#</DOCTYPES:Name>
+         <DOCTYPES:description>C Sharp (C#) source file</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/vb" DOCTYPES:type="txt"
+		DOCTYPES:ext="vb" DOCTYPES:exts="vb" DOCTYPES:default="default.vb">
+         <DOCTYPES:Name>VB</DOCTYPES:Name>
+         <DOCTYPES:description>Visual Basic source file</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/vbs" DOCTYPES:type="txt"
+		DOCTYPES:ext="vbs" DOCTYPES:exts="vbs" DOCTYPES:default="default.vbs">
+         <DOCTYPES:Name>VBScript</DOCTYPES:Name>
+         <DOCTYPES:description>VBScript file</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/java" DOCTYPES:type="txt"
+		DOCTYPES:ext="java" DOCTYPES:exts="java" DOCTYPES:default="default.java">
+         <DOCTYPES:Name>Java</DOCTYPES:Name>
+         <DOCTYPES:description>Java source file</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/cpp" DOCTYPES:type="txt"
+		DOCTYPES:ext="cpp" DOCTYPES:exts="cpp" DOCTYPES:default="default.cpp">
+         <DOCTYPES:Name>C++</DOCTYPES:Name>
+         <DOCTYPES:description>C++ source file</DOCTYPES:description>
+       </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/c" DOCTYPES:type="txt"
+		DOCTYPES:ext="c" DOCTYPES:exts="c" DOCTYPES:default="default.c">
+         <DOCTYPES:Name>C</DOCTYPES:Name>
+         <DOCTYPES:description>C source file</DOCTYPES:description>
+       </RDF:Description>
+
+   <RDF:Description RDF:about="http://docgroup.codetch.com/other" DOCTYPES:type="Folder">
+     <DOCTYPES:Name>Other</DOCTYPES:Name>
+   </RDF:Description>
+
+       <RDF:Description RDF:about="http://doctypes.codetch.com/txt" DOCTYPES:type="txt"
+		DOCTYPES:ext="txt" DOCTYPES:exts="txt ini inc" DOCTYPES:default="default.txt">
+         <DOCTYPES:Name>Text</DOCTYPES:Name>
+         <DOCTYPES:description>A plain text file</DOCTYPES:description>
+       </RDF:Description>
+
+  <RDF:Seq RDF:about="http://doctypes.codetch.com/all-doctypes">
+    <RDF:li>
+      <RDF:Seq RDF:about="http://docgroup.codetch.com/web">
+        <RDF:li RDF:resource="http://doctypes.codetch.com/html"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/css"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/javascript"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/wml"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/actionscript"/>
+      </RDF:Seq>
+    </RDF:li>
+    <RDF:li>
+      <RDF:Seq RDF:about="http://docgroup.codetch.com/server">
+        <RDF:li RDF:resource="http://doctypes.codetch.com/php"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/jsp"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/asp_vb"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/asp_js"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/aspx_cs"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/aspx_vb"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/perl"/>
+      </RDF:Seq>
+    </RDF:li>
+    <RDF:li>
+      <RDF:Seq RDF:about="http://docgroup.codetch.com/xml">
+        <RDF:li RDF:resource="http://doctypes.codetch.com/xml"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/xul"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/rdf"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/wml"/>
+      </RDF:Seq>
+    </RDF:li>
+    <RDF:li>
+      <RDF:Seq RDF:about="http://docgroup.codetch.com/compile">
+        <RDF:li RDF:resource="http://doctypes.codetch.com/cs"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/cpp"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/c"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/vb"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/vbs"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/java"/>
+        <RDF:li RDF:resource="http://doctypes.codetch.com/perl"/>
+      </RDF:Seq>
+    </RDF:li>
+    <RDF:li>
+      <RDF:Seq RDF:about="http://docgroup.codetch.com/other">
+        <RDF:li RDF:resource="http://doctypes.codetch.com/txt"/>
+      </RDF:Seq>
+    </RDF:li>
+  </RDF:Seq>
+
+</RDF:RDF>

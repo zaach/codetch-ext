@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="Function Declaration" description="" type="wrap" preview="code"><insertText location="beforeSelection"><![CDATA[function NameOfFunction(){
+]]></insertText><insertText location="afterSelection"><![CDATA[
+}]]></insertText></snippet>

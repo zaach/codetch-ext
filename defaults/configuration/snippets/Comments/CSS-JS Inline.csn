@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="CSS-JS Inline" description="Used in CSS and JavaScript files" type="wrap" preview="code"><insertText location="beforeSelection"><![CDATA[/*]]></insertText><insertText location="afterSelection"><![CDATA[*/]]></insertText></snippet>

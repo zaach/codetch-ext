@@ -1,0 +1,77 @@
+/* 
+Editor Bindings
+*/
+
+
+.editor-box {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#editorBox");
+}
+.editor-box tab[command] {
+	-moz-user-focus: ignore !important;
+}
+
+.editor-deck > *[selected]{
+	visibility: visible;
+}
+.editor-deck > *{
+	visibility: collapse;
+}
+.editor-box[viewmode="dual"] splitter{
+	visibility: visible !important;
+}
+
+.editor-code{
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#codeViewBox");
+}
+.editor-code textbox, .editor-code-html textbox{
+	margin:0;
+	padding: 0;
+	border:0 !important;
+	padding: 3px !important;
+	-moz-appearance: none;
+}
+
+.editor-code textarea, .editor-code-html textarea{
+	font-family: -moz-fixed;
+	font-size: 10pt;
+	margin:0;
+	border:0;
+	line-height: 1.5em;
+}
+.editor-box .lines *, .editor-box .lines{
+	background: Highlight!important;
+	color: HighlightText!important;
+	overflow: -moz-scrollbars-none!important;
+	text-align: right;
+	padding-right: 8px;
+	cursor: default;
+	-moz-user-select: none;
+	-moz-user-input: disabled;
+	-moz-user-focus: ignore;
+}
+.lines-off .lines {
+	visibility: collapse;
+}
+
+.editor-code-html{
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#codeEditorHTML");
+}
+
+.editor-design-html{
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#designViewBox");
+}
+.editor-preview {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#previewViewBox");
+}
+.editor-preview-html {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#previewHTML");
+}
+.editor-preview-xul {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#previewXUL");
+}
+.editor-preview-xml {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#previewXML");
+}
+.editor-reference{
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#referenceViewBox");
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="DoWhile Loop" description="Executes code first then checks for condition." type="wrap" preview="code"><insertText location="beforeSelection"><![CDATA[do{
+]]></insertText><insertText location="afterSelection"><![CDATA[
+}while()]]></insertText></snippet>

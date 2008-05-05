@@ -1,0 +1,3 @@
+.console-error-source {
+  -moz-binding: url("chrome://codetch/content/consoleBindings.xml#console-error-source");
+}

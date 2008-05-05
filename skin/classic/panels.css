@@ -1,0 +1,54 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+
+.panel-title {
+  -moz-binding: url("chrome://codetch/content/panelBindings.xml#panelButton");
+  height: 20px;
+  -moz-appearance: toolbox;
+  -moz-user-focus: ignore !important;
+}
+
+
+.panel-box {
+  -moz-binding: url("chrome://codetch/content/panelBindings.xml#panelBox");
+}
+.panel-box[collapsed] {
+  visibility: visible;
+}
+
+#toolboxPanel > .panel-box{
+  -moz-binding: url("chrome://codetch/content/panelBindings.xml#panelBox-sidebar");
+}
+
+.panel-content tab{
+	font-size: 8px;
+}
+
+
+.panel-box tabs{
+	padding-top: 1px;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+.panel-title{
+  padding: 2px 1px 2px 0px;
+  font-weight: bold;
+}
+.panel-title[collapsed]{
+  font-weight: bold;
+  visibility: visible;
+}
+
+.panelbtn-label {
+  margin: 0px 0px 0px 0px !important;
+}
+
+.panelbtn-image {
+  margin: 0px 7px;
+  list-style-image: url("chrome://codetch/skin/sbtab-twisty-open.gif");
+}
+
+.panel-title[collapsed] .panelbtn-image{
+  list-style-image: url("chrome://codetch/skin/sbtab-twisty.gif");
+}

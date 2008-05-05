@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="JavaScript Code Block Wrap" description="Wraps selection in a JavaScript script tag." type="wrap" preview="code"><insertText location="beforeSelection"><![CDATA[<script type="application/x-javascript">
+<![CDATA[
+]]></insertText><insertText location="afterSelection"><![CDATA[
+]]&gt;
+</script>]]></insertText></snippet>

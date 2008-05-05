@@ -1,0 +1,5 @@
+CVS
+*.xpi
+build.sh
+config_build.sh
+chrome

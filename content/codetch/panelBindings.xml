@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+
+<bindings id="panelBindings"
+          xmlns="http://www.mozilla.org/xbl"
+          xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns:xbl="http://www.mozilla.org/xbl">
+  <binding id="panelBox">
+    <content>
+		<xul:hbox class="title-bar">
+			<xul:button class="panel-title" xbl:inherits="collapsed,label,accesskey,onclose" flex="1"/>
+			<xul:toolbarbutton class="closesml-button" xbl:inherits="command=onclose"/>
+		</xul:hbox>
+		<xul:vbox class="panel-content" flex="1" xbl:inherits="disabled,collapsed">
+			<children/>
+		</xul:vbox>
+    </content>
+  	<implementation>
+		<constructor>
+			if(this.getAttribute('collapsed')=='true') this.height = "";
+		</constructor>
+		<method name="togglePanel">
+			<body>
+				this.hasAttribute("collapsed")?this.showPanel(): this.hidePanel();
+			</body>
+		</method>
+		<method name="showPanel">
+			<body>
+				this.removeAttribute("collapsed");
+				this.parentNode.height="";
+				this.height=this.getAttribute('lastHeight');
+			</body>
+		</method>
+		<method name="hidePanel">
+			<body>
+				this.setAttribute("collapsed", true);
+				this.setAttribute('lastHeight', this.boxObject.height);
+				this.height="";
+				this.parentNode.height="";
+			</body>
+		</method>
+	</implementation>
+  </binding>
+  <binding id="panelBox-sidebar" extends="chrome://codetch/content/panelBindings.xml#panelBox">
+  	<implementation>
+		<constructor>
+			if(this.getAttribute('collapsed')=='true')
+				this.removeAttribute("flex");
+			else
+				this.showPanel();
+		</constructor>
+		<method name="hidePanel">
+			<body>
+				//alert("hiding");
+				this.setAttribute("collapsed", true);
+				this.removeAttribute("flex");
+				if(this._splitter){
+					this._splitter.setAttribute("state","collapsed");
+					this.parentNode.removeChild(this._splitter);
+				}
+				this.height = "auto";
+				if(this.previousSibling)this.previousSibling.setAttribute("resizeafter","grow");
+				//this.parentNode.lastChild.height = "auto";
+			</body>
+		</method>
+		<method name="showPanel">
+			<body>
+				//alert("showing");
+				this.removeAttribute("collapsed");
+				//this.parentNode.lastChild.height = "auto";
+				this.setAttribute("flex", 1);
+				if(this.nextSibling){
+					var XULNS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+					this._splitter = document.createElementNS(XULNS, "splitter");
+					this._splitter.setAttribute("resizeafter",this.nextSibling.hasAttribute('collapsed')?"grow":"closest");
+					this._splitter.disabled = true;//this.nextSibling.hasAttribute('collapsed');
+					this.parentNode.insertBefore(this._splitter, this.nextSibling);
+				}
+				
+				if(this.previousSibling)this.previousSibling.setAttribute("resizeafter","closest");
+			</body>
+		</method>
+	</implementation>
+  </binding>
+  <binding id="panelButton">
+    <content>
+		<xul:image class="panelbtn-image" xbl:inherits="selected"/>
+		<xul:label class="panelbtn-label" flex="1" xbl:inherits="value=label,accesskey"/>
+    </content>
+	<handlers>
+		<handler event="command">
+			if(this.getAttribute("disabled")=="true") return;
+			this.parentNode.parentNode.togglePanel();
+		</handler>
+	</handlers>
+  </binding>
+  <binding id="panelButtonClose" extends="chrome://codetch/content/panelBindings.xml#panelButton">
+    <content>
+		<xul:image class="panelbtn-image" xbl:inherits="selected"/>
+		<xul:label class="panelbtn-label" flex="1" xbl:inherits="value=label,accesskey" />
+    </content>
+  </binding>
+</bindings>

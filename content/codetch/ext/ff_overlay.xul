@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://codetch/locale/overlay.dtd">
+
+<?xml-stylesheet href="chrome://codetch/skin/overlay.css" type="text/css"?>
+
+<overlay id="codetchOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script src="chrome://codetch/content/ext/overlay.js"/>
+
+<!-- Mozilla  -->
+
+<menupopup id="windowPopup">
+	<menuitem
+ oncommand="Codetch.run(false);"
+ label="&menu-codetch;" key="key_newcodetch" 
+ id="codetch-menu"
+ insertbefore="sep-window-list" accesskey="&codetch.accesskey;" class="menuitem-iconic"/>
+</menupopup>
+
+<!-- Firefox -->
+<menupopup id="menu_ToolsPopup">
+	<menu id="codetch-menu" label="&menu-codetch;" class="menu-iconic" accesskey="&codetch.accesskey;" insertafter="javascriptConsole">
+		<menupopup>
+			<menuitem oncommand="Codetch.run(false);" label="&codetch.float;" accesskey="&codetch.float.accesskey;" 
+				id="codetch-float" key="key_newcodetch"/>
+			<menuitem oncommand="Codetch.run(true);" label="&codetch.tab;" accesskey="&codetch.tab.accesskey;"
+				id="codetch-tab"/>
+			<menuseparator />
+			<menuitem oncommand="Codetch.prefs.setBoolPref('launchtab', !Codetch.prefs.getBoolPref('launchtab'));" label="&codetch.launchtab;" accesskey="&codetch.launchtab.accesskey;" type="checkbox" id="codetch-tabpref" persist="checked" />
+			<menuitem oncommand="Codetch.prefs.setBoolPref('editonlaunch', !Codetch.prefs.getBoolPref('editonlaunch'));" label="&codetch.editonlaunch;" accesskey="&codetch.editonlaunch.accesskey;" type="checkbox" id="codetch-launchpref" persist="checked" />
+			<menuitem oncommand="Codetch.editPrefs()" label="&codetch.options;" accesskey="&codetch.options.accesskey;" id="codetch-openprefs" />
+		</menupopup>
+	</menu>
+</menupopup>
+  <popup           id="contentAreaContextMenu">
+    <menuitem      id="codetch-contextmenu" label="&tooltip-codetch;" oncommand="Codetch.runEdit();"
+                   class="menuitem-iconic" insertafter="context-metadata"/>
+  </popup>
+  <!-- Firefox Toolbar Overlay -->
+  <toolbarpalette id="BrowserToolbarPalette">
+    <toolbarbutton
+	id="codetch-button"
+	label="&toolbar-codetch;"
+	accesskey="&codetch.accesskey;"
+	class="toolbarbutton-1"
+	oncommand="Codetch.run();"
+	tooltiptext="&tooltip-codetch;" />
+  </toolbarpalette>
+
+
+  <keyset id="navigationKeys">
+    <key id="key_newcodetch" keycode="VK_F9" modifiers="accel" command="cmd_newcodetch"/>
+  </keyset>
+
+  <commandset id="commands">
+    <command id="cmd_newcodetch" oncommand="Codetch.run();"/>
+  </commandset>
+
+  <keyset id="mainKeyset">
+    <key id="key_newcodetch" keycode="VK_F9" modifiers="accel" command="cmd_newcodetch"/>
+  </keyset>
+
+  <commandset id="mainCommandSet">
+    <command id="cmd_newcodetch" oncommand="Codetch.run();"/>
+  </commandset>
+
+</overlay>

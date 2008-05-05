@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="PHP Code Block" description="Wraps selection in a PHP code block." type="wrap" preview="code"><insertText location="beforeSelection"><![CDATA[<?php
+]]></insertText><insertText location="afterSelection"><![CDATA[
+?>]]></insertText></snippet>

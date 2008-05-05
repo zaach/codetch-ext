@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="XML Declaration" description="" type="block" preview="code"><insertText location="beforeSelection"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>]]></insertText><insertText location="afterSelection"><![CDATA[]]></insertText></snippet>

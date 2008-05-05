@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+  <!-- =====================================================================
+ NOTE: These aren't in use yet.
+  ===================================================================== -->
+<bindings id="rootEditorBindings"
+          xmlns="http://www.mozilla.org/xbl"
+          xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns:xbl="http://www.mozilla.org/xbl">
+  
+  <!-- =====================================================================
+  Editor Box Binding
+  ===================================================================== -->
+  <binding id="rootEditor">
+	<resources>
+		<stylesheet src="chrome://codetch/skin/editorBindings.css"/>
+	</resources>
+    <content>
+		<xul:vbox class="editor-deck" flex="1" xbl:inherits="disabled,selected,src">
+			<xul:vbox class="editor-code" panel="code" flex="1" xbl:inherits="disabled"/>
+		</xul:vbox>
+    </content>
+  	<implementation>
+		<constructor>
+			this.doConstruct();
+		</constructor>
+		<field name="_keepVisible">false</field>
+		<property name="basetype" onset="return this.setAttribute('basetype',val);" onget="return this.getAttribute('basetype');"/>
+		<property name="doctype" onset="return this.setAttribute('doctype',val);" onget="return this.getAttribute('doctype');"/>
+		<property name="_panelbox">
+			<getter>
+				return document.getAnonymousNodes(this)[0];
+			</getter>
+		</property>
+		<property name="panels">
+			<getter><![CDATA[
+				var pbox = this._panelbox,
+				ary = [],
+				a=0;
+				for(var i=0;i < pbox.childNodes.length;i++){
+					if(pbox.childNodes[i].hasAttribute('panel')){
+						ary[a] = ary[pbox.childNodes[i].getAttribute("panel")] = pbox.childNodes[i];
+						a++;
+					}
+				}
+				return ary;
+			]]></getter>
+		</property>
+		<property name="selectedPanel">
+			<getter>
+				return this.panels[this.selectedIndex];
+        	</getter>
+			<setter><![CDATA[
+				for(var i=0;i< this.panels.length;i++){
+					if(this.panels[i]==val) return this.selectedIndex = i;
+				}
+				return null;
+			]]></setter>
+		</property>
+		<property name="selectedIndex">
+			<setter><![CDATA[
+				//if(this.selectedIndex == val && this.getAttribute("viewmode")!='dual') return val;
+
+				if(!this._keepVisible)
+					for(var i=0;i<this.panels.length;i++)
+						this.panels[i].removeAttribute("selected");
+
+				var panel = this.panels[val];
+				if(!panel) return false;
+				panel.setAttribute("selected", true);
+
+				var m = panel.getAttribute("panel");
+				this.setAttribute("viewmode", m);
+				this.setAttribute("cmdline", "cmd_view"+m.capitalize());
+
+				// fire event for the selected panel
+				var event = document.createEvent('Events');
+				event.initEvent('select', false, true);
+				panel.dispatchEvent(event);
+
+				return val;
+			]]></setter>
+			<getter><![CDATA[
+				for(var i=0;i< this.panels.length;i++){
+					if(this.panels[i].hasAttribute("selected")) return i;
+				}
+				return -1;
+			]]></getter>
+		</property>
+		<property name="selectedView">
+			<setter><![CDATA[
+				for(var i=0;i< this.panels.length;i++){
+					if(this.panels[i].getAttribute("mode")==val) return this.selectedIndex = i;
+				}
+				return null;
+			]]></setter>
+			<getter>
+				return this.panels[this.selectedIndex]?this.panels[this.selectedIndex].getAttribute("mode"):'';
+			</getter>
+		</property>
+		<property name="selectedPanels">
+			<getter><![CDATA[
+				var ary = [];
+				for(var i=0;i< this.panels.length;i++){
+					if(this.panels[i].getAttribute("mode")==val) return this.selectedIndex = i;
+				}
+				return null;
+			]]></getter>
+		</property>
+		<method name="dualView">
+			<parameter name="first"/>
+			<parameter name="second"/>
+			<body>
+				if((!first || !second) || (first==second)) return false;
+				this.selectedView = first;
+				this._keepVisible = true;
+				this.selectedView = second;
+				this._keepVisible = false;
+				this.setAttribute("viewmode", "dual");
+				this.setAttribute("cmdline", "cmd_view"+second.capitalize()+first.capitalize());
+				GetPrefs().setCharPref('last'+this.getAttribute("basedoctype")+'view', "cmd_view"+second.capitalize()+first.capitalize());
+				return true;
+			</body>
+		</method>
+		<method name="doConstruct">
+			<body>
+			this.lastEditor = null;
+			this.selectedIndex = 0;
+			this._keepVisible = -1;
+			</body>
+		</method>
+	</implementation>
+	<handlers>
+	</handlers>
+  </binding>
+
+  <!-- =====================================================================
+  Root panels
+  ===================================================================== -->
+  
+  <binding id="rootPanel">
+  	<implementation>
+		<property name="parentHandler" onget="return this.parentNode.parentNode" />
+		<property name="doc" onget="return this.parentHandler.doc" />
+		<property name="view" onget="return this.getAttribute('mode')" />
+		<property name="element" onget="return document.getAnonymousNodes(this)[0];" />
+		<property name="selected" onget="return this.hasAttribute('selected');">
+			<setter>
+				if (val){
+					this.setAttribute('selected', 'true');
+					if(this.view)this.parentHandler.views[this.view].setAttribute("checked", true);
+	
+					var event = document.createEvent('Events');
+					event.initEvent('focus', false, true);
+					this.dispatchEvent(event);
+				}else{
+					this.removeAttribute('selected');
+					if(this.view)this.parentHandler.views[this.view].removeAttribute("checked");
+					if(this.previousSibling)
+							this.previousSibling.removeAttribute("visibility");
+				}
+				
+				return val;
+			</setter>
+		</property>
+		<property name="statusbar" onget="return document.getElementById('edit-status');" />
+  	</implementation>
+	<handlers>
+		<handler event="focus" phase="target">
+			event.target.parentHandler.lastPanel = this;
+		</handler>
+		<handler event="click">
+			this.parentHandler.lastPanel = this;
+		</handler>
+	</handlers>
+  </binding>
+
+  <binding id="rootEditorPanel" extends="chrome://codetch/content/editorbindings/editorRoot.xml#rootPanel">
+  	<implementation>
+		<property name="modified"
+			onset="if (val) this.setAttribute('modified', 'true'); else this.removeAttribute('modified'); return val;"
+			onget="return this.hasAttribute('modified');"/>
+  	</implementation>
+	<handlers>
+		<handler event="focus" phase="target">
+			this.parentHandler.lastEditor = this;
+			//this.element.focus(); // not needed in firefox 3
+		</handler>
+		<handler event="click">
+			this.parentHandler.lastEditor = this;
+		</handler>
+	</handlers>
+  </binding>
+
+  <!-- =====================================================================
+  Code Editor
+  ===================================================================== -->
+  <binding id="rootCodeEditor" extends="chrome://codetch/content/editorbindings/editorRoot.xml#rootEditorPanel">
+    <content>
+		<xul:textbox class="cb" multiline="true" flex="1" wrap="off" xbl:inherits="disabled,selected"/>
+    </content>
+	<handlers>
+		<handler event="change">
+			this.modified = true;
+			this.parentNode.parentNode.lastEditor = this;
+		</handler>
+		<handler event="input">
+			this.modified = true;
+		</handler>
+	</handlers>
+  	<implementation>
+		<constructor>
+			this.element.controllers.appendController(codeFormatController);
+			this.element.controllers.appendController(codeLineNumberController);
+			this.element.controllers.appendController(codeInsertionController);
+			this.element.controllers.appendController(codeInsertHTMLCommand);
+
+			// why does this have no effect?!?
+			if(!GetBoolPref("codewrap")) this.element.setAttribute('wrap', 'off');
+			else this.element.removeAttribute('wrap');
+		</constructor>
+		<property name="source">
+			<setter>
+				return this.element.value = val;
+			</setter>
+			<getter>
+				return this.element.value;
+			</getter>
+		</property>
+  	</implementation>
+  </binding>
+
+  <!-- =====================================================================
+  Previews
+  ===================================================================== -->
+<binding id="previewPanel" extends="chrome://codetch/content/editorbindings/editorRoot.xml#rootPanel">
+    <content>
+		<xul:browser flex="1" class="preview-frame" src="about:blank" type="content" xbl:inherits="disabled"/>
+    </content>
+	<handlers>
+		<handler event="focus" phase="target">
+			this.refresh();
+		</handler>
+	</handlers>
+  	<implementation>
+		<field name="_source"></field>
+		<property name="source">
+			<setter><![CDATA[
+				//val = '<base href="" />'+val;
+				var win = this.element.contentDocument;
+				win.open();
+				win.write(val);
+				win.close();
+				this._source = val;
+        	]]></setter>
+			<getter>
+				return this._source;
+        	</getter>
+		</property>
+		<method name="refresh">
+			<body>
+				this.source = this.parentNode.parentNode.lastEditor.source;
+        	</body>
+		</method>
+  	</implementation>
+  </binding>
+  
+
+  <!-- =====================================================================
+  Reference View
+  ===================================================================== -->
+  <binding id="referenceViewBox">
+    <content>
+		<xul:toolbox><xul:toolbar align="center">
+			<xul:toolbarbutton class="back-button toolbarbutton-1" label="Back" oncommand="this.parentNode.parentNode.parentNode.goBack()"/>
+			<xul:toolbarbutton class="next-button toolbarbutton-1" label="Forward" oncommand="this.parentNode.parentNode.parentNode.goForward()"/>
+			<xul:toolbarseparator />
+			<xul:label value="Reference File:"/>
+			<xul:textbox type="autocomplete" flex="1" height="20" enablehistory="true" disablehistory="false" searchSessions="history" autocompletesearch="history"
+			onchange="this.parentNode.parentNode.parentNode.loadURL()"/>
+			<xul:toolbarbutton class="reload-button toolbarbutton-1" label="Display" oncommand="this.parentNode.parentNode.parentNode.loadURL()"/>
+			<xul:toolbarbutton class="browse-button toolbarbutton-1" label="Browse..." oncommand="this.parentNode.parentNode.parentNode.loadURL(getFilePath())"/>
+		</xul:toolbar></xul:toolbox>
+		<xul:browser flex="1" class="reference-frame" type="content" src="about:blank" xbl:inherits="disabled,src"/>
+    </content>
+  	<implementation>
+		<property name="element">
+			<getter>
+				return document.getAnonymousNodes(this)[1];
+			</getter>
+		</property>
+		<property name="toolbar">
+			<getter>
+				return document.getAnonymousNodes(this)[0].firstChild;
+			</getter>
+		</property>
+		<property name="adressBar">
+			<getter>
+				return this.toolbar.childNodes[4];
+			</getter>
+		</property>
+		<method name="goBack">
+			<body>
+				this.element.contentWindow.focus();
+				if(this.element.webNavigation.canGoBack)
+				this.element.webNavigation.goBack();
+			</body>
+		</method>
+		<method name="goForward">
+			<body>
+				this.element.contentWindow.focus();
+				if(this.element.webNavigation.canGoForward)
+				this.element.webNavigation.goForward();
+			</body>
+		</method>
+		<method name="loadURL">
+			<parameter name="path"/>
+			<body>
+				if(!path) path = this.adressBar.value;
+
+				var loadFlags = Components.interfaces.nsIWebNavigation.LOAD_FLAGS_BYPASS_CACHE;
+				this.element.webNavigation.loadURI(path,loadFlags,null,null,null);
+				this.adressBar.value = path;
+			</body>
+		</method>
+  	</implementation>
+  </binding>
+</bindings>

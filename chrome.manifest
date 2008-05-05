@@ -1,0 +1,16 @@
+content	codetch content/codetch/
+overlay	chrome://browser/content/browser.xul	chrome://codetch/content/ext/ff_overlay.xul
+overlay	chrome://navigator/content/navigator.xul	chrome://codetch/content/ext/ff_overlay.xul
+overlay	chrome://messenger/content/mailWindowOverlay.xul	chrome://codetch/content/ext/tb_overlay.xul
+overlay chrome://global/content/viewSource.xul	chrome://codetch/content/ext/vs_overlay.xul
+
+locale	codetch	en-US	locale/en-US/codetch/
+locale	codetch	es-AR	locale/es-AR/codetch/
+locale	codetch	de-DE	locale/de-DE/codetch/
+locale	codetch	da-DK	locale/da-DK/codetch/
+locale	codetch	fr-FR	locale/fr-FR/codetch/
+locale	codetch	it-IT	locale/it-IT/codetch/
+locale	codetch	pl-PL	locale/pl-PL/codetch/
+
+skin	codetch	classic/1.0	skin/classic/
+style	chrome://global/content/customizeToolbar.xul	chrome://codetch/skin/toolbar-button.css

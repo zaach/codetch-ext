@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://codetch/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://codetch/skin/panels.css" type="text/css"?>
+<?xml-stylesheet href="chrome://codetch/skin/editorBindings.css" type="text/css"?>
+
+
+<!DOCTYPE window [
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd" >
+%codetchDTD;
+]>
+
+
+<window
+   title      = "New XUL Document"
+   id         = "xul-window"
+   xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   orient     = "vertical"
+   >
+
+  <commandset commandupdater="true"
+              events="select"
+              oncommandupdate="alert('cammandset');"/>
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/utilities.js" />
+
+<script type="application/x-javascript">
+<![CDATA[
+
+var cmdDragObserver = { 
+  onDragStart: function (evt,transferData,action){
+    var txt=evt.target.hasAttribute("command")?evt.target.getAttribute("command"):evt.target.getAttribute("oncommand");
+    transferData.data=new TransferData();
+    transferData.data.addDataForFlavour("text/unicode",txt);
+  }
+};
+
+var editorDDObserver = {
+  getSupportedFlavours : function () {
+    var flavours = new FlavourSet();
+    flavours.appendFlavour("text/unicode");
+    return flavours;
+  },
+  onDragOver: function (evt,flavour,session){},
+  onDrop: function (evt,dropdata,session){
+	alert(dropdata.data);
+    if (dropdata.data!=""){
+	if(dropdata.data.indexOf('(') != -1) eval(dropdata.data);
+	else goDoCommand(dropdata.data);
+    }
+  }
+};
+
+const designDocListener=
+{
+  NotifyDocumentCreated: function NotifyDocumentCreated() {alert('created');},
+  NotifyDocumentWillBeDestroyed: function NotifyDocumentWillBeDestroyed() {alert('destroyd');},
+  NotifyDocumentStateChanged: function NotifyDocumentStateChanged(isChanged)
+  {
+    alert(isChanged);
+  }
+};
+
+const designObserver=
+{
+  observe: function observe(aSubject, aTopic, aData)
+  {
+    // we currently only use this to update undo
+    alert('observe');
+  },
+  editAction: function observe(aSubject, aTopic, aData)
+  {
+    // we currently only use this to update undo
+    alert('edit action');
+  }
+};
+
+function setup(){
+	var editor = document.getElementById('editorobj');
+	//editor.getEditor(editor.contentWindow);
+	editor.getEditor(editor.contentWindow).addEditorObserver(designObserver);
+	editor.getEditor(editor.contentWindow).addDocumentStateListener(designDocListener);
+	alert(editor);
+}
+
+//var dsource = new RDFDataSource();
+commandUpdateTrigger = function(event) {
+  document.commandDispatcher.updateCommands(event.type);
+
+};
+
+initCommandUpdateTrigger = function(context){
+  context = context || document;
+  var
+    cmdSets = context.getElementsByTagName("commandset"),
+    i, j,
+    events
+  ;
+  for (i = cmdSets.length - 1; i >= 0; i--) {
+    if(
+      cmdSets[i].getAttribute("commandupdater") == "true"
+      && cmdSets[i].getAttribute("oncommandupdate")
+    ) {
+
+      events = cmdSets[i].getAttribute("events")
+        .split(/[^A-Za-z0-9_\-]+/)
+                        ;
+      for(j = events.length -1; j >= 0; j--) {
+        if(events[i]) {
+          // initial command update
+          document.commandDispatcher.updateCommands(events[j]);
+          // register command update trigger via event listener
+          document.addEventListener(
+            events[j], commandUpdateTrigger, true
+          );
+        };
+      };
+    };
+  };
+
+};
+
+initCommandUpdateTrigger(); 
+
+]]>
+</script>
+<textbox onselect="alert('selected');" /><button label="setup" oncommand="window.open('chrome://codetch/content/test.xul','','chrome, modal');"/>
+<editor id="editorobj" src="http://localhost/xul" flex="1"/>
+    <button label="Edit" oncommand="this.previousSibling.makeEditable('html',false);"/>
+    <button label="setup" oncommand="setup();"/>
+</window>

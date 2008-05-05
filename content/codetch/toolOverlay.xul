@@ -1,0 +1,451 @@
+<?xml version="1.0"?>
+
+<?xul-overlay href="chrome://global/content/globalOverlay.xul"?>
+
+<!DOCTYPE window [
+<!ENTITY % brandDTD SYSTEM "chrome://global/locale/brand.dtd" >
+%brandDTD;
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd" >
+%codetchDTD;
+]>
+
+<overlay id="menuoverlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<popupset id="mainpopups">
+    <popup id="tab-editor-context-menu"
+           onpopupshowing="codetch.targetID = document.popupNode.linkedPanel" onpopuphiding="codetch.targetID = null;">
+      <menuitem label="&menu.close;" command="cmd_close" accesskey="&menu.close.accesskey;"/>
+      <menuitem label="&menu.closeall;" command="cmd_closeAll" accesskey="&menu.closeall.accesskey;"/>
+      <menuitem label="&menu.closetabgroup;" command="cmd_closeTabGroup" accesskey="&menu.closetabgroup.accesskey;"/>
+      <menuitem label="&menu.closeallbut;" command="cmd_closeAllBut" accesskey="&menu.closeallbut.accesskey;"/>
+	<menu label="&menu.groupwith;" accesskey="&menu.groupwith.accesskey;">
+		<menupopup id="tab-groupwith-popup"
+			onpopupshowing="fillTabGroupContextMenu(this)">
+			<menuitem name="tabgroups" oncommand="codetch.changeTabGroup(codetch.addTabGroup(null,{noDefault:true}))" label="&label.newtabgroup;" accesskey="&label.newtabgroup.accesskey;"/>
+			<menuseparator/>
+		</menupopup>
+	</menu>
+	  <menuseparator/>
+      <menuitem label="&menu.save;"  oncommand="goDoCommand('cmd_save')" accesskey="&menu.save.accesskey;"/>
+      <menuitem label="&menu.saveall;"  oncommand="goDoCommand('cmd_saveAll')" accesskey="&menu.saveall.accesskey;"/>
+      <menuitem label="&menu.saveas;"  oncommand="goDoCommand('cmd_saveAs')" accesskey="&menu.saveas.accesskey;"/>
+      <menuitem label="&menu.saveastemplate;"  oncommand="goDoCommand('cmd_saveAsTemplate')" accesskey="&menu.saveastemplate.accesskey;"/>
+      <menuitem label="&label.revert;"  oncommand="goDoCommand('cmd_revert')" accesskey="&label.revert.accesskey;"/>
+      <menuitem label="&label.revertopen;"  oncommand="goDoCommand('cmd_revertOpen')" accesskey="&label.revertopen.accesskey;"/>
+	  <menuseparator/>
+      <menuitem label="&menu.print;" command="cmd_print" accesskey="&menu.print.accesskey;" />
+      <!-- <menuitem label="launch" command="cmd_launchFile" /> -->
+    </popup>
+    
+    <popup id="tab-browser-page-context-menu"
+           onpopupshowing="codetch.targetID = document.popupNode.linkedPanel" onpopuphiding="codetch.targetID = null;">
+      <menuitem label="&menu.close;" command="cmd_close" accesskey="&menu.close.accesskey;"/>
+      <menuitem label="&menu.closeall;" command="cmd_closeAll" accesskey="&menu.closeall.accesskey;"/>
+      <menuitem label="&menu.closetabgroup;" command="cmd_closeTabGroup" accesskey="&menu.closetabgroup.accesskey;"/>
+      <menuitem label="&menu.closeallbut;" command="cmd_closeAllBut" accesskey="&menu.closeallbut.accesskey;"/>
+	<menu label="&menu.groupwith;" accesskey="&menu.groupwith.accesskey;">
+		<menupopup id="tab-groupwith-popup"
+			onpopupshowing="fillTabGroupContextMenu(this)">
+			<menuitem name="tabgroups" oncommand="codetch.changeTabGroup(codetch.addTabGroup(null,{noDefault:true}))" label="&label.newtabgroup;" accesskey="&label.newtabgroup.accesskey;"/>
+			<menuseparator/>
+		</menupopup>
+	</menu>
+	  <menuseparator/>
+		<menuitem class="back-button" label="&label.back;" oncommand="goDoCommand('cmd_browserGoBack')" />
+		<menuitem class="next-button" label="&label.forward;" oncommand="goDoCommand('cmd_browserGoForward')"/>
+		<menuitem class="stop-button" label="&label.stop;" oncommand="goDoCommand('cmd_browserStop')"/>
+		<menuitem class="reload-button" label="&label.reload;" oncommand="goDoCommand('cmd_browserReload')"/>
+		<menuitem class="browse-button" label="&menu.open;" oncommand="goDoCommand('cmd_browserOpenLocal')"/>
+		<menuitem label="&menu.openremote;" oncommand="goDoCommand('cmd_browserOpenURI')"/>
+	  <menuseparator/>
+      <menuitem label="&menu.print;" command="cmd_print" accesskey="&menu.print.accesskey;" />
+    </popup>
+    
+		<popup id="toolbars-popup"
+			onpopupshowing="fillToolbarToggleMenu(this)" oncommand="toggleElement(event.target.value)">
+		</popup>
+		
+		<popup id="tab-group-popup"
+			onpopupshowing="fillTabGroupToolMenu(this)">
+			<menuitem name="tabgroups" command="cmd_newTabGroup" label="&label.newtabgroup;" accesskey="&label.newtabgroup.accesskey;"/>
+			<menuseparator/>
+		</popup>
+		
+		<popup id="file-tree-popup"
+			onpopupshowing="">
+			<menuitem label="&menu.edit;" accesskey="&menu.edit.accesskey;" oncommand="editTreeFile();" />
+			<menuitem label="&menu.delete;" accesskey="&menu.delete.accesskey;" oncommand="deleteTreeFile();" />
+			<menuitem label="&label.rename;" accesskey="&label.rename.accesskey;" oncommand="renameTreeFile();" />
+			<menuseparator/>
+			<menuitem label="&label.new;" accesskey="&menu.new.accesskey;" oncommand="createTreeFile();" />
+			<menuitem label="&label.newfolder;" accesskey="&menu.new.accesskey;" oncommand="createTreeDir();" />
+			<menuseparator/>
+			<menuitem label="&label.setastreeroot;" accesskey="&label.setastreeroot.accesskey;" oncommand="loadLocalFiles(null, 1);" />
+			<menuitem label="&label.uponelevel;" accesskey="&label.uponelevel.accesskey;" oncommand="upOneDirectory();" />
+		</popup>
+		
+		<popup id="snippet-tree-popup"
+			onpopupshowing="">
+			<menuitem label="&menu.edit;" accesskey="&menu.edit.accesskey;" oncommand="snippetDialog('edit');" />
+			<menuitem label="&menu.delete;" accesskey="&menu.delete.accesskey;" oncommand="deleteSnippet();" />
+			<menuseparator/>
+			<menuitem label="&label.new;" accesskey="&menu.new.accesskey;" oncommand="snippetDialog('new');" />
+			<menuitem label="&label.newfolder;" accesskey="&menu.new.accesskey;" oncommand="createSnippetDir();" />
+			<menuitem label="&label.reload;" accesskey="&label.reload.accesskey;" oncommand="document.getElementById('snippet-tree').builder.rebuild()" />
+		</popup>
+		
+		<popup id="snippet-description-popup"
+			onpopupshowing="">
+		</popup>
+</popupset>
+<toolbox id="main-toolbox">
+
+<menubar id="codetch-menubar">
+  <menu id="file-menu" label="&menu.file;" accesskey="&menu.file.accesskey;">
+    <menupopup id="file-popup">
+      <menuitem id="menu_new" label="&menu.new;" key="key_newDialog" accesskey="&menu.new.accesskey;" command="cmd_newDialog" />
+      <menuitem label="&menu.newdef;" command="cmd_new" key="key_new" accesskey="&menu.newdef.accesskey;"/>
+      <menuitem label="&menu.open;" command="cmd_open" key="key_open" accesskey="&menu.open.accesskey;"/>
+      <menuitem label="&menu.openremote;" command="cmd_openRemote" key="key_openRemote" accesskey="&menu.openremote.accesskey;"/>
+	  <menu id="menu_recent" label="&menu.openrecent;" accesskey="&menu.openrecent.accesskey;">
+		<menupopup onpopupshowing="fillRecentMenu(this)" oncommand="codetch.openPath(event.target.value)">
+			<menuitem label="&menu.openallrecent;" accesskey="&menu.openallrecent.accesskey;" value="" oncommand="openAllRecent();"/>
+			<menuseparator/>
+		</menupopup>
+      </menu>
+      <menuitem label="&menu.close;" command="cmd_close" key="key_close" accesskey="&menu.close.accesskey;"/>
+      <menuitem label="&menu.closeall;" command="cmd_closeAll" accesskey="&menu.closeall.accesskey;"/>
+      <menuitem label="&menu.closetabgroup;" command="cmd_closeTabGroup" accesskey="&menu.closetabgroup.accesskey;"/>
+      <menuitem label="&menu.closeallbut;" command="cmd_closeAllBut" accesskey="&menu.closeallbut.accesskey;"/>
+	  <menuseparator/>
+      <menuitem label="&menu.save;" command="cmd_save" key="key_save" accesskey="&menu.save.accesskey;"/>
+      <menuitem label="&menu.saveall;" command="cmd_saveAll" key="key_saveAll" accesskey="&menu.saveall.accesskey;"/>
+      <menuitem label="&menu.saveas;" command="cmd_saveAs" accesskey="&menu.saveas.accesskey;"/>
+      <menuitem label="&menu.saveastemplate;" command="cmd_saveAsTemplate" accesskey="&menu.saveastemplate.accesskey;"/>
+      <menuitem label="&label.revert;" command="cmd_revert" accesskey="&label.revert.accesskey;"/>
+      <menuitem label="&label.revertopen;" command="cmd_revertOpen" accesskey="&label.revertopen.accesskey;"/>
+      <menuseparator/>
+      <menuitem label="&menu.import;" command="cmd_import" accesskey="&menu.import.accesskey;" key="key_import"/>
+      <menuseparator/>
+      <menuitem label="&menu.print;" command="cmd_print" accesskey="&menu.print.accesskey;" key="key_print"/>
+      <menuseparator/>
+      <menuitem label="&menu.exit;" accesskey="&menu.exit.accesskey;" key="key_exit" command="cmd_exit"/>
+    </menupopup>
+  </menu>
+  <menu id="edit-menu" label="&menu.edit;" accesskey="&menu.edit.accesskey;">
+    <menupopup id="edit-popup">
+      <menuitem label="&menu.undo;" accesskey="&menu.undo.accesskey;" key="key_undo" command="cmd_undo"/>
+      <menuitem label="&menu.redo;" accesskey="&menu.redo.accesskey;" key="key_redo" command="cmd_redo"/>
+	  <menuseparator/>
+      <menuitem label="&menu.cut;" accesskey="&menu.cut.accesskey;" key="key_cut" command="cmd_cut"/>
+      <menuitem label="&menu.copy;" accesskey="&menu.copy.accesskey;" key="key_copy" command="cmd_copy"/>
+      <menuitem label="&menu.paste;" accesskey="&menu.paste.accesskey;" key="key_paste" command="cmd_paste"/>
+      <menuitem label="&menu.delete;" accesskey="&menu.delete.accesskey;" key="key_delete" command="cmd_delete"/>
+      <menuitem label="&menu.selectall;" accesskey="&menu.selectall.accesskey;" key="key_selectAll" command="cmd_selectAll"/>
+	  <menuseparator/>
+	  <menuitem label="&menu.duplicateline;" accesskey="&menu.duplicateline.accesskey;" key="key_duplicateLine" command="cmd_duplicateLine" />
+      <menuitem label="&menu.joinlines;" accesskey="&menu.joinlines.accesskey;" key="key_joinLines" command="cmd_joinLines" />
+	  <menuseparator/>
+      <menuitem label="&menu.toupper;" accesskey="&menu.toupper.accesskey;" key="key_toUpperCase" command="cmd_toUpperCase" />
+      <menuitem label="&menu.tolower;" accesskey="&menu.tolower.accesskey;" key="key_toLowerCase" command="cmd_toLowerCase" />
+      <menuitem label="&menu.totitle;" accesskey="&menu.totitle.accesskey;" key="key_toTitleCase" command="cmd_toTitleCase" />
+	  <menuseparator/>
+	  <menuitem label="&label.editbrowserlist;" accesskey="&label.editbrowserlist.accesskey;" oncommand="browserDialog();" />
+      <menuitem label="&menu.prefs;" accesskey="&menu.prefs.accesskey;" command="cmd_preferences"/>
+    </menupopup>
+  </menu>
+  <menu id="search-menu" label="&menu.search;" accesskey="&menu.search.accesskey;">
+    <menupopup id="search-popup">
+      <menuitem label="&menu.gotoline;" accesskey="&menu.gotoline.accesskey;" key="key_goToLine" command="cmd_goToLine"/>
+      <menuitem label="&menu.find;" accesskey="&menu.find.accesskey;" key="key_find" command="cmd_find" />
+      <menuitem label="&label.findnext;" accesskey="&label.findnext.accesskey;" key="key_findNext" command="cmd_findNext" />
+      <menuitem label="&menu.replace;" accesskey="&menu.replace.accesskey;" key="key_replace" command="cmd_replace" />
+    </menupopup>
+  </menu>
+  <menu id="modify-menu" label="&menu.modify;" accesskey="&menu.modify.accesskey;">
+    <menupopup id="modify-popup">
+    </menupopup>
+  </menu>
+  <menu id="insert-menu" label="&menu.insert;" accesskey="&menu.insert.accesskey;">
+    <menupopup id="insert-popup">
+	<menu id="datetime-menu" label="&menu.datetime;" accesskey="&menu.datetime.accesskey;">
+		<menupopup id="datetime-menu-popup" observes="codeInsertion">
+			<menuitem label="&label.date;" accesskey="&label.date.accesskey;" oncommand="insertDate();" observes="codeInsertion" />
+			<menuitem label="&label.time;" accesskey="&label.time.accesskey;" oncommand="insertTime();" observes="codeInsertion" />
+			<menuitem label="&label.gmtdate;" accesskey="&label.gmtdate.accesskey;" oncommand="insertGMTDate();" observes="codeInsertion" />
+			<menuitem label="&label.shortdate;" accesskey="&label.shortdate.accesskey;" oncommand="insertShortDate();" observes="codeInsertion" />
+			<menuitem label="&label.timestamp;" accesskey="&label.timestamp.accesskey;" oncommand="insertTimeStamp();" observes="codeInsertion" />
+		</menupopup>
+	</menu>
+	<menu id="fileinfo-menu" label="&menu.fileinfo;" accesskey="&menu.fileinfo.accesskey;">
+		<menupopup id="fileinfo-menu-popup" observes="codeInsertion">
+			<menuitem label="&label.filename;" accesskey="&label.filename.accesskey;" oncommand="insertFileName();" observes="codeInsertion" />
+			<menuitem label="&label.fullpath;" accesskey="&label.fullpath.accesskey;" oncommand="insertFilePath();" observes="codeInsertion" />
+			<menuitem label="&label.filedir;" accesskey="&label.filedir.accesskey;" oncommand="insertFileDir();" observes="codeInsertion" />
+		</menupopup>
+	</menu>
+    </menupopup>
+  </menu>
+  <menu id="tools-menu" label="&menu.tools;" accesskey="&menu.tools.accesskey;">
+    <menupopup id="tools-menu-popup">
+	<menuitem id="inspect-item" label="&label.inspect;" accesskey="&label.inspect.accesskey;" command='cmd_inspect'/>
+	<menuitem id="fireftp-item" label="FireFTP" accesskey="F" command='cmd_fireftp'/>
+	<menuseparator/>
+	<menuitem command='cmd_validateHTML' label="&label.validateHTML;" accesskey="&label.validateHTML.accesskey;" />
+	<menuitem command='cmd_validateCSS' label="&label.validateCSS;" accesskey="&label.validateCSS.accesskey;" />
+	<menuitem command='cmd_validateXML' label="&label.validateXML;" accesskey="&label.validateXML.accesskey;" />
+	<menuitem command='cmd_validateRDF' label="&label.validateRDF;" accesskey="&label.validateRDF.accesskey;" />
+    </menupopup>
+  </menu>
+  <menu id="view-menu" label="&label.view;" accesskey="&label.view.accesskey;">
+    <menupopup id="view-popup" onpopupshowing="fillWindowMenu(this)">
+	<menuitem command='cmd_refresh' label="&label.refresh;" accesskey="&label.refresh.accesskey;" />
+	<menu label="&label.views;">
+		<menupopup id="views-menu-popup"
+			onpopupshowing="fillPanelViewMenu(this)">
+		</menupopup>
+	</menu>
+      <menuitem label="&menu.linenums;" type="checkbox" accesskey="&menu.linenums.accesskey;" key="key_toggleLineNumbers" command="cmd_toggleLineNumbers"/>
+	<menu label="&label.externalpreview;" accesskey="&label.externalpreview.accesskey;">
+			<menupopup id="external-browser-popup2" onpopupshowing="fillBrowserMenu(this)">
+				<menuitem label="&label.usetempfile;" accesskey="&label.usetempfile.accesskey;" id="use-temps-menuitem2" type="checkbox" observes="use-temps-menuitem"
+					oncommand="GetPrefs().setBoolPref('previewtmp', !GetBoolPref('previewtmp'));this.setAttribute('checked', GetBoolPref('previewtmp'));"/>
+				<menuitem label="&label.editbrowserlist;" accesskey="&label.editbrowserlist.accesskey;" oncommand="browserDialog();"/>
+				<menuseparator/>
+				<menuitem label="&label.previewin; &label.extensionbrowser;" tooltiptext="&label.extensionbrowsertip;" id="extension-browser-menuitem2" oncommand="codetch.externalPreview('')"  observes="extension-browser-menuitem"/>
+			</menupopup>
+	</menu>
+	<menuseparator/>
+	<menuitem label="&label.sidebar;" accesskey="&label.sidebar.accesskey;" type="checkbox" command="cmd_toggleSidebar" key="key_toggleSidebar"/>
+	<menuitem label="&label.results;" accesskey="&label.results.accesskey;" type="checkbox" command="cmd_toggleBottombar" key="key_toggleBottombar" />
+	<menuitem label="&label.insert;" accesskey="&label.insert.accesskey;" type="checkbox" command="cmd_toggleInsertbar" key="key_toggleInsertbar" />
+	<menu label="&label.toolbars;">
+		<menupopup id="toolbars-menu-popup"
+			onpopupshowing="fillToolbarToggleMenu(this)" oncommand="toggleElement(event.target.value)">
+		</menupopup>
+	</menu>
+	<menuseparator/>
+	<menuitem label="&label.toolboxdock;" accesskey="&label.toolboxdock.accesskey;" type="checkbox" command="cmd_toggleToolboxDock"/>
+	<menuitem label="&menu.sidebardir;" accesskey="&menu.sidebardir.accesskey;" type="checkbox" command="cmd_toggleSidebarDir"/>
+	<menuseparator/>
+	<menu label="&label.tabgroups;" accesskey="&label.tabgroups.accesskey;">
+		<menupopup id="tab-group-menu-popup"
+			onpopupshowing="fillTabGroupToolMenu(this)">
+			<menuitem name="tabgroups" command="cmd_newTabGroup" label="&label.newtabgroup;" accesskey="&label.newtabgroup.accesskey;"/>
+			<menuseparator/>
+		</menupopup>
+	</menu>
+	<menuseparator/>
+    </menupopup>
+  </menu>
+  <menu id="help-menu" label="&menu.help;" accesskey="&menu.help.accesskey;">
+    <menupopup id="help-popup">
+      <menuitem label="&menu.helpcontents;" accesskey="&menu.helpcontents.accesskey;"  command="cmd_help" key="key_help" />
+      <menuitem label="&window.welcome;" oncommand="codetch.newLocalPage('chrome://codetch/content/welcome.xul');"/>
+      <menuitem label="&menu.about;" accesskey="&menu.about.accesskey;" command="cmd_about"/>
+    </menupopup>
+  </menu>
+ </menubar>
+
+</toolbox>
+
+
+	<vbox id="toolboxPanel">
+		<vbox class="panel-box" id="local-file" label="&label.files;" accesskey="&label.files.accesskey;" type="sidebar" persist="collapsed" flex="1">
+		<toolbar id="file-toolbar">
+			<menulist id="file-site-list" editable="true" flex="1" persist="label value">
+				<menupopup id="file-site-list-popup" oncommand="loadLocalFiles(event.target.value)">
+					<menuitem label="Root" value="NC:FilesRoot" class="menuitem-iconic root-item" id="file-root-item" />
+				</menupopup>
+			</menulist>
+			<toolbarbutton id="reload-dir-btn" oncommand="loadLocalFiles(getBrowserPath(document.getElementById('file-site-list').label));" tooltiptext="&label.reload;" class="toolbarbutton-1" />
+			<toolbarbutton id="find-dir-btn" oncommand="loadLocalFiles(getFolderPath(), true);" class="toolbarbutton-1" />
+		</toolbar>
+		<toolbar id="file-toolbar2">
+			<toolbarbutton id="up-dir-btn" oncommand="upOneDirectory();" class="toolbarbutton-1 dirup-button" />
+			<toolbarbutton id="filetree-newfolder-btn" tooltiptext="&label.newfolder;" oncommand="createTreeDir();" class="toolbarbutton-1" />
+			<toolbarbutton id="filetree-new-btn" tooltiptext="&label.new;" oncommand="createTreeFile();" class="toolbarbutton-1" />
+			<toolbarbutton id="filetree-del-btn" tooltiptext="&menu.delete;" oncommand="deleteTreeFile();" class="toolbarbutton-1" />
+			<toolbarbutton id="filetree-rename-btn" tooltiptext="&label.rename;" oncommand="renameTreeFile();" class="toolbarbutton-1" />
+		</toolbar>
+		<tree id="local-file-tree" persist="ref" flex="1" onselect="treeEvent(this, event);" ondblclick="treeEvent(this, event)"
+			datasources="rdf:files" ref="" flags="dont-build-content" seltype="single" context="file-tree-popup">
+			<treecols>
+				<treecol id="Name" label="Name" sort="rdf:http://home.netscape.com/NC-rdf#Name" primary="true" flex="1"/>
+				<splitter class="tree-splitter" />
+				<treecol id="LastModifiedDate" label="Last Modified" sort="rdf:http://home.netscape.com/WEB-rdf#LastModifiedDate" flex="1" hidden="true" />
+				<splitter class="tree-splitter" />
+				<treecol id="Content-Length" label="Size" sort="rdf:http://home.netscape.com/NC-rdf#Content-Length" flex="1" hidden="true" />
+				<treecol id="extension" label="Extension" sortActive="true" sortDirection="ascending" sort="rdf:http://home.netscape.com/NC-rdf#extension" flex="1" hidden="true" ignoreincolumnpicker="true"/>
+
+			</treecols>
+
+			<template>
+				<rule>
+					<treechildren flex="1">
+						<treeitem uri="rdf.*">
+							<treerow>
+								<treecell label="rdf:http://home.netscape.com/NC-rdf#Name" value="rdf:http://home.netscape.com/NC-rdf#URL"/>
+								<treecell label="rdf:http://home.netscape.com/WEB-rdf#LastModifiedDate"/>
+								<treecell label="rdf:http://home.netscape.com/NC-rdf#Content-Length"/>
+								<treecell label="rdf:http://home.netscape.com/NC-rdf#extension"/>
+							</treerow>
+						</treeitem>
+					</treechildren>
+				</rule>
+			</template>
+		</tree>
+		<hbox class="status" id="local-tree-statusbar">
+			<label id="local-tree-status" value="Local" crop="right" flex="1"/>
+		</hbox>
+	</vbox>
+	<vbox class="panel-box" id="snippet-files" label="&label.snippets;" accesskey="&label.snippets.accesskey;" type="sidebar" collapsed="true" persist="collapsed" flex="1">
+			<iframe id="snippet-preview" src="about:blank" class="inset" height="80" persist="height" />
+			<splitter id="snippet-splitter" collapse="none" persist="state" resizebefore="closest"/>
+			<tree id="snippet-tree" persist="ref" flex="1" datasources="rdf:files" ref="" flags="dont-build-content" seltype="single" hidecolumnpicker="true" context="snippet-tree-popup"
+			onselect="treeEvent(this, event)"
+			ondblclick="treeEvent(this, event)"
+			>
+			<treecols>
+				<treecol id="Name" label="Name" sortActive="true" sortDirection="ascending" sort="rdf:http://home.netscape.com/NC-rdf#Name" primary="true" flex="1"/>
+			</treecols>
+
+			<template>
+				<rule>
+					<treechildren flex="1">
+						<treeitem uri="rdf.*">
+							<treerow>
+								<treecell label="rdf:http://home.netscape.com/NC-rdf#Name" value="rdf:http://home.netscape.com/NC-rdf#URL"/>
+							</treerow>
+						</treeitem>
+					</treechildren>
+				</rule>
+			</template>
+		</tree>
+		<hbox id="snippet-toolbar" class="mini-bar status">
+		<button id="snippet-insert-btn" label="&label.insert;" oncommand="insertSnippet()" observes="cmd_formatBlock" />
+		<spacer flex="1"/>
+		<toolbarbutton id="snippet-newfolder-btn" tooltiptext="&label.newfolder;" oncommand="createSnippetDir();" class="toolbarbutton-1" />
+		<toolbarbutton id="snippet-new-btn" tooltiptext="&label.new;" oncommand="snippetDialog('new');" class="toolbarbutton-1" />
+		<toolbarbutton id="snippet-edit-btn" tooltiptext="&menu.edit;" oncommand="snippetDialog('edit');" class="toolbarbutton-1" />
+		<toolbarbutton id="snippet-del-btn" tooltiptext="&menu.delete;" oncommand="deleteSnippet();" class="toolbarbutton-1" />
+		</hbox>
+	</vbox>
+	<vbox class="panel-box" id="bookmark-files" label="&label.bookmarks;" accesskey="&label.bookmarks.accesskey;" type="sidebar" collapsed="true" persist="collapsed" flex="1">
+<tree id="bookmark-tree" flex="1"
+       datasources="rdf:bookmarks" ref="NC:BookmarksRoot" flags="dont-build-content" seltype="single" ondblclick="treeEvent(this, event)" hidecolumnpicker="true">
+  <treecols>
+    <treecol id="Name" label="Name" primary="true" flex="1"/>
+  </treecols>
+
+    <template>
+      <rule>
+        <treechildren flex="1">
+          <treeitem uri="rdf.*">
+            <treerow>
+              <treecell label="rdf:http://home.netscape.com/NC-rdf#Name"  value="rdf:http://home.netscape.com/NC-rdf#URL" />
+            </treerow>
+          </treeitem>
+        </treechildren>
+      </rule>
+    </template>
+</tree>
+
+		</vbox>
+	</vbox>
+<tabbox id="insert-tabbox">
+	<tabs id="insert-tabs">
+		<tab label="&label.common;" accesskey="&label.common.accesskey;"/>
+	</tabs>
+	<tabpanels id="insert-panels">
+		<toolbox id="common-toolbox" flex="1">
+			<toolbar id="common-toolbar" hidden="true" />
+		</toolbox>
+	</tabpanels>
+</tabbox>
+
+<toolbox id="editor-toolbox" context="toolbars-popup">
+	<toolbar id="standard-toolbar" name="&label.filetoolbar;" persist="hidden">
+		<!--
+		<toolbarbutton type="menu" label="&label.views;" id="view-toolbar-btn" observes="cmd_filesOpen">
+			<menupopup id="view-toolbar-popup"
+				onpopupshowing="fillPanelViewMenu(this)" oncommand="//menuToggleView(this, event);" >
+			</menupopup>
+		</toolbarbutton>
+		-->
+		<toolbarbutton id="new-tabset-btn" type="menu" label="&label.newtabgroup;" tooltiptext="&label.newtabgroup;" class="no-text">
+			<menupopup id="tab-group-toolbar-popup"
+				onpopupshowing="fillTabGroupToolMenu(this)">
+				<menuitem name="tabgroups" command="cmd_newTabGroup" label="&label.newtabgroup;" accesskey="&label.newtabgroup.accesskey;"/>
+				<menuseparator/>
+			</menupopup>
+		</toolbarbutton>
+		<toolbarseparator id="std-separator-1" />
+		<toolbarbutton id="new-doc-btn" tooltiptext="&menu.newdef;" command="cmd_new" class="toolbarbutton-1"/>
+		<toolbarbutton type="menu-button" label="&menu.open;" id="open-doc-menubtn" command="cmd_open" class="toolbarbutton-1">
+			<menupopup onpopupshowing="fillRecentMenu(this)" oncommand="codetch.openPath(event.target.value); event.stopPropagation();">
+			<menuitem label="&menu.openallrecent;" accesskey="&menu.openallrecent.accesskey;" value="" oncommand="openAllRecent(); event.stopPropagation();"/>
+			<menuseparator/>
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="save-doc-btn" tooltiptext="&menu.save;" command="cmd_save" class="toolbarbutton-1"/>
+		<toolbarbutton id="close-doc-btn" tooltiptext="&menu.close;" command="cmd_close" class="toolbarbutton-1"/>
+		<toolbarseparator id="std-separator-2"/>
+		<toolbarbutton id="cut-btn" tooltiptext="&menu.cut;"  command="cmd_cut" class="toolbarbutton-1"/>
+		<toolbarbutton id="copy-btn" tooltiptext="&menu.copy;" command="cmd_copy" class="toolbarbutton-1"/>
+		<toolbarbutton id="paste-btn" tooltiptext="&menu.paste;" command="cmd_paste" class="toolbarbutton-1"/>
+		<toolbarseparator id="std-separator-3"/>
+		<toolbarbutton id="undo-btn" tooltiptext="&menu.undo;" command="cmd_undo" class="toolbarbutton-1"/>
+		<toolbarbutton id="redo-btn" tooltiptext="&menu.redo;" command="cmd_redo" class="toolbarbutton-1"/>
+		<toolbarseparator id="std-separator-4"/>
+		<toolbarbutton id="find-btn" tooltiptext="&label.find;" command="cmd_find" class="toolbarbutton-1"/>
+		<toolbarbutton id="replace-btn" tooltiptext="&label.findandreplace;" command="cmd_replace" class="toolbarbutton-1"/>
+		<toolbarseparator id="std-separator-5"/>
+		<toolbarbutton id="refresh-btn" tooltiptext="&label.refresh;" command="cmd_refresh" class="toolbarbutton-1"/>
+		<toolbarbutton id="external-preview-btn" tooltiptext="&label.externalpreview;" type="menu-button"  command="cmd_externalPreview" class="toolbarbutton-1">
+			<menupopup id="external-browser-popup" onpopupshowing="fillBrowserMenu(this)" oncommand="event.stopPropagation();">
+				<menuitem label="&label.usetempfile;" accesskey="&label.usetempfile.accesskey;" id="use-temps-menuitem" type="checkbox" observes="use-temps-menuitem2"
+					oncommand="GetPrefs().setBoolPref('previewtmp', !GetBoolPref('previewtmp'));this.setAttribute('checked', GetBoolPref('previewtmp'));"/>
+				<menuitem label="&label.editbrowserlist;" accesskey="&label.editbrowserlist.accesskey;" oncommand="browserDialog();" />
+				<menuseparator/>
+				<menuitem label="&label.previewin; &label.extensionbrowser;" tooltiptext="&label.extensionbrowsertip;" id="extension-browser-menuitem" observes="cmd_tabsOpen" oncommand="codetch.externalPreview('')" />
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="print-btn" tooltiptext="&label.print;" command="cmd_print" class="toolbarbutton-1"/>
+		<toolbarseparator id="std-separator-6"/>
+		<toolbarbutton id="livepreview-btn" tooltiptext="Toggle live preview" command="cmd_toggleLivePreview" class="toolbarbutton-1"/>
+		<toolbarbutton id="linenum-btn" label="&menu.linenums;" accesskey="&menu.linenums.accesskey;" class="toolbarbutton-1" command="cmd_toggleLineNumbers"/>
+		<toolbarseparator id="std-separator-7"/>
+		<toolbarbutton id="sidebar-btn" tooltiptext="Toggle Sidebar" command="cmd_toggleSidebar" class="toolbarbutton-1"/>
+	</toolbar>
+	<toolbar id="browser-toolbar" name="&label.browsertoolbar;" persist="hidden" hidden="true">
+			<toolbarbutton id="back-button" class="back-button toolbarbutton-1" label="&label.back;" command="cmd_browserGoBack" />
+			<toolbarbutton id="forward-button" class="next-button toolbarbutton-1" label="&label.forward;" command="cmd_browserGoForward"/>
+			<toolbarbutton id="stop-button" class="stop-button toolbarbutton-1" label="&label.stop;" command="cmd_browserStop"/>
+			<toolbarbutton id="reload-button" class="reload-button toolbarbutton-1" label="&label.reload;" command="cmd_browserReload"/>
+			<toolbarseparator id="browser-seperator-1" />
+			<textbox id="address-bar" type="autocomplete" flex="100" enablehistory="true" disablehistory="false" searchSessions="history" autocompletesearch="history"
+			onselect="goDoCommand('cmd_browserLoadURI')" value=""/>
+			<toolbarbutton id="browser-go-button" class="go-button toolbarbutton-1" label="&label.go;" command="cmd_browserLoadURI"/>
+			<toolbarbutton id="browser-local-open" class="browse-button toolbarbutton-1" label="Browse..." hidden="true" command="cmd_browserOpenLocal"/>
+	</toolbar>
+</toolbox>
+				<tabpanel id="search-result-panel">
+					<tree id="search-result-tree" flex="1" ondblclick="searchTreeEvent(this, event)">
+					  <treecols>
+						<treecol id="file" label="File" flex="1" crop="start" persist="width ordinal hidden"/>
+						<splitter class="tree-splitter"/>
+						<treecol id="line" label="Line" persist="width ordinal hidden"/>
+						<splitter class="tree-splitter"/>
+						<treecol id="column" label="Column" hidden="true" persist="width ordinal hidden"/>
+						<splitter class="tree-splitter"/>
+						<treecol id="match" label="Match" persist="width ordinal hidden"/>
+						<splitter class="tree-splitter"/>
+						<treecol id="context" label="Context" flex="2" persist="width ordinal hidden"/>
+					  </treecols>
+					  <treechildren id="search-result-children">
+					  </treechildren>
+					</tree>
+					<label id="search-result-count" value="" />
+				</tabpanel>
+</overlay>

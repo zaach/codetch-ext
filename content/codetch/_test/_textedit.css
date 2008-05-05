@@ -1,0 +1,7 @@
+/* 
+Editor Bindings
+*/
+
+#content-source {
+  -moz-binding: url("chrome://codetch/content/_test/_textedit.xml#sheditor");
+}

@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+  <!-- =====================================================================
+ NOTE: These aren't in use yet.
+  ===================================================================== -->
+<bindings id="panelRoot"
+          xmlns="http://www.mozilla.org/xbl"
+          xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns:xbl="http://www.mozilla.org/xbl">
+  
+  <!-- =====================================================================
+  Base, pretty empty right now but may be extended later
+  ===================================================================== -->
+  <binding id="rootChromePage" extends="chrome://codetch/content/editorbindings/panelRoot.xml#rootBrowserPage">
+    <content>
+		<xul:browser flex="1" xbl:inherits="disabled,src" />
+    </content>
+  	<implementation>
+		<constructor>
+			this.init();
+		</constructor>
+  	</implementation>
+  </binding>
+  
+  <binding id="rootBrowserPage" extends="xul:tabpanel">
+	<resources>
+		<stylesheet src="chrome://codetch/content/editorBindings.css" />
+	</resources>
+    <content>
+		<xul:browser flex="1" type="content" xbl:inherits="disabled,src" />
+    </content>
+	<handlers>
+		<handler event="click"><![CDATA[
+		]]></handler>
+	</handlers>
+  	<implementation>
+		<constructor>
+			this.init();
+		</constructor>
+		<destructor>
+			if(this.element)
+				this.element.removeProgressListener(this._ppl);
+			this.element.destroy();
+			this._ppl = null;
+			debugLog('destroy');
+		</destructor>
+		<property name="lastPanel" onget="return this;" />
+		<property name="statusbar" onget="return document.getElementById('edit-status');" />
+		<property name="element" onget="return document.getAnonymousNodes(this)[0];" />
+		<property name="document" onget="return this.element.contentDocument;" />
+		<property name="window" onget="return this.element.contentWindow;" />
+		<property name="scrollTop" onget="return this.window.scrollY" onset="this.window.scrollY = val" />
+		<property name="scrollLeft" onget="return this.window.scrollX" onset="this.window.scrollX = val" />
+		<property name="addressBar" onget="return document.getElementById('address-bar');" />
+		<method name="setTabTitle">
+			<body>
+				this.doc.leafName = this.element.contentTitle || localize('Untitled');
+				if(this.doc.selected) codetch.setWindowTitle(this.doc.leafName);
+			</body>
+		</method>
+		<method name="loadURI">
+			<parameter name="path"/>
+			<body>
+				if(!path) path = this.addressBar.value;
+				if(!path) return;
+				this.setAttribute('src', path);
+				//this.element.loadURI(path);
+				this.addressBar.value = path;
+			</body>
+		</method>
+		<method name="refresh">
+			<body>
+				this.reload();
+			</body>
+		</method>
+		<method name="stop">
+			<body>
+				this.element.stop();
+                this.halt();
+			</body>
+		</method>
+		<method name="halt">
+			<body>
+                this.doc.tab.removeAttribute("busy");
+                this.setTabTitle();
+				this.addressBar.value = this.doc.src;
+			</body>
+		</method>
+		<method name="reload">
+			<body>
+				this.element.reload();
+                this.doc.tab.removeAttribute("busy");
+                this.setTabTitle();
+			</body>
+		</method>
+		<method name="goBack">
+			<body>
+			try{
+				this.element.contentWindow.focus();
+				if(this.element.webNavigation.canGoBack)
+				this.element.webNavigation.goBack();
+			}catch(ex){}
+			</body>
+		</method>
+		<method name="goForward">
+			<body>
+			try{
+				this.element.contentWindow.focus();
+				if(this.element.webNavigation.canGoForward)
+				this.element.webNavigation.goForward();
+			}catch(ex){}
+			</body>
+		</method>
+		<method name="print">
+			<body>
+				return this.element.contentWindow.print();
+			</body>
+		</method>
+		<method name="setStatus">
+			<body>
+			this.statusbar.value = this.getAttribute('src');
+			</body>
+		</method>
+		<method name="init">
+			<body>
+				if(this.element)
+					this.element.addProgressListener(this.PageProgressListener(),
+						Components.interfaces.nsIWebProgress.NOTIFY_STATE_DOCUMENT);
+			</body>
+		</method>
+      <method name="PageProgressListener">
+        <body>
+        <![CDATA[
+		  this._ppl = {
+            mTabBrowser: this,
+            mTab: this.doc.tab,
+            mBrowser: this.element,
+            mBlank: false,
+            mLastURI: null,
+
+            onProgressChange : function (aWebProgress, aRequest,
+                                         aCurSelfProgress, aMaxSelfProgress,
+                                         aCurTotalProgress, aMaxTotalProgress)
+            {
+              
+            },
+
+            onStateChange : function(aWebProgress, aRequest, aStateFlags, aStatus)
+            {
+              if (!aRequest)
+                return;
+
+              var oldBlank = this.mBlank;
+
+              const nsIWebProgressListener = Components.interfaces.nsIWebProgressListener;
+              const nsIChannel = Components.interfaces.nsIChannel;
+
+              if (aStateFlags & nsIWebProgressListener.STATE_START &&
+                  aStateFlags & nsIWebProgressListener.STATE_IS_NETWORK) {
+                if (!this.mBlank) {
+                  this.mTab.setAttribute("busy", "true");
+                  this.mTab.label = localize("Loading");
+                  this.mTabBrowser.mIsBusy = true;
+				  var brw = this.mTabBrowser;
+				  setTimeout(function(){brw.halt()}, 2500);
+				  brw.setStatus();
+                }
+              }
+              else if (aStateFlags & nsIWebProgressListener.STATE_STOP &&
+                       aStateFlags & nsIWebProgressListener.STATE_IS_NETWORK) {
+
+                if (this.mBlank)
+                  this.mBlank = false;
+
+                this.mTab.removeAttribute("busy");
+
+                var location = aRequest.QueryInterface(nsIChannel).URI;
+
+                if (this.mTab.label == localize("Loading") ||
+					this.mTab.label == localize("Untitled"))
+                  this.mTabBrowser.setTabTitle();
+
+                this.mTabBrowser.mIsBusy = false;
+              }
+            },
+
+            onLocationChange : function(aWebProgress, aRequest, aLocation)
+            {
+              if (aWebProgress.DOMWindow == this.mBrowser.contentWindow &&
+                  aWebProgress.isLoadingDocument)
+                return;
+                  this.mTabBrowser.setTabTitle();
+				  this.mTabBrowser.addressBar.value = aLocation.spec;
+            },
+
+            onStatusChange : function(aWebProgress, aRequest, aStatus, aMessage)
+            {
+			
+            },
+
+            onSecurityChange : function(aWebProgress, aRequest, aState){},
+			onLinkIconAvailable: function() {},
+
+            QueryInterface : function(aIID)
+            {
+              if (aIID.equals(Components.interfaces.nsIWebProgressListener) ||
+                  aIID.equals(Components.interfaces.nsISupportsWeakReference) ||
+                  aIID.equals(Components.interfaces.nsISupports))
+                return this;
+              throw Components.results.NS_NOINTERFACE;
+            }
+          };
+          
+		  return this._ppl;
+        ]]>
+        </body>
+      </method>
+	</implementation>
+  </binding>
+</bindings>

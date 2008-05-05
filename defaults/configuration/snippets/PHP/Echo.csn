@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="Echo" description="Print a string" type="block" preview="code"><insertText location="beforeSelection"><![CDATA[echo 'Hellow World!';]]></insertText><insertText location="afterSelection"><![CDATA[]]></insertText></snippet>

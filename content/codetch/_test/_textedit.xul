@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://codetch/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://codetch/content/_test/_textedit.css" type="text/css"?>
+
+
+<!DOCTYPE window [
+<!ENTITY % brandDTD SYSTEM "chrome://global/locale/brand.dtd" >
+%brandDTD;
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd" >
+%codetchDTD;
+]>
+
+
+<window
+   title      = "Testing Text Edit"
+   id         = "xul-window"
+   xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   orient     = "vertical"
+   onclick    = "//selectStatus();"
+   persist    = "sizemode screenX screenY width height">
+
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/os.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/utilities.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/jsio.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/star-light/common.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/star-light/ParseMaster.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/star-light/star-light.js" />
+
+<script type="application/x-javascript" src="chrome://codetch/content/_test/_textedit.js" />
+
+  <commandset commandupdater="true"
+              events="focus"
+              oncommandupdate="dump('focus cammandset\n');"/>
+
+  <commandset commandupdater="true"
+              events="select"
+              oncommandupdate="dump('select cammandset\n');"/>
+  <commandset commandupdater="true"
+              events="keypress"
+              oncommandupdate="dump('select cammandset\n');"/>
+
+
+
+<script type="application/x-javascript">
+<![CDATA[
+
+
+]]>
+</script>
+
+<commandset id="maincommands"/>
+
+<vbox flex="1">
+<toolbox>
+<toolbar>
+<textbox value="file:///C:/server/htdocs/xul/cvs/blah/codetch/src/content/codetch/_test/_textedit.js" flex="1"/>
+    <button label="Edit" oncommand="startedit(this.previousSibling.value)"/>
+<toolbarbutton label="test.xul" oncommand="window.openDialog('_textedit.xul','','centerscreen,chrome,resizable,dialog=no');"/>
+    <toolbarbutton label="setup" oncommand="setup();"/>
+	<toolbarbutton label="retext" oncommand="retext();"/>
+	<toolbarbutton label="source" oncommand="source();"/>
+	<toolbarbutton label="stripped" oncommand="quickSource();"/>
+	<toolbarbutton label="output" oncommand="output();"/>
+	<toolbarbutton label="parsed" oncommand="parsed();"/>
+	<toolbarbutton label="selection" oncommand="selection();"/>
+	<toolbarbutton label="nodeData" oncommand="nodeData();"/>
+</toolbar>
+</toolbox>
+<vbox style="background: white;" flex="1">
+<editor  editortype="text" id="content-source" src="about:blank" context="editorSourceContext" flex="1"
+   onclick="selectStatus();" />
+</vbox>
+<statusbar id="statusbar">
+  <statuspanel id="status">
+    <label id="generalstatus" value="Ready"/>
+  </statuspanel>
+	<spacer flex="1"/>
+  <statuspanel id="edit-statusbar">
+    <label id="edit-status" value=""/>
+  </statuspanel>
+</statusbar>
+</vbox>
+</window>

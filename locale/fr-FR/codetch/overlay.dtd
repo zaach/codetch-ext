@@ -1,0 +1,14 @@
+<!ENTITY tooltip-codetch "Éditer avec Codetch">
+<!ENTITY menu-codetch "Codetch">
+<!ENTITY codetch.accesskey "C">
+<!ENTITY toolbar-codetch "Codetch">
+<!ENTITY codetch.float "Flottant">
+<!ENTITY codetch.float.accesskey "F">
+<!ENTITY codetch.tab "Onglet">
+<!ENTITY codetch.tab.accesskey "O">
+<!ENTITY codetch.launchtab "Ouvrir dans un onglet par défaut">
+<!ENTITY codetch.launchtab.accesskey "u">
+<!ENTITY codetch.editonlaunch "Éditer la page courante au démarrage">
+<!ENTITY codetch.editonlaunch.accesskey "d">
+<!ENTITY codetch.options "Options…">
+<!ENTITY codetch.options.accesskey "p">

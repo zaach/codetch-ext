@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://codetch/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://codetch/content/controller.css" type="text/css"?>
+
+<!DOCTYPE window [
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd">
+%codetchDTD;
+]>
+
+<dialog 
+   xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   xmlns:xbl  = "http://www.mozilla.org/xbl"
+   xmlns:rdf  = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"  
+   title      = "&label.snippet;"
+   id         = "snippet-window"
+    height="500" width="500"
+	buttons="accept,cancel"
+	onload="initDialog()"
+	ondialogaccept="return onAccept()"
+	ondialogcancel="return onCancel()">
+
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/os.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/jsio.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/initfiles.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/prefs.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/utilities.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/rdfds.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/xml.js" />
+<script type="application/x-javascript" src="snippet.js" />
+
+<vbox id="snippet" class="insert-wrap" flex="1">
+		<grid flex="1">
+			<columns flex="1">
+				<column align="end"/>
+				<column flex="1"/>
+			</columns>
+			<rows flex="1">
+				<row>
+					<label value="&label.name;:" control="snippetname" />
+					<textbox id="snippetname" />
+				</row>
+				<row>
+					<label value="&label.description;:" control="snippetdescription" />
+					<textbox id="snippetdescription" multiline="true" rows="3" />
+				</row>
+				<row>
+					<label value="&label.type;:" control="snippettype" />
+					<radiogroup id="snippettype" orient="horizontal">
+						<radio label="&label.wrapselection;" id="wrapradio" value="wrap"
+						 oncommand="switchInsert('wrap')" selected="true"/>
+						<radio label="&label.insertblock;" id="blockradio" value="block"
+						 oncommand="switchInsert('block')" />
+					</radiogroup>
+				</row>
+				<row class="block" flex="1">
+					<label value="&label.insertcode;:" control="snippetinsertcode" />
+					<textbox id="snippetinsertcode" multiline="true" flex="1" />
+				</row>
+				<row class="wrap" flex="1">
+					<label value="&label.insertbefore;:" control="snippetinsertbefore" />
+					<textbox id="snippetinsertbefore" multiline="true" flex="1" />
+				</row>
+				<row class="wrap">
+					<label value="&label.insertafter;:" control="snippetinsertafter" />
+					<textbox id="snippetinsertafter" multiline="true" rows="6" />
+				</row>
+				<row>
+					<label value="&label.previewtype;:" control="previewtype" />
+					<radiogroup id="previewtype" orient="horizontal">
+						<radio label="&label.design;" id="designradio" value="html"/>
+						<radio label="&label.code;" id="coderadio" value="code" selected="true"/>
+					</radiogroup>
+				</row>
+				<row>
+					<label value="&label.tags;:" control="snippettags" />
+					<vbox><textbox id="snippettags" />
+					<description>&description.tags;</description></vbox>
+				</row>
+			</rows>
+		</grid>
+		<seperator />
+</vbox>
+
+</dialog>

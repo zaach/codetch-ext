@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://codetch/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://codetch/skin/page.css" type="text/css"?>
+
+<!DOCTYPE window [
+<!ENTITY % prefDTD SYSTEM "chrome://codetch/locale/codetchPrefs.dtd" >
+%prefDTD;
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd" >
+%codetchDTD;
+]>
+
+<window
+   title      = "&window.welcome;"
+   id         = "codetch-welcome"
+   xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   xmlns:xbl  = "http://www.mozilla.org/xbl"
+   xmlns:html = "http://www.w3.org/1999/xhtml"
+   xmlns:rdf  = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   orient     = "vertical"
+   onfocus    = "setTimeout('fillRecentMenu(true)', 500)">
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/os.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/jsio.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/initfiles.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/utilities.js" />
+
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/prefs.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/xml.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/clipboard.js" />
+
+<script type="application/x-javascript" src="chrome://codetch/content/scripts/subWindow.js" />
+<script type="application/x-javascript" src="chrome://codetch/content/welcome.js" />
+
+<hbox id="welcome" flex="1">
+<vbox flex="1">
+	<html:h1 id="recent-head">&menu.openrecent;</html:h1>
+	<listbox flex="1" id="recent-file-list" seltype="multiple" ondblclick="openSelctedFiles();">
+	
+	</listbox>
+	<hbox>
+		<spacer flex="1" />
+		<button label="&menu.open;" class="browse-button" accesskey="&menu.open.accesskey;" oncommand="openSelctedFiles();" />
+		<button label="&menu.new;" class="new-button" accesskey="&menu.new.accesskey;" oncommand="parent.newFileDialog();" />
+	</hbox>
+	<hbox>
+		<checkbox id="welcome-pref" label="&prefs.welcomescreen;"
+		oncommand="GetPrefs().setBoolPref('welcomescreen', this.checked);" />
+	</hbox>
+</vbox>
+<vbox flex="1">
+	<iframe src="chrome://codetch/content/pages/welcome.xhtml" flex="1" />
+</vbox>
+</hbox>
+</window>

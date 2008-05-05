@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://codetch/skin/" type="text/css"?>
+
+<!DOCTYPE window [
+<!ENTITY % brandDTD SYSTEM "chrome://global/locale/brand.dtd" >
+%brandDTD;
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetchAbout.dtd" >
+%codetchDTD;
+]>
+
+<dialog 
+   xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   xmlns:xbl  = "http://www.mozilla.org/xbl"
+   title      = "&about; &window.title;"
+   id         = "aboutCodetch"
+   buttons	  = "accept" 
+   style	  = "width: 299px"
+   onload     = "putVersion();">
+<script type="application/x-javascript">
+<![CDATA[
+function putVersion(){
+var rdfs = Components.classes["@mozilla.org/rdf/rdf-service;1"]
+            .getService(Components.interfaces.nsIRDFService);
+
+var ds = Components.classes["@mozilla.org/extensions/manager;1"]
+           .getService(Components.interfaces.nsIExtensionManager).datasource;
+
+var version = ds.GetTarget(rdfs.GetResource("urn:mozilla:item:{420ed894-c19f-4318-a83f-bacae374db28}"),
+  rdfs.GetResource("http://www.mozilla.org/2004/em-rdf#version"), true)
+  .QueryInterface(Components.interfaces.nsIRDFLiteral).Value;
+document.getElementById('version').value += version.replace(/\.([0-9]{8,})$/, " [$1]");
+}
+
+]]>
+</script>
+<vbox id="aboutCase">
+<label id="version" value="&aboutVersion; "/>
+<description id="copyright">&#169;2005-2008 &copyrightText;</description>
+<spacer flex="1" />
+<description id="about-email">&aboutEmail;: <label value="info@codetch.com" /></description>
+<description id="about-site">&aboutSite;: <label class="url plain" onclick="window.opener.openBrowserURL('http://www.codetch.com');" value="http://www.codetch.com" /></description>
+<!--
+<description><label class="url plain" onclick="window.opener.openBrowserURL('http://www.mozilla.org/projects/help-viewer/');" value="Mozilla Help Viewer Project"/></description>
+-->
+</vbox>
+<separator class="groove" id="groove"/>
+
+</dialog>

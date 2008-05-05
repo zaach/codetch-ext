@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+
+<?xul-overlay href="chrome://global/content/globalOverlay.xul"?>
+
+<!DOCTYPE window [
+<!ENTITY % brandDTD SYSTEM "chrome://global/locale/brand.dtd" >
+%brandDTD;
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd" >
+%codetchDTD;
+]>
+
+<overlay id="menuoverlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<commandset id="maincommands">
+	<command id="cmd_new" oncommand="codetch.newFile();"/>
+	<command id="cmd_open" oncommand="codetch.openFile();"/>
+	<command id="cmd_openRemote" oncommand="codetch.openRemote();"/>
+	<command id="cmd_save" oncommand="goDoCommand('cmd_save');" observes="cmd_filesOpen" />
+	<command id="cmd_saveAs" oncommand="goDoCommand('cmd_saveAs');" observes="cmd_filesOpen" />
+	<command id="cmd_saveAsTemplate" oncommand="goDoCommand('cmd_saveAsTemplate');" observes="cmd_filesOpen" />
+	<command id="cmd_saveAll" oncommand="goDoCommand('cmd_saveAll');" disabled="true"/>
+	<command id="cmd_close" oncommand="goDoCommand('cmd_close');" observes="cmd_tabsOpen" />
+	<command id="cmd_closeAll" oncommand="goDoCommand('cmd_closeAll');" observes="cmd_tabsOpen" />
+	<command id="cmd_closeTabGroup" oncommand="goDoCommand('cmd_closeTabGroup');" observes="cmd_tabsOpen" />
+	<command id="cmd_closeAllBut" oncommand="goDoCommand('cmd_closeAllBut');" observes="cmd_tabsOpen" />
+	<command id="cmd_revert" oncommand="goDoCommand('cmd_revert');" disabled="true"/>
+	<command id="cmd_revertOpen" oncommand="goDoCommand('cmd_revertOpen');" disabled="true"/>
+	<command id="cmd_print" oncommand="doPrint();" observes="cmd_tabsOpen" />
+	<command id="cmd_exit" oncommand="window.close();"/>
+	<command id="cmd_newDialog" oncommand="newFileDialog();"/>
+	
+	<command id="cmd_newTabGroup" oncommand="codetch.addTabGroup();"/>
+	<command id="cmd_newTab" oncommand="codetch.newTab('Blank','','');"/>
+	
+	<command id="cmd_launchFile" oncommand="codetch.launchFile();"/>
+	
+	<command id="cmd_validateHTML" oncommand="validateHTMLW3C(codetch.getCurrentEditor().source);" observes="cmd_filesOpen" />
+	<command id="cmd_validateCSS" oncommand="validateCSSW3C(codetch.getCurrentEditor().source);" observes="cmd_filesOpen" />
+	<command id="cmd_validateRDF" oncommand="validateRDFW3C(codetch.getCurrentEditor().source);" observes="cmd_filesOpen" />
+	<command id="cmd_validateXML" oncommand="validateXMLW3C(codetch.getCurrentEditor().source);" observes="cmd_filesOpen" />
+	<command id="cmd_externalPreview" oncommand="goDoCommand('cmd_externalPreview');" observes="cmd_tabsOpen" />
+	
+	<command id="cmd_browserGoBack" oncommand="goDoCommand('cmd_browserGoBack');" observes="cmd_browserOpen" />
+	<command id="cmd_browserGoForward" oncommand="goDoCommand('cmd_browserGoForward');" observes="cmd_browserOpen" />
+	<command id="cmd_browserStop" oncommand="goDoCommand('cmd_browserStop');" observes="cmd_browserOpen" />
+	<command id="cmd_browserReload" oncommand="goDoCommand('cmd_browserReload');" observes="cmd_browserOpen" />
+	<command id="cmd_browserLoadURI" oncommand="goDoCommand('cmd_browserLoadURI');" observes="cmd_browserOpen" />
+	<command id="cmd_browserOpenLocal" oncommand="goDoCommand('cmd_browserOpenLocal');" observes="cmd_browserOpen" />
+	<command id="cmd_browserOpenURI" oncommand="goDoCommand('cmd_browserOpenURI');" observes="cmd_browserOpen" />
+	
+	<command id="cmd_joinLines" oncommand="codetch.getPanel('code').joinLines();" observes="codeInsertion"/>
+
+	<command id="cmd_find" oncommand="codetch.getFileEditor().find();" observes="cmd_filesOpen"/>
+	<command id="cmd_findNext" oncommand="codetch.findNext();" observes="cmd_filesOpen"/>
+	<command id="cmd_replace" oncommand="codetch.getFileEditor().find(true);" observes="cmd_filesOpen"/>
+	
+	<command id="cmd_setPanel" oncommand="if(event.shiftkey) goDoCommandParams('cmd_togglePanel', paramString(event.target.getAttribute('id')))" observes="cmd_filesOpen"/>
+	<command id="cmd_togglePanel" oncommand="goDoCommandParams('cmd_togglePanel', paramString(event.target.getAttribute('id')))" observes="cmd_filesOpen"/>
+
+
+	<command id="cmd_undo" oncommand="goDoCommand('cmd_undo');goUpdateUndoMenuItems();" disabled="true" />
+	<command id="cmd_redo" oncommand="goDoCommand('cmd_redo');goUpdateUndoMenuItems();" disabled="true" />
+	<command id="cmd_copy" oncommand="goDoCommand('cmd_copy');goUpdatePasteMenuItems();" disabled="true" />
+	<command id="cmd_paste" oncommand="goDoCommand('cmd_paste');" disabled="true" />
+	<command id="cmd_cut" oncommand="goDoCommand('cmd_cut');goUpdatePasteMenuItems();" disabled="true" />
+	<command id="cmd_selectAll" oncommand="goDoCommand('cmd_selectAll');" disabled="true" />
+	<command id="cmd_delete" oncommand="goDoCommand('cmd_delete');" disabled="true" />
+
+	<command id="cmd_toggleLivePreview" oncommand="toggleLivePreview();" observes="cmd_tabsOpen"/>
+	<command id="cmd_toggleLineNumbers" oncommand="toggleLineNumbers();" observes="cmd_tabsOpen"/>
+
+	<command id="cmd_goToLine" oncommand="goDoCommand('cmd_goToLine');" disabled="true" />
+
+	<command id="cmd_inspect" oncommand="goDoCommand('cmd_inspect');" disabled="true"/>
+	<command id="cmd_refresh" oncommand="goDoCommand('cmd_refresh');" disabled="true"/>
+	<command id="cmd_fireftp" oncommand="launchFireFTP();" disabled="true"/>
+
+	<command id="cmd_insertLink" oncommand="goDoCommand('cmd_insertLink');" observes="codeInsertion"/>
+	<command id="cmd_insertAnchor" oncommand="goDoCommand('cmd_insertAnchor');" observes="codeInsertion"/>
+
+	<command id="cmd_import" oncommand="codetch.importFile()" observes="cmd_formatBlock"/>
+	
+	<command id="cmd_insertImage" oncommand="goDoCommand('cmd_insertImage');" observes="codeInsertion"/>
+	<command id="cmd_insertHR" oncommand="goDoCommand('cmd_insertHR');" observes="codeInsertion"/>
+	<command id="cmd_insertLinkNoUI" oncommand="goDoCommand('cmd_insertLinkNoUI');" observes="codeInsertion"/>
+	<command id="cmd_insertImageNoUI" oncommand="goDoCommand('cmd_insertImageNoUI');" observes="codeInsertion"/>
+
+	<command id="cmd_forecolor" observes="codeInsertion"/>
+	<command id="cmd_hilitecolor" observes="codeInsertion"/>
+
+	<command id="cmd_bold" oncommand="goDoCommand('cmd_bold');" observes="codeInsertion"
+		style="font-weight: bold;" label="&label.bold;" />
+	<command id="cmd_italic" oncommand="goDoCommand('cmd_italic');" observes="codeInsertion"
+		style="font-style: italic;" label="&label.italic;" />
+	<command id="cmd_strong" oncommand="goDoCommand('cmd_strong');" observes="codeInsertion"
+		style="font-weight: bold;" label="&label.strong;" />
+	<command id="cmd_em" oncommand="goDoCommand('cmd_em');" observes="codeInsertion"
+		style="font-style: italic;" label="&label.em;" />
+	<command id="cmd_code" oncommand="goDoCommand('cmd_code');" observes="codeInsertion"
+		style="font-family: 'Courier New', 'Times New Roman';" label="&label.code;" />
+	<command id="cmd_underline" oncommand="goDoCommand('cmd_underline');" observes="codeInsertion"
+		label="&label.underline;" />
+	<command id="cmd_cite" oncommand="goDoCommand('cmd_cite');" observes="codeInsertion"
+		label="&label.cite;" />
+	<command id="cmd_strikethrough" oncommand="goDoCommand('cmd_strikethrough');" observes="codeInsertion"
+		label="&label.strike;" />
+	<command id="cmd_abbr" oncommand="goDoCommand('cmd_abbr');" observes="codeInsertion"
+		label="&label.abbr;" />
+	<command id="cmd_subscript" oncommand="goDoCommand('cmd_subscript');" observes="codeInsertion"
+		label="&label.sub;" />
+	<command id="cmd_superscript" oncommand="goDoCommand('cmd_superscript');" observes="codeInsertion"
+		label="&label.sup;" />
+	<command id="cmd_acronym" oncommand="goDoCommand('cmd_acronym');" observes="codeInsertion"
+		label="&label.acronym;" />
+	<command id="cmd_var" oncommand="goDoCommand('cmd_var');" observes="codeInsertion"
+		label="&label.var;" />
+	<command id="cmd_samp" oncommand="goDoCommand('cmd_samp');" observes="codeInsertion"
+		label="&label.samp;" />
+
+	<command id="cmd_ul" oncommand="goDoCommand('cmd_ul');" observes="codeInsertion"/>
+	<command id="cmd_ol" oncommand="goDoCommand('cmd_ol');" observes="codeInsertion"/>
+	<command id="cmd_li" oncommand="goDoCommand('cmd_li');" disabled="true"/>
+	<command id="cmd_dl" oncommand="goDoCommand('cmd_dl');" disabled="true"/>
+	<command id="cmd_dt" oncommand="goDoCommand('cmd_dt');" observes="codeInsertion"/>
+	<command id="cmd_dd" oncommand="goDoCommand('cmd_dd');" observes="codeInsertion"/>
+
+	<command id="cmd_increaseFont" oncommand="goDoCommand('cmd_increaseFont');" observes="codeInsertion"
+		style="font-size: 1.2em;"/>
+	<command id="cmd_decreaseFont" oncommand="goDoCommand('cmd_decreaseFont');" observes="codeInsertion"
+		style="font-size: 0.8em;"/>
+
+	<command id="cmd_removeNamedAnchors" oncommand="goDoCommand('cmd_removeNamedAnchors')"/>
+	<command id="cmd_removeStyles" label="Remove Style" oncommand="goDoCommand('cmd_removeStyles');" disabled="true"/>
+	<command id="cmd_removeLinks" label="Remove Link" oncommand="goDoCommand('cmd_removeLinks');" disabled="true"/>
+	<command id="cmd_removeList" label="Remove List" oncommand="goDoCommand('cmd_removeList');" disabled="true"/>
+
+	<command id="cmd_formatBlock" disabled="true"/>
+	<command id="cmd_justify" observes="codeInsertion"/>
+	<command id="cmd_fontfamily"/>
+	<command id="cmd_blockquote" label="&label.blockquote;" accesskey="&label.blockquote.accesskey;"
+	oncommand="editorCSSPref(false);goDoCommand('cmd_indent');goDoCommand('cmd_blockquote');goUpdateCommand('cmd_outdent');editorCSSPref(true);" observes="codeInsertion"/>
+	<command id="cmd_indent" label="&label.blockquote;" accesskey="&label.blockquote.accesskey;"
+	oncommand="editorCSSPref(true);goDoCommand('cmd_indent');goUpdateCommand('cmd_outdent');" observes="codeInsertion"/>
+	<command id="cmd_outdent" label="&label.unblockquote;" accesskey="&label.unblockquote.accesskey;"
+	oncommand="goDoCommand('cmd_outdent');goUpdateCommand('cmd_outdent');" disabled="true"/>
+	
+	<command id="cmd_toUpperCase" oncommand="goDoCommand('cmd_toUpperCase');" disabled="true"/>
+	<command id="cmd_toLowerCase" oncommand="goDoCommand('cmd_toLowerCase');" disabled="true"/>
+	<command id="cmd_toTitleCase" oncommand="goDoCommand('cmd_toTitleCase');" disabled="true"/>
+	<command id="cmd_duplicateLine" oncommand="goDoCommand('cmd_duplicateLine');" disabled="true"/>
+	<command id="cmd_joinLines" oncommand="goDoCommand('cmd_joinLines');" disabled="true"/>
+	
+	<command id="cmd_help" oncommand="openBrowserURL('http://codetch.com/documentation');"/>
+	<command id="cmd_about" oncommand="aboutDialog();"/>
+	<command id="cmd_preferences" oncommand="preferencesDialog();"/>
+
+	<command id="cmd_insertTab" oncommand="codetch.getCurrentEditor().insertTab();" observes="codeInsertion"/>
+
+	<command id="cmd_tester" oncommand="goDoCommand('cmd_tester');" observes="cmd_formatBlock"/>
+
+	<command id="cmd_filesOpen" disabled="true"/>
+	<command id="cmd_tabsOpen" disabled="true"/>
+	<command id="cmd_browserOpen" disabled="true"/>
+	
+	<command id="cmd_toggleSidebar" checked="true" oncommand="codetch.toggleAreaVisibility('sidebar');" persist="checked"/>
+	<command id="cmd_toggleBottombar" checked="true" oncommand="codetch.toggleAreaVisibility('bottombar');" persist="checked"/>
+	<command id="cmd_toggleInsertbar" checked="true" oncommand="codetch.toggleAreaVisibility('insertbar');" persist="checked"/>
+	<command id="cmd_toggleToolbox" checked="true" oncommand="codetch.toggleAreaVisibility('toolbox');" persist="checked"/>
+	
+	<command id="cmd_toggleSidebarDir" checked="false" oncommand="toggleSidebarRight()" persist="checked"/>
+	
+	<command id="cmd_toggleToolboxDock" checked="true" oncommand="toggleToolboxDock()" persist="checked"/>
+</commandset>
+
+<keyset id="mainkeys">
+	<key id="key_new" modifiers="accel,shift" key="&menu.newdef.key;" command="cmd_new"/>
+	<key id="key_newDialog" modifiers="accel" key="&menu.new.key;" command="cmd_newDialog"/>
+  <key id="key_save" modifiers="accel" key="&menu.save.key;" command="cmd_save"/>
+  <key id="key_saveAll" modifiers="accel,shift" key="&menu.save.key;" command="cmd_saveAll"/>
+  <key id="key_close" modifiers="accel" key="&menu.close.key;" command="cmd_close"/>
+  <key id="key_open" modifiers="accel" key="&menu.open.key;" command="cmd_open"/>
+  <key id="key_openRemote" modifiers="accel" key="&menu.openremote.key;" command="cmd_openRemote"/>
+  <key id="key_print" modifiers="accel,shift" key="&menu.print.key;" command="cmd_print"/>
+  <key id="key_exit" modifiers="accel" key="&menu.exit.key;" command="cmd_exit"/>
+  <key id="key_import" modifiers="accel,shift" key="&menu.import.key;" command="cmd_import"/>
+
+  <key id="key_undo" modifiers="accel" key="&menu.undo.key;" command="cmd_undo"/>
+  <key id="key_redo" modifiers="accel" key="&menu.redo.key;" command="cmd_redo"/>
+  <key id="key_cut" modifiers="accel" key="&menu.cut.key;" command="cmd_cut"/>
+  <key id="key_copy" modifiers="accel" key="&menu.copy.key;" command="cmd_copy"/>
+  <key id="key_paste" modifiers="accel" key="&menu.paste.key;" command="cmd_paste"/>
+  <key id="key_selectAll" modifiers="accel" key="&menu.selectall.key;" command="cmd_selectAll"/>
+  <key id="key_goToLine" modifiers="accel" key="&menu.gotoline.key;" command="cmd_goToLine"/>
+  <key id="key_delete" keycode="VK_DELETE" command="cmd_delete"/>
+  <key id="key_duplicateLine" modifiers="accel" key="&menu.duplicateline.key;" command="cmd_duplicateLine"/>
+  <key id="key_joinLines" modifiers="accel" key="&menu.joinlines.key;" command="cmd_joinLines"/>
+  <key id="key_toUpperCase" modifiers="accel,shift" key="&menu.toupper.key;" command="cmd_toUpperCase"/>
+  <key id="key_toLowerCase" modifiers="accel,shift" key="&menu.tolower.key;" command="cmd_toLowerCase"/>
+  <key id="key_toTitleCase" modifiers="accel,shift" key="&menu.totitle.key;" command="cmd_toTitleCase"/>
+  
+  <key id="key_find" modifiers="accel" key="&menu.find.key;" command="cmd_find"/>
+  <key id="key_findNext" keycode="VK_F3" command="cmd_findNext"/>
+  <key id="key_replace" modifiers="accel" key="&menu.replace.key;" command="cmd_replace"/>
+  
+  <key id="key_toggleLineNumbers" modifiers="accel,shift" key="&menu.linenums.key;" command="cmd_toggleLineNumbers"/>
+  
+  <key id="key_bold" modifiers="accel" key="&label.bold.key;" command="cmd_bold"/>
+  <key id="key_italic" modifiers="accel" key="&label.italic.key;" command="cmd_italic"/>
+  <key id="key_paragraph" modifiers="accel" key="&label.paragraph.key;" oncommand="goDoCommandParams('cmd_formatBlock', paramString('p'))"/>
+  <key id="key_strong" modifiers="accel,shift" key="&label.bold.key;" command="cmd_strong"/>
+  <key id="key_em" modifiers="accel" key="&label.em.key;" command="cmd_em"/>
+  <key id="key_inesrtLink" modifiers="accel" key="&label.link.accesskey;" command="cmd_insertLink"/>
+
+  <key id="key_toggleSidebar" modifiers="accel" keycode="VK_F1" command="cmd_toggleSidebar"/>
+  <key id="key_toggleBottombar" modifiers="accel" keycode="VK_F2" command="cmd_toggleBottombar"/>
+  <key id="key_toggleInsertbar" modifiers="accel" keycode="VK_F3" command="cmd_toggleInsertbar"/>
+  <key id="key_toggleToolbox" modifiers="accel" keycode="VK_F4" command="cmd_toggleToolbox"/>
+ 
+  <key id="key_heading1" modifiers="accel" key="1" oncommand="goDoCommandParams('cmd_formatBlock', paramString('h1'))" observes="cmd_formatBlock"/>
+  <key id="key_heading2" modifiers="accel" key="2" oncommand="goDoCommandParams('cmd_formatBlock', paramString('h2'))" observes="cmd_formatBlock"/>
+  <key id="key_heading3" modifiers="accel" key="3" oncommand="goDoCommandParams('cmd_formatBlock', paramString('h3'))" observes="cmd_formatBlock"/>
+  <key id="key_heading4" modifiers="accel" key="4" oncommand="goDoCommandParams('cmd_formatBlock', paramString('h4'))" observes="cmd_formatBlock"/>
+  <key id="key_heading5" modifiers="accel" key="5" oncommand="goDoCommandParams('cmd_formatBlock', paramString('h5'))" observes="cmd_formatBlock"/>
+  <key id="key_heading6" modifiers="accel" key="6" oncommand="goDoCommandParams('cmd_formatBlock', paramString('h6'))" observes="cmd_formatBlock"/>
+  
+  <key id="key_externalPreview" keycode="VK_F12" command="cmd_externalPreview"/>
+
+  <key id="key_help" keycode="VK_F1" command="cmd_help"/>
+
+  <key id="key_insertTab" keycode="VK_TAB" command="cmd_insertTab"/>
+  <key id="key_outdent" keycode="VK_TAB" modifiers="shift" command="cmd_outdent"/>
+</keyset>
+
+</overlay>

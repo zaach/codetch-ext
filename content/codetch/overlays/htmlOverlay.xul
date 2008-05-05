@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+
+<?xul-overlay href="chrome://global/content/globalOverlay.xul"?>
+
+<!DOCTYPE window [
+<!ENTITY % brandDTD SYSTEM "chrome://global/locale/brand.dtd" >
+%brandDTD;
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd" >
+%codetchDTD;
+]>
+
+<overlay id="menuoverlay"
+   xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   xmlns:xbl  = "http://www.mozilla.org/xbl"
+   xmlns:html = "http://www.w3.org/1999/xhtml">
+
+  <menu id="modify-menu">
+    <menupopup id="modify-popup">
+      <menuitem command="cmd_blockquote"/>
+      <menuitem command="cmd_outdent"/>
+	<menuseparator/>
+      <menu label="&menu.paragraph;" accesskey="&menu.paragraph.accesskey;">
+	  <menupopup id="paragraph-popup" observes="cmd_formatBlock" oncommand="goDoCommandParams('cmd_formatBlock', paramString(event.target.getAttribute('value')))">
+	    <menuitem value=""        label="&label.bodytext;" accesskey="&label.bodytext.accesskey;" observes="cmd_formatBlock"/>
+	    <menuitem value="p"       label="&label.paragraph;" accesskey="&label.paragraph.accesskey;" observes="cmd_formatBlock" key="key_paragraph"/>
+	    <menuitem value="pre"     label="&label.pre;" accesskey="&label.pre.accesskey;" observes="cmd_formatBlock"/>
+	    <menuitem value="h1"      label="&label.heading1;" accesskey="&label.heading1.accesskey;" observes="cmd_formatBlock" key="key_heading1"/>
+	    <menuitem value="h2"      label="&label.heading2;" accesskey="&label.heading2.accesskey;" observes="cmd_formatBlock" key="key_heading2"/>
+	    <menuitem value="h3"      label="&label.heading3;" accesskey="&label.heading3.accesskey;" observes="cmd_formatBlock" key="key_heading3"/>
+	    <menuitem value="h4"      label="&label.heading4;" accesskey="&label.heading4.accesskey;" observes="cmd_formatBlock" key="key_heading4"/>
+	    <menuitem value="h5"      label="&label.heading5;" accesskey="&label.heading5.accesskey;" observes="cmd_formatBlock" key="key_heading5"/>
+	    <menuitem value="h6"      label="&label.heading6;" accesskey="&label.heading6.accesskey;" observes="cmd_formatBlock" key="key_heading6"/>
+	    <menuitem value="address" label="&label.address;" accesskey="&label.address.accesskey;" observes="cmd_formatBlock"/>
+	  </menupopup>
+      </menu>
+	<menu label="&menu.align;" accesskey="&menu.align.accesskey;">
+		<menupopup  oncommand="goDoCommandParams('cmd_justify', paramString(event.target.getAttribute('value')))">
+			<menuitem label="&label.alignleft;" accesskey="&label.alignleft.accesskey;" value="left" observes="cmd_justify"/>
+			<menuitem label="&label.aligncenter;" accesskey="&label.aligncenter.accesskey;" value="center" observes="cmd_justify"/>
+			<menuitem label="&label.alignright;" accesskey="&label.alignright.accesskey;" value="right" observes="cmd_justify"/>
+			<menuitem label="&label.alignfull;" accesskey="&label.alignfull.accesskey;" value="full" observes="cmd_justify"/>
+		</menupopup>
+	</menu>
+      <menu label="&menu.style;" accesskey="&menu.style.accesskey;">
+	<menupopup id="style-popup">
+	  <menuitem command="cmd_removeStyles"/>
+	  <menuseparator/>
+	  <menuitem key="key_bold" command="cmd_bold"/>
+	  <menuitem key="key_italic" command="cmd_italic"/>
+	  <menuitem command="cmd_underline"/>
+	  <menuitem command="cmd_strikethrough"/>
+	  <menuseparator/>
+	  <menuitem command="cmd_strong" key="key_strong"/>
+	  <menuitem command="cmd_em" key="key_em"/>
+	  <menuitem command="cmd_code"/>
+	  <menuseparator/>
+	  <menuitem command="cmd_abbr"/>
+	  <menuitem command="cmd_acronym"/>
+	  <menuitem command="cmd_cite"/>
+	  <menuseparator/>
+	  <menuitem command="cmd_subscript"/>
+	  <menuitem command="cmd_superscript"/>
+	  <menuitem command="cmd_var"/>
+	  <menuitem command="cmd_samp"/>
+	</menupopup>
+      </menu>
+      <menu label="&menu.lists;" accesskey="&menu.lists.accesskey;">
+	<menupopup id="style-popup">
+	  <menuitem label="&label.removelist;" accesskey="&label.removelist.accesskey;" command="cmd_removeList"/>
+	  <menuseparator/>
+	  <menuitem label="&label.ul;" accesskey="&label.ul.accesskey;" command="cmd_ul"/>
+	  <menuitem label="&label.ol;" accesskey="&label.ol.accesskey;" command="cmd_ol"/>
+	  <menuitem label="&label.li;" accesskey="&label.li.accesskey;" command="cmd_li"/>
+	  <menuseparator/>
+	  <menuitem label="&label.dl;" accesskey="&label.dl.accesskey;" command="cmd_dl"/>
+	  <menuitem label="&label.dt;" accesskey="&label.dt.accesskey;" command="cmd_dt"/>
+	  <menuitem label="&label.dd;" accesskey="&label.dd.accesskey;" command="cmd_dd"/>
+	</menupopup>
+      </menu>
+	<menu id="size-menu" label="&menu.fontsize;" accesskey="&menu.fontsize.accesskey;">
+		<menupopup  oncommand="goDoCommandParams('cmd_fontsize', paramString(event.target.getAttribute('value')))">
+			<menuitem label="&label.fontsize1;" accesskey="&label.fontsize1.accesskey;" value="1" observes="cmd_formatBlock"/>
+			<menuitem label="&label.fontsize2;" accesskey="&label.fontsize2.accesskey;" value="2" observes="cmd_formatBlock"/>
+			<menuitem label="&label.fontsize3;" accesskey="&label.fontsize3.accesskey;" value="3" observes="cmd_formatBlock"/>
+			<menuitem label="&label.fontsize4;" accesskey="&label.fontsize4.accesskey;" value="4" observes="cmd_formatBlock"/>
+			<menuitem label="&label.fontsize5;" accesskey="&label.fontsize5.accesskey;" value="5" observes="cmd_formatBlock"/>
+			<menuitem label="&label.fontsize6;" accesskey="&label.fontsize6.accesskey;" value="6" observes="cmd_formatBlock"/>
+			<menuitem label="&label.fontsize7;" accesskey="&label.fontsize7.accesskey;" value="7" observes="cmd_formatBlock"/>
+		</menupopup >
+	</menu>
+	<menu id="font-menu" label="&menu.fontface;" accesskey="&menu.fontface.accesskey;">
+		<menupopup id="font-menu-popup" observes="cmd_formatBlock" onpopupshowing="initLocalFontFaceMenu(this)" oncommand="goDoCommandParams('cmd_fontfamily', paramString(event.target.value))">
+			<menuitem label="Select Font" value="" observes="cmd_formatBlock" />
+		</menupopup>
+	</menu>
+	<menuseparator/>
+	<menuitem label="&label.big;" accesskey="&label.big.accesskey;" command="cmd_increaseFont"/>
+	<menuitem label="&label.small;" accesskey="&label.small.accesskey;" command="cmd_decreaseFont"/>
+    </menupopup>
+  </menu>
+  <menu id="insert-menu">
+    <menupopup id="insert-popup">
+	<menuseparator/>
+	<menuitem label="&label.image;" accesskey="&label.image.accesskey;" command="cmd_insertImage"/>
+	<menuitem label="&label.hr;" accesskey="&label.hr.accesskey;" command="cmd_insertHR"/>
+	<menuseparator/>
+	<menuitem label="&label.link;" accesskey="&label.link.accesskey;" command="cmd_insertLink"/>
+	<menuitem label="&label.anchor;" accesskey="&label.anchor.accesskey;" command="cmd_insertAnchor"/>
+	<menuitem label="&label.removelink;" accesskey="&label.removelink.accesskey;" command="cmd_removeLinks"/>
+    </menupopup>
+  </menu>
+   
+<tabbox id="insert-tabbox">
+	<tabs id="insert-tabs">
+		<tab label="&label.text;" accesskey="&label.text.accesskey;" />
+		<tab label="&label.paragraph;" accesskey="&label.paragraph.accesskey;" />
+	</tabs>
+	<tabpanels id="insert-panels">
+		<toolbox id="common-toolbox" flex="1">
+		<toolbar id="html-common-toolbar" flex="1">
+			<toolbarbutton id="common-html-anchor-btn" tooltiptext="&label.anchor;" command="cmd_insertAnchor" label="&label.anchor;" class="toolbarbutton-1" />
+			<toolbarbutton id="common-html-link-btn" tooltiptext="&label.link;" command="cmd_insertLink" label="&label.link;" class="toolbarbutton-1" />
+			<toolbarbutton id="common-html-removelink-btn" tooltiptext="&label.removelink;" command="cmd_removeLinks" label="remove link" class="toolbarbutton-1" />
+			<toolbarbutton id="common-html-image-btn" tooltiptext="&label.image;" command="cmd_insertImage" label="insert image" class="toolbarbutton-1" />
+			<toolbarbutton id="common-html-hr-btn" tooltiptext="&label.hr;" label="HR" command="cmd_insertHR" class="toolbarbutton-1" />
+			<toolbarseparator id="htmlc-separator-1"/>
+			<toolbarbutton id="common-html-removestyle-btn" tooltiptext="&label.nostyle;" command="cmd_removeStyles" class="toolbarbutton-1"/>
+			<toolbarbutton id="common-html-strong-btn" tooltiptext="&label.strong;" command="cmd_strong"/>
+			<toolbarbutton id="common-html-em-btn" tooltiptext="&label.em;" command="cmd_em"/>
+			<toolbarbutton id="common-html-p-btn" label="&label.paragraph;" hidden="true" oncommand="goDoCommandParams('cmd_formatBlock', paramString('p'))" observes="cmd_formatBlock"/>
+			<toolbarseparator id="htmlc-separator-2" />
+			<toolbarbutton id="common-html-forecolor-btn" tooltiptext="&label.forecolor;" class="toolbarbutton-1" oncolorchange="goDoCommandParams('cmd_forecolor', paramString(this.color))" observes="cmd_forecolor"/>
+			<toolbarbutton id="common-html-bgcolor-btn" tooltiptext="&label.bgcolor;" class="toolbarbutton-1" oncolorchange="goDoCommandParams('cmd_hilitecolor', paramString(this.color))" observes="cmd_hilitecolor"/>
+		</toolbar>
+		</toolbox>
+		<toolbox id="html-text-toolbox" flex="1">
+		<toolbar id="html-text-toolbar" flex="1">
+			<toolbarbutton id="html-bold-btn" tooltiptext="&label.bold;" command="cmd_bold" class="toolbarbutton-1"/>
+			<toolbarbutton id="html-italic-btn" tooltiptext="&label.italic;" command="cmd_italic" class="toolbarbutton-1"/>
+			<toolbarbutton id="html-u-btn" tooltiptext="&label.underline;" command="cmd_underline" class="toolbarbutton-1"/>
+			<toolbarbutton id="html-strike-btn" tooltiptext="&label.strike;" command="cmd_strikethrough" class="toolbarbutton-1"/>
+			<toolbarseparator id="htmlt-separator-1" />
+			<toolbarbutton id="html-strong-btn" hidden="true" tooltiptext="&label.strong;" command="cmd_strong"/>
+			<toolbarbutton id="html-em-btn" hidden="true" tooltiptext="&label.em;" command="cmd_em"/>
+			<toolbarbutton id="html-code-btn" hidden="true" tooltiptext="&label.code;" command="cmd_code"/>
+			<toolbarbutton id="html-cite-btn" tooltiptext="&label.cite;" command="cmd_cite"/>
+			<toolbarbutton id="html-abbr-btn" tooltiptext="&label.abbr;" command="cmd_abbr"/>
+			<toolbarbutton id="html-acronym-btn" tooltiptext="&label.acronym;" command="cmd_acronym" />
+			<toolbarseparator id="htmlt-separator-2" />
+			<toolbarbutton id="html-sub-btn" tooltiptext="&label.sub;" command="cmd_subscript"  class="toolbarbutton-1"/>
+			<toolbarbutton id="html-sup-btn" tooltiptext="&label.sup;" command="cmd_superscript"  class="toolbarbutton-1"/>
+			<toolbarseparator id="htmlt-separator-3" />
+			<toolbarbutton id="html-big-btn" tooltiptext="&label.big;" command="cmd_increaseFont" class="toolbarbutton-1"/>
+			<toolbarbutton id="html-small-btn" tooltiptext="&label.small;" command="cmd_decreaseFont" class="toolbarbutton-1"/>
+			<toolbarseparator id="htmlt-separator-4" />
+			<menulist id="html-fontsize-toolbar" observes="cmd_formatBlock">
+				<menupopup  oncommand="goDoCommandParams('cmd_fontsize', paramString(event.target.getAttribute('value')))">
+					<menuitem label="&menu.fontsize;" accesskey="&menu.fontsize.accesskey;"     value="" observes="cmd_formatBlock"/>
+					<menuitem label="&label.fontsize1;" accesskey="&label.fontsize1.accesskey;" value="1" observes="cmd_formatBlock"/>
+					<menuitem label="&label.fontsize2;" accesskey="&label.fontsize2.accesskey;" value="2" observes="cmd_formatBlock"/>
+					<menuitem label="&label.fontsize3;" accesskey="&label.fontsize3.accesskey;" value="3" observes="cmd_formatBlock"/>
+					<menuitem label="&label.fontsize4;" accesskey="&label.fontsize4.accesskey;" value="4" observes="cmd_formatBlock"/>
+					<menuitem label="&label.fontsize5;" accesskey="&label.fontsize5.accesskey;" value="5" observes="cmd_formatBlock"/>
+					<menuitem label="&label.fontsize6;" accesskey="&label.fontsize6.accesskey;" value="6" observes="cmd_formatBlock"/>
+					<menuitem label="&label.fontsize7;" accesskey="&label.fontsize7.accesskey;" value="7" observes="cmd_formatBlock"/>
+				</menupopup>
+			</menulist >
+			<menulist id="html-font-list" observes="cmd_formatBlock">
+				<menupopup onpopupshowing="initLocalFontFaceMenu(this)" oncommand="goDoCommandParams('cmd_fontfamily', paramString(event.target.value))">
+					<menuitem label="Select Font" value="" />
+				</menupopup>
+			</menulist>
+		</toolbar>
+		</toolbox>
+		<toolbox id="html-paragraph-toolbox" flex="1">
+		<toolbar id="html-paragraph-toolbar" flex="1">
+			<toolbarbutton id="html-p-btn" label="&label.paragraph;" oncommand="goDoCommandParams('cmd_formatBlock', paramString('p'))" observes="cmd_formatBlock"/>
+			<toolbarbutton id="html-pre-btn" label="Pre" tooltiptext="&label.pre;" oncommand="goDoCommandParams('cmd_formatBlock', paramString('pre'))" observes="cmd_formatBlock"/>
+			<toolbarseparator id="htmlp-separator-1" />
+			<toolbarbutton id="html-h1-btn" label="H1" tooltiptext="&label.heading1;" oncommand="goDoCommandParams('cmd_formatBlock', paramString('h1'))" observes="cmd_formatBlock"/>
+			<toolbarbutton id="html-h2-btn" label="H2" tooltiptext="&label.heading2;" oncommand="goDoCommandParams('cmd_formatBlock', paramString('h2'))" observes="cmd_formatBlock"/>
+			<toolbarbutton id="html-h3-btn" label="H3" tooltiptext="&label.heading3;" oncommand="goDoCommandParams('cmd_formatBlock', paramString('h3'))" observes="cmd_formatBlock"/>
+			<toolbarbutton id="html-h4-btn" label="H4" tooltiptext="&label.heading4;" oncommand="goDoCommandParams('cmd_formatBlock', paramString('h4'))" hidden="true" observes="cmd_formatBlock"/>
+			<toolbarbutton id="html-h5-btn" label="H5" tooltiptext="&label.heading5;" oncommand="goDoCommandParams('cmd_formatBlock', paramString('h5'))" hidden="true" observes="cmd_formatBlock"/>
+			<toolbarseparator id="htmlp-separator-2" />
+			<toolbarbutton id="html-blockquote-btn" tooltiptext="&label.blockquote;" command="cmd_indent" class="toolbarbutton-1"/>
+			<toolbarbutton id="html-unblockquote-btn" tooltiptext="&label.unblockquote;" command="cmd_outdent" class="toolbarbutton-1"/>
+			<toolbarseparator id="htmlp-separator-3" />
+			<toolbarbutton id="html-align-toolbar" label="&menu.align;" accesskey="&menu.align.accesskey;" type="menu" observes="cmd_justify" class="toolbarbutton-1">
+				<menupopup  oncommand="goDoCommandParams('cmd_justify', paramString(event.target.getAttribute('value')))">
+					<menuitem class="menuitem-iconic" label="&label.alignleft;" accesskey="&label.alignleft.accesskey;" value="left" observes="cmd_justify"/>
+					<menuitem class="menuitem-iconic" label="&label.aligncenter;" accesskey="&label.aligncenter.accesskey;" value="center" observes="cmd_justify"/>
+					<menuitem class="menuitem-iconic" label="&label.alignright;" accesskey="&label.alignright.accesskey;" value="right" observes="cmd_justify"/>
+					<menuitem class="menuitem-iconic" label="&label.alignfull;" accesskey="&label.alignfull.accesskey;" value="full" observes="cmd_justify"/>
+				</menupopup>
+			</toolbarbutton >
+			<toolbarseparator id="htmlp-separator-4" />
+			<toolbarbutton id="html-ul-btn" label="UL" tooltiptext="&label.ul;" command="cmd_ul" class="toolbarbutton-1"/>
+			<toolbarbutton id="html-ol-btn" label="OL" tooltiptext="&label.ol;" command="cmd_ol" class="toolbarbutton-1"/>
+			<toolbarbutton id="html-li-btn" label="LI" tooltiptext="&label.li;" command="cmd_li"/>
+			<toolbarseparator id="htmlp-separator-5" />
+			<toolbarbutton id="html-dl-btn" label="DL" tooltiptext="&label.dl;" command="cmd_dl"/>
+			<toolbarbutton id="html-dt-btn" label="DT" tooltiptext="&label.dt;" command="cmd_dt"/>
+			<toolbarbutton id="html-dd-btn" label="DD" tooltiptext="&label.dd;" command="cmd_dd"/>
+		</toolbar>
+		</toolbox>
+	</tabpanels>
+</tabbox>
+
+<vbox id="support-panels">
+</vbox>
+</overlay>

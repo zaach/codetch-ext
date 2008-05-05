@@ -1,0 +1,37 @@
+<!ENTITY prefs.title "Opciones de Codetch">
+<!ENTITY label.general "General">
+<!ENTITY label.format "Formato">
+<!ENTITY label.configuration "Configuración">
+<!ENTITY label.snippets "Snippets">
+<!ENTITY label.codeformat "Editor de código">
+<!ENTITY prefs.defaultdoctype "Extensión de archivos nuevos">
+<!ENTITY prefs.loadtabset "Reabrir pestañas al iniciar">
+<!ENTITY prefs.filehistorylength "Cant. máxima de ítems en el historial">
+<!ENTITY prefs.clearlist "Borrar lista">
+<!ENTITY prefs.tabchar "Carácter(es) de pestañas">
+<!ENTITY prefs.autorefresh "Vista previa en tiempo real">
+<!ENTITY prefs.codewrap "Ajustar líneas en el código (Aún no funciona!)">
+<!ENTITY prefs.codefont "Fuente">
+<!ENTITY prefs.codefontsize "Tamaño">
+<!ENTITY prefs.codecolor "Color">
+<!ENTITY prefs.codebg "Color de fondo">
+<!ENTITY prefs.codelinenumcolor "Color del Numero de Linea">
+<!ENTITY prefs.codelinenumbg "Color de fondo del Numero de Linea">
+<!ENTITY prefs.codecss "Estilos CSS personalizados">
+<!ENTITY prefs.codecssdescription "Ingresar código CSS para que se aplique al campo de edición.">
+<!ENTITY prefs.previewtmp "Vista previa externa usando archivos temporales">
+<!ENTITY prefs.openinreference "Cargar validaciones en la vista Referencias">
+<!ENTITY prefs.welcomescreen "Habilitar Pantalla de bienvenida">
+<!ENTITY label.browseconfig "Buscar directorio de configuración">
+<!ENTITY label.directories "Directorios">
+<!ENTITY prefs.snippetdir "Directorio de Snippets">
+<!ENTITY prefs.templatedir "Directorio de Plantillas">
+<!ENTITY prefs.projectdir "Directorio de Proyectos">
+<!ENTITY label.editbrowsers "Lista de navegadores externos">
+<!ENTITY label.setdefault "Predeterminar">
+<!ENTITY label.remove "Remover">
+<!ENTITY label.addbrowser "Agregar/Modificar navegador">
+<!ENTITY label.changebrowser "Agregar/Cambiar">
+<!ENTITY label.path "Ubicación">
+<!ENTITY label.name "Nombre">
+<!ENTITY label.new "Borrar">

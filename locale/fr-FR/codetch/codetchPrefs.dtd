@@ -1,0 +1,37 @@
+<!ENTITY prefs.title "Préférences de Codetch">
+<!ENTITY label.general "Générales">
+<!ENTITY label.format "Mise en forme">
+<!ENTITY label.configuration "Configuration">
+<!ENTITY label.snippets "Extraits de code">
+<!ENTITY label.codeformat "Éditeur de code">
+<!ENTITY prefs.defaultdoctype "Extension par défaut des nouveaux fichiers">
+<!ENTITY prefs.loadtabset "Réouvrir les onglets au démarrage">
+<!ENTITY prefs.filehistorylength "Nombre maximal de fichiers récents ***">
+<!ENTITY prefs.clearlist "Effacer la liste">
+<!ENTITY prefs.tabchar "Caractère(s) de tabulation">
+<!ENTITY prefs.autorefresh "Aperçu des modifications en temps réel">
+<!ENTITY prefs.codewrap "Retour à la ligne automatique du code (non fonctionnel !)">
+<!ENTITY prefs.codefont "Type de police">
+<!ENTITY prefs.codefontsize "Taille de police">
+<!ENTITY prefs.codecolor "Couleur du texte">
+<!ENTITY prefs.codebg "Couleur d&apos;arrière-plan">
+<!ENTITY prefs.codelinenumcolor "Couleur du numéro de ligne">
+<!ENTITY prefs.codelinenumbg "Arrière-plan du numéro de ligne">
+<!ENTITY prefs.codecss "Styles CSS personnalisés">
+<!ENTITY prefs.codecssdescription "Indiquez ici les CSS que vous souhaitez vous appliqués à la boîte de code.">
+<!ENTITY prefs.previewtmp "Utiliser les fichiers temporaires pour l&apos;aperçu externe">
+<!ENTITY prefs.openinreference "Lancer les validations dans l&apos;affichage de référence">
+<!ENTITY prefs.welcomescreen "Activer l&apos;écran d&apos;accueil">
+<!ENTITY label.browseconfig "Parcourir le dossier de configuration">
+<!ENTITY label.directories "Répertoires">
+<!ENTITY prefs.snippetdir "Répertoire des extraits de code">
+<!ENTITY prefs.templatedir "Répertoire des modèles">
+<!ENTITY prefs.projectdir "Répertoire des projets">
+<!ENTITY label.editbrowsers "Liste des navigateurs externes">
+<!ENTITY label.setdefault "Définir par défaut">
+<!ENTITY label.remove "Enlever">
+<!ENTITY label.addbrowser "Ajouter / Modifier le navigateur">
+<!ENTITY label.changebrowser "Ajouter / Modifier">
+<!ENTITY label.path "Emplacement">
+<!ENTITY label.name "Nom">
+<!ENTITY label.new "Effacer">

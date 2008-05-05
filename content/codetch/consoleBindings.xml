@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<bindings id="consoleBindings"
+          xmlns="http://www.mozilla.org/xbl"
+          xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns:xbl="http://www.mozilla.org/xbl">
+  <binding id="console-error-source" extends="xul:box">
+    <content>
+      <xul:label class="text-link" xbl:inherits="href,value=href" crop="right"/>
+    </content>
+
+    <handlers>
+      <handler event="click" phase="capturing" button="0" preventdefault="true">
+        <![CDATA[
+          var url = this.getAttribute("href");
+          var line = getAttribute("line");
+		  var col = getAttribute("col");
+		  var codetch = window.top.codetch;
+		  try{
+			var docid = codetch.fileIfOpen(url);
+			if(docid){
+			  codetch.setFileEditorById(docid);
+			  codetch.docs[docid].panel.panels['code'].goToPosition(line, col||0, col||-1);
+			}
+			else if(!codetch.open(url, {'line':line, 'col':col}))
+			  throw '';
+		  }catch(e){
+		  //alert(e);
+		    window.openDialog(
+            "chrome://global/content/viewSource.xul", "_blank", 
+            "all,dialog=no", url, null, null, line);
+		  }
+        ]]>
+      </handler>
+    </handlers>
+  </binding>
+</bindings>

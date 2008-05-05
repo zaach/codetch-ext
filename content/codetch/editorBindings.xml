@@ -1,0 +1,1330 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE window [
+<!ENTITY % brandDTD SYSTEM "chrome://global/locale/brand.dtd" >
+%brandDTD;
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd" >
+%codetchDTD;
+]>
+
+  <!-- =====================================================================
+  TODO:
+  - add events for beforesave, aftersave, open, close to execute for each panel during event
+  - seperate bindings for doctypes
+  ===================================================================== -->
+<bindings id="editorBindings"
+          xmlns="http://www.mozilla.org/xbl"
+          xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns:xbl="http://www.mozilla.org/xbl">
+
+  <!-- =====================================================================
+  Editor Box Binding
+  ===================================================================== -->
+  <binding id="editorBox" extends="xul:tabpanel">
+	<resources>
+		<stylesheet src="chrome://codetch/content/editorBindings.css" />
+	</resources>
+	<content>
+		<xul:box orient="vertical" class="editor-deck" flex="1" xbl:inherits="disabled,selected,src">
+			<xul:hbox dir="rtl" class="editor-code" selected="true" mode="code" doceditor="true" flex="1" xbl:inherits="disabled"/>
+			<xul:splitter collapse="none" visibility="hidden" xbl:inherits="orient=panelorient"></xul:splitter>
+			<xul:vbox class="editor-design" mode="design" flex="1" doceditor="true" xbl:inherits="disabled,src"/>
+			<xul:splitter collapse="none" visibility="hidden" xbl:inherits="orient=panelorient"></xul:splitter>
+			<xul:vbox class="editor-preview" mode="preview" flex="1" xbl:inherits="disabled,src"/>
+			<xul:splitter collapse="none" visibility="hidden" xbl:inherits="orient=panelorient"></xul:splitter>
+			<xul:vbox class="editor-reference" mode="reference" flex="1" xbl:inherits="disabled" />
+		</xul:box>
+		<xul:hbox class="toggle-bar">
+			<xul:toolbarbutton class="code-view" panel="code" label="&label.code;" accesskey="&label.code.accesskey;" checked="true"/>
+			<xul:toolbarbutton class="design-view base-html-show" panel="design" label="&label.design;" accesskey="&label.design.accesskey;" />
+			<xul:toolbarbutton class="preview-view" panel="preview" label="&label.preview;" accesskey="&label.preview.accesskey;" />
+			<xul:toolbarbutton class="reference-view" panel="reference" label="&label.reference;" accesskey="&label.reference.accesskey;" />
+			<xul:toolbarbutton class="rotate-orient" tooltiptext="&label.orientation.tooltip;" accesskey="&label.orientation.accesskey;" oncommand="this.parentNode.parentNode.toggleOrient()" type="checkbox" autoCheck="false" />
+			<xul:spacer flex="1" />
+		</xul:hbox>
+	</content>
+  	<implementation>
+		<constructor>
+			this.init();
+		</constructor>
+		<field name="lastEditor">null</field>
+		<field name="lastPanel">null</field>
+		<field name="defaultPanel">"code"</field>
+		<property name="panel_allow">
+			<getter>
+				return {
+					code:"design preview reference",
+					design:"code reference",
+					preview:"code reference",
+					reference:"code design preview"
+					};
+			</getter>
+		</property>
+		<property name="element">
+			<getter>
+				return this.lastPanel?this.lastPanel.element:null;
+			</getter>
+		</property>
+		<property name="scrollTop" onset="return this.lastPanel.scrollTop=parseInt(val)" onget="return this.lastPanel.scrollTop;"/>
+		<property name="scrollLeft" onset="return this.lastPanel.scrollLeft=parseInt(val)" onget="return this.lastPanel.scrollLeft;"/>
+		<property name="source" onset="return this.lastEditor.source=val" onget="return this.lastEditor.source;"/>
+		<property name="basetype" onset="return this.setAttribute('basetype',val);" onget="return this.getAttribute('basetype');"/>
+		<property name="doctype" onset="return this.setAttribute('doctype',val);" onget="return this.getAttribute('doctype');"/>
+		<property name="sourceEditor" onget="return this.panels['code'];"/>
+		<property name="lineFormat" onset="this.sourceEditor.lineFormat=val;this.setStatus();return val;" onget="return this.sourceEditor.lineFormat;"/>
+		
+		<property name="_panelbox" onget=" return document.getAnonymousNodes(this)[0];" />
+		<property name="panels">
+			<getter><![CDATA[
+				var pbox = this._panelbox,
+				ary = [],
+				a=0;
+				for(var i=0;i < pbox.childNodes.length;i++){
+					if(pbox.childNodes[i].hasAttribute('mode')){
+						ary[a] = ary[pbox.childNodes[i].getAttribute("mode")] = pbox.childNodes[i];
+						a++;
+					}
+				}
+				return ary;
+			]]></getter>
+		</property>
+		<property name="_viewbox" onget="return document.getAnonymousNodes(this)[1];" />
+		<property name="views">
+			<getter><![CDATA[
+				var pbox = this._viewbox,
+				ary = [],
+				a=0;
+				for(var i=0;i < pbox.childNodes.length;i++){
+					if(pbox.childNodes[i].hasAttribute('panel')){
+						ary[a] = ary[pbox.childNodes[i].getAttribute("panel")] = pbox.childNodes[i];
+						a++;
+					}
+				}
+				return ary;
+			]]></getter>
+		</property>
+		<property name="_toggleButton" onget="return this._viewbox.lastChild;" />
+		<property name="orient" onget="return this._panelbox.getAttribute('orient');">
+			<setter>
+				this._panelbox.setAttribute('orient',val);
+				this.setAttribute('panelorient',val);
+				this._toggleButton.checked = (val != 'vertical');
+				return val;
+			</setter>
+		</property>
+		<property name="selectedPanel" onget="return this.panels[this.selectedIndex];" />
+		<property name="selectedPanels" onget="return this._panelbox.getElementsByAttribute('selected','true');" />
+		<property name="selectedIndex">
+			<setter><![CDATA[
+			try{
+				for(var i=0;i<this.panels.length;i++){
+					if(i!=val){
+						this.panels[i].selected = false;
+					}
+				}
+				if(this.selectedPanels.length==1 && this.selectedPanel.previousSibling)
+					this.selectedPanel.previousSibling.removeAttribute("visibility");
+				if(this.selectedIndex == val) return val;
+
+				var panel = this.panels[val];
+				if(!panel) return false;
+
+				panel.selected = true;
+				
+				return val;
+			}catch(e){
+				debugLog('Select Error\n'+e);
+				return false;
+			}
+			]]></setter>
+			<getter><![CDATA[
+				for(var i=0;i< this.panels.length;i++){
+					if(this.panels[i].hasAttribute("selected")) return i;
+				}
+				return -1;
+			]]></getter>
+		</property>
+		<property name="selectedView">
+			<setter><![CDATA[
+				for(var i=0;i< this.panels.length;i++){
+					if(this.panels[i].getAttribute("mode")==val) return this.selectedIndex = i;
+				}
+				return null;
+			]]></setter>
+			<getter>
+				return this.panels[this.selectedIndex]?this.panels[this.selectedIndex].getAttribute("mode"):'';
+			</getter>
+		</property>
+		<property name="selectedViews">
+			<getter><![CDATA[
+				var p = this.selectedPanels;
+				var v = [];
+				for(var i=0;i< p.length;i++){
+					v.push(p[i].getAttribute("mode"));
+				}
+				return v;
+			]]></getter>
+			<setter><![CDATA[
+				if(!val || !val.length) return val;
+				var keys = [];
+				for(var i = 0; i < val.length; i++){
+					keys[val[i]] = true;
+					if(!this.panels[val[i]].selected)
+						this.togglePanel(val[i]);
+				}
+				var p = this.selectedPanels;
+				for(var i = 0; i < p.length; i++){
+					if(!keys[p[i].view])
+						this.togglePanel(p[i].view);
+				}
+				return val;
+			]]></setter>
+		</property>
+		<method name="init">
+			<body>
+			try{
+			var type = this.getAttribute("doctype"),
+			base = this.getAttribute("basedoctype");
+			if(base == 'html')
+				this.panels[1].disabled = false;
+			else this.panels[1].disabled = true;
+			this.lastPanel = this.panels[this.defaultPanel];
+			this.lastEditor = this.lastPanel.hasAttribute('doceditor')?this.lastPanel:this.panels['code'];
+			//this.selectedView = this.defaultPanel;
+			//alert('constructed'+this.lastPanel);
+			}catch(e){
+				debugLog('Construct Error\n'+e);
+			}
+
+			</body>
+		</method>
+		<method name="togglePanel">
+			<parameter name="panel"/>
+			<body><![CDATA[
+				var selected = this._panelbox.getElementsByAttribute('selected','true');
+				var p = this.panels[panel];
+				if(!p) return false;
+				if(p.selected){
+					if(selected.length>1){
+						p.selected = false;
+						if(selected.length==1 && this.selectedPanel.previousSibling)
+							this.selectedPanel.previousSibling.removeAttribute("visibility");
+					}
+					return true;
+				}
+				var allow = true;
+				for(var i=0;i<selected.length;i++){
+					if(!this.panel_allow[selected[i].view].match(panel))
+						allow = false;
+				}
+
+				if(allow)
+					p.selected = true;
+				else
+					this.selectedView = panel;
+
+				for(var i=0, on=false;i<selected.length;i++){
+					if(on && selected[i].previousSibling){
+						selected[i].previousSibling.setAttribute("visibility","visible")}
+					on = true;
+				}
+				return true;
+			]]></body>
+		</method>
+		<method name="toggleOrient">
+			<body>
+				this.orient = (this.orient=='vertical')?'horizontal':'vertical';
+				return this.orient;
+				//var splitters = this._panelbox.getElementsByAttribute('collapse','none');
+			</body>
+		</method>
+		<method name="find">
+			<parameter name="val" />
+			<body>
+				return val?this.panels['code'].replace():this.panels['code'].find();
+			</body>
+		</method>
+		<method name="findNext">
+			<body>
+				return this.panels['code'].findNext();
+			</body>
+		</method>
+		<method name="refresh">
+			<parameter name="val" />
+			<body>
+				switch((val?val:this.lastPanel.view)){
+					case 'code':
+						if(this.panels['design'].selected)this.panels['design'].refresh();
+						if(this.panels['preview'].selected)this.panels['preview'].refresh();
+					break;
+					case 'design':
+						if(this.panels['code'].selected)this.panels['code'].refresh();
+						if(this.panels['preview'].selected)this.panels['preview'].refresh();
+					break;
+					default:this.lastPanel.refresh()
+					break;
+				}
+			</body>
+		</method>
+		<method name="print">
+			<body>
+					return this.lastPanel.print?this.lastPanel.print():this.lastEditor.print();
+			</body>
+		</method>
+		<method name="setStatus">
+			<body>
+				return this.lastEditor?this.lastEditor.setStatus():false;
+			</body>
+		</method>
+	</implementation>
+	<handlers>
+	</handlers>
+  </binding>
+  
+  <binding id="toggleViewButton" extends="chrome://global/content/bindings/toolbarbutton.xml#toolbarbutton">
+  	<implementation>
+		<property name="panel" onget="return this.getAttribute('panel')" />
+  	</implementation>
+	<handlers>
+		<handler event="click" button="0">
+			if(!event.ctrlKey)
+			  this.parentNode.parentNode.selectedView = this.panel;
+			else
+			  goDoCommandParams('cmd_togglePanel', paramString(this.panel))			
+		</handler>
+		<handler event="click" button="2">
+			goDoCommandParams('cmd_togglePanel', paramString(this.panel))
+		</handler>
+	</handlers>
+  </binding>
+
+  
+  <!-- =====================================================================
+  Code Editors
+  ===================================================================== -->
+  <binding id="codeViewBox" extends="chrome://codetch/content/editorbindings/editorRoot.xml#rootEditorPanel">
+    <content>
+		<xul:textbox class="cb" multiline="true" flex="1" wrap="off" xbl:inherits="disabled,selected"/>
+		<xul:textbox class="lines" multiline="true" flex="0" cols="4" wrap="off" xbl:inherits="disabled,selected" onmousedown="debugLog(this.selectionStart);" />
+    </content>
+	<handlers>
+		<handler event="focus" phase="target">
+			//event.target.scrollToSelect();
+			debugLog('focus-target: '+this.endLine);
+		</handler>
+		<handler event="focus">
+			debugLog('focus: '+this.endLine);
+			this._restorePosition();
+			this.updateLines();
+			this.setStatus();
+		</handler>
+		<handler event="blur">
+			debugLog('blur: '+this.endLine);
+			this._savePosition();
+		</handler>
+		<handler event="change">
+			this.parentHandler.lastEditor = this;
+		</handler>
+		<handler event="input"><![CDATA[
+			codetch.modify();
+			var ed = this.parentHandler;
+			if(GetBoolPref('autorefresh') && (ed.panels['preview'].selected)){
+				ed.panels['preview'].refresh();
+			}
+			//this.setStatus();
+			//if(this.selection!='')
+			  //this.updateLines();
+		]]></handler>
+		<handler event="keyup" action="var b=this;setTimeout(function(){b.setStatus();},10);this.scrollLines();" />
+		<handler event="keydown" action="this.scrollLines();" />
+		<handler event="keypress" keycode="vk_return" phase="bubble" action="return this._newLine();"/>
+		<handler event="select" action="this.setStatus();this.scrollLines();" />
+		<handler event="click" action="this.setStatus();this.scrollLines();" />
+		<handler event="DOMMouseScroll" action="this.scrollLines();var temp = this;setTimeout(function(){temp.scrollLines()}, 10);" />
+		<handler event="mousedown" action="this._down = true;" />
+		<handler event="mousemove" action="if(this._down)this.scrollLines();" />
+		<handler event="mouseup" action="this._down = false;this.scrollLines();" />
+	</handlers>
+  	<implementation>
+		<constructor>
+			this.element.controllers.appendController(codeFormatController);
+			this.element.controllers.appendController(codeInsertionController);
+			
+			// why does this have no effect?
+			if(!GetBoolPref("codewrap")) this.element.setAttribute('wrap', 'off');
+			else this.element.removeAttribute('wrap');
+		</constructor>
+		<destructor>
+			this.element.controllers.removeController(codeFormatController);
+			this.element.controllers.removeController(codeInsertionController);
+		</destructor>
+		<field name="isNumbered">true</field>
+		<field name="_lineFormat">''</field>
+		<field name="_selectionStart">0</field>
+		<field name="_selectionEnd">0</field>
+		<property name="lineFormat" onget="return this._lineFormat" >
+			<setter>
+				if(this._lineFormat == val)return val; // no change, so just return
+				if(this._lineFormat !='') // set as modified, unless it's blank (like when first opening)
+					codetch.modify();
+				this._lineFormat = val;
+				//this.setStatus();
+				return val;
+			</setter>
+		</property>
+		<property name="scrollTop" onget="return this.element.inputField.scrollTop" >
+			<setter>
+				this.element.inputField.scrollTop = val;
+				this.lineNumbers.inputField.scrollTop = val;
+				return val;
+			</setter>
+		</property>
+		<property name="scrollLeft" onget="return this.element.inputField.scrollLeft" >
+			<setter>
+				this.element.inputField.scrollLeft = val;
+				this.lineNumbers.inputField.scrollLeft = val;
+				return val;
+			</setter>
+		</property>
+		<property name="lineNumbers" onget="return document.getAnonymousNodes(this)[1];" />
+		<property name="source">
+			<setter>
+				this.element.value = val;
+				this.updateLines();
+			</setter>
+			<getter>
+				return this.element.value;
+			</getter>
+		</property>
+		<property name="lines" onget="return this.source.split('\n').length;" />
+		<property name="startLine">
+			<getter>
+				var lines = this.source.substr(0, this.element.selectionStart).split(/\n/);
+				return lines.length;
+			</getter>
+		</property>
+		<property name="endLine">
+			<getter>
+				var lines = this.source.substr(0, this.element.selectionEnd).split(/\n/);
+				return lines.length;
+			</getter>
+		</property>
+		<property name="selectionStart" onget="return this.element.selectionStart;" onset="return this.element.selectionStart = val;" />
+		<property name="selectionEnd" onget="return this.element.selectionEnd;" onset="return this.element.selectionEnd = val;" />
+		<property name="selection" onget="return this.source.substring(this.element.selectionStart, this.element.selectionEnd);">
+			<setter>
+				this.element.focus();
+				var s = this.element.selectionStart, e = this.element.selectionEnd;
+				goDoCommandParams('cmd_insertText', paramString(val));
+				this.element.selectionStart = s
+				this.element.selectionEnd = s+val.length;
+				return val;
+			</setter>
+		</property>
+		<property name="column">
+			<getter>
+				var lines = this.source.substr(0, this.element.selectionEnd).split('\n');
+				return lines[lines.length-1].length;
+			</getter>
+		</property>
+		<method name="_savePosition">
+			<body><![CDATA[
+				this._selectionStart = this.selectionStart;
+				this._selectionEnd = this.selectionEnd;
+				this._posSaved = true;
+			]]></body>
+		</method>
+		<method name="_restorePosition">
+			<body><![CDATA[
+			    if(this._posSaved){
+			        this.element.select();
+				    this.selectionStart = this._selectionStart;
+				    this.selectionEnd = this._selectionEnd;
+				    this._posSaved = false;
+				}
+			]]></body>
+		</method>
+		<method name="duplicateLine">
+			<body><![CDATA[
+				goDoCommand('cmd_endLine');
+				var start = this.element.selectionStart;
+				var end = this.element.selectionEnd;
+				var lines = this.source.substr(0, end).split('\n');
+				var line = lines[lines.length-1];
+				goDoCommandParams('cmd_insertText', paramString('\n'+line));
+				this.updateLines();
+			]]></body>
+		</method>
+		<method name="joinLines">
+			<body><![CDATA[
+				this.selection = this.selection.replace(/\n/g,'');
+			]]></body>
+		</method>
+		<method name="titleCase">
+			<body><![CDATA[
+				this.selection = this.selection.titleCase();
+			]]></body>
+		</method>
+		<method name="trim">
+			<body><![CDATA[
+				this.selection = this.selection.trim();
+			]]></body>
+		</method>
+		<method name="upperCase">
+			<body><![CDATA[
+				this.selection = this.selection.toUpperCase();
+			]]></body>
+		</method>
+		<method name="lowerCase">
+			<body><![CDATA[
+				this.selection = this.selection.toLowerCase();
+			]]></body>
+		</method>
+		<method name="updateLines">
+			<body><![CDATA[
+				var n = this.lineNumbers.value.split('\n').length;
+				var dif = this.lines+1-n;
+				if(dif == 0) return;
+				if(dif >0){
+					var l = new Array();
+					for(var i=0;i<dif;i++){
+						l[i] = (i+n);
+					}
+					this.lineNumbers.value+=l.join('\n')+'\n';
+				}
+				if(dif <0){
+						this.lineNumbers.value = this.lineNumbers.value.split(/\n/).slice(0,n+dif-1).join('\n')+'\n';
+				}
+				this.scrollLines();
+				//debugLog(dif);
+			]]></body>
+		</method>
+		<method name="scrollLines">
+			<body><![CDATA[
+				var t = this.element.inputField.scrollTop;
+				//debugLog(this.lines+'+'+t);
+				this.lineNumbers.inputField.scrollTop = t;
+			]]></body>
+		</method>
+		<method name="setStatus">
+			<body>
+			document.getElementById('line-type-status').label = this.lineFormat.capitalize();
+			var val = ''
+			    +"Line: "+this.endLine
+			    +"    Column: "+this.column
+			    +"    Chars: "+this.element.textLength
+			    +"    Sel: "+(this.element.selectionEnd - this.element.selectionStart);
+			this.statusbar.value = val;
+			</body>
+		</method>
+		<method name="scrollToSelect">
+			<parameter name="num"/>
+			<body><![CDATA[
+				var start = this.element.selectionStart;
+				var end = this.element.selectionEnd;
+				this.element.focus();
+				goDoCommand('cmd_charNext');
+				goDoCommand('cmd_charPrevious');
+				debugLog(this.scrollTop);
+				this.element.select();
+				this.element.setSelectionRange(start, end);
+				//alert(this.element.selectionStart);
+				this.scrollLines();
+			]]></body>
+		</method>
+		<method name="goToLine">
+			<parameter name="num"/>
+			<body><![CDATA[
+				var lines = this.source.split(/\n/);
+				if(num>lines.length) num = lines.length;
+				if(num<=0) num = 1;
+				lines = lines.slice(0, num);
+				var source = lines.join('\n');
+				var l = lines[num-1].length;
+				this.element.setSelectionRange(source.length - l ,source.length);
+				this.scrollToSelect();
+				this.setStatus();
+			]]></body>
+		</method>
+		<method name="goToPosition">
+			<parameter name="line"/>
+			<parameter name="start"/>
+			<parameter name="end"/>
+			<body><![CDATA[
+				var lines = this.source.split(/\n/);
+				if(line>lines.length) line = lines.length;
+				if(line<=0) line = 1;
+				lines = lines.slice(0, line);
+				var source = lines.join('\n');
+				var ln = lines[line-1].length;
+				if(end == -1) end = ln;
+				this.setSelectionRange(source.length - ln +start,source.length - ln +(end||start));
+				this.scrollToSelect();
+				this.setStatus();
+			]]></body>
+		</method>
+		<method name="setSelectionRange">
+			<parameter name="start"/>
+			<parameter name="end"/>
+			<body><![CDATA[
+				this.element.setSelectionRange(start, end);
+			]]></body>
+		</method>
+		<method name="_newLine">
+			<body>
+				var start = this.element.selectionStart;
+				var source = this.source.substr(0, start);
+				//var lines = source.split(/\n/);
+				//if(lines[lines.length-1].length == 0) return true;
+				//alert(start);
+				//alert(source.lastIndexOf('\n'));
+				var space = source.substr(source.lastIndexOf('\n')+1).match(/^\s+/);
+				//var space = lines[lines.length-1].match(/^\s+/);
+
+				if(!space || !space.length)
+					return true; // perform default event
+
+				goDoCommandParams('cmd_insertText', paramString('\n'+space));
+				this.updateLines();
+				return false;
+			</body>
+		</method>
+		<method name="find">
+			<body><![CDATA[
+				//goDoCommand('cmd_viewCode');
+				window.openDialog('chrome://codetch/content/dialogs/find.xul', 'find', 'chrome,dependent,centerscreen,alwaysRaised,modal=no,dialog,resizable=no','find');
+			]]></body>
+		</method>
+		<method name="replace">
+			<body><![CDATA[
+				//goDoCommand('cmd_viewCode');
+				window.openDialog('chrome://codetch/content/dialogs/find.xul', 'find', 'chrome,dependent,centerscreen,alwaysRaised,modal=no,dialog,resizable=no','replace');
+			]]></body>
+		</method>
+		<method name="findNext">
+			<parameter name="query"/>
+			<parameter name="cases"/>
+			<parameter name="isRegex"/>
+			<parameter name="wrap"/>
+			<parameter name="selection"/>
+			<body><![CDATA[
+    if (query == "") {
+        codetch.setStatusMsg("No search string entered.");
+        return false;
+    }
+	var end = this.selectionEnd;
+	var contentStr = this.source.slice(end);
+    var ignoreCaseStr = (cases==true) ? '':'i';
+
+    if(!isRegex)query = stripChars(query);
+    var pattern = new RegExp(query, ignoreCaseStr);
+    var searchResult = contentStr.match(pattern);
+
+	var position = searchResult?searchResult.index+end:end;
+
+    this.element.focus();
+    if (searchResult) {
+
+		this.element.select();
+        this.setSelectionRange(position, position + searchResult[0].length);
+		var str = this.source.substring(position, position + searchResult[0].length);
+        goDoCommand('cmd_charNext'); // scroll to word hack
+		goDoCommand('cmd_charPrevious');
+
+		this.element.select();
+        this.setSelectionRange(position, position + searchResult[0].length);
+		this.scrollLines();
+
+		codetch.setStatusMsg("Search successful");
+
+        return searchResult;
+    }else{
+		if(wrap){
+			searchResult = this.source.match(pattern);
+			goDoCommand('cmd_beginLine');
+			this.setSelectionRange(0,0);
+			this.scrollLines();
+			if (searchResult) return this.findNext(query, cases, isRegex, wrap);
+			else {codetch.setStatusMsg("Search unsuccessful");return false;}
+		}
+	}
+				codetch.setStatusMsg("Search unsuccessful");
+    return false;
+			]]></body>
+		</method>
+		<method name="replaceText">
+			<parameter name="replacement"/>
+			<body><![CDATA[
+				//this.element.focus();
+				(replacement)?goDoCommandParams('cmd_insertText', paramString(replacement)):goDoCommand('cmd_delete');
+				return true;
+			]]></body>
+		</method>
+		<method name="findAll">
+			<parameter name="query"/>
+			<parameter name="replacement"/>
+			<parameter name="cases"/>
+			<parameter name="isRegex"/>
+			<parameter name="wrap"/>
+			<parameter name="selection"/>
+			<body><![CDATA[
+				if (query == "") {
+				    codetch.setStatusMsg("No search string entered.");
+				    return false;
+				}
+				if(!selection)this.selectionStart = 0;
+				var start = this.selectionStart;
+				var end = this.selectionEnd;
+
+				var contentStr = selection?this.selection:this.source;
+				//var allLines = contentStr.split(/\n/);
+				var os = selection?start:0;
+
+				var ignoreCaseStr = (cases==true) ? '':'i';
+
+				if(!isRegex)query = stripChars(query);
+				var pattern = new RegExp(query, ignoreCaseStr);
+
+				var r,line=this.startLine, index= 0;
+				var results = [];
+				var file = this.parentHandler.getAttribute("src");
+				var fileid = this.parentHandler.getAttribute("id");
+
+				while((r = contentStr.slice(index).match(pattern, replacement))){
+					r.absoluteIndex = r.index+index+os;
+					index += r.index+r[0].length;
+					var lines = r.input.substr(0, r.index).split(/\n/);
+					r.line = lines.length;
+					r.context = r.input.split(/\n/)[lines.length-1];
+					line += r.line-1;
+					r.absoluteLine = line;
+					r.column =r.absoluteColumn= lines[lines.length-1].length;
+					if(results[results.length-1] && results[results.length-1].absoluteLine == r.absoluteLine)
+						r.absoluteColumn += results[results.length-1].absoluteColumn+(replacement?replacement.length:results[results.length-1][0].length);
+					r.file = file; r.panel = 'code';r.fileid = fileid;
+					results.push(r);
+				}
+
+				if(!results.length){codetch.setStatusMsg("Search unsuccessful");return false;}
+
+				if(!selection)this.setSelectionRange(start, end);
+				this.scrollLines();
+				//this.element.focus();
+				codetch.setStatusMsg("Search successful");
+				return results;
+			]]></body>
+		</method>
+		<method name="replaceAll">
+			<parameter name="query"/>
+			<parameter name="replacement"/>
+			<parameter name="cases"/>
+			<parameter name="isRegex"/>
+			<parameter name="wrap"/>
+			<parameter name="selection"/>
+			<body><![CDATA[
+				if (query == "") {
+				    codetch.setStatusMsg("No search string entered.");
+				    return false;
+				}
+				var results = this.findAll(query, replacement, cases, isRegex, wrap, selection);
+				results['replacement'] = replacement;
+				var start = this.selectionStart;
+				var end = this.selectionEnd;
+
+				var contentStr = selection?this.selection:this.source;
+				var ignoreCaseStr = (cases==true) ? '':'i';
+
+				if(!isRegex)query = stripChars(query);
+				var pattern = new RegExp(query, 'g'+ignoreCaseStr);
+
+				var replaceResult = contentStr.replace(pattern, replacement);
+				if(!replaceResult){codetch.setStatusMsg("Replace unsuccessful");return false;}
+
+				//this.element.select();
+				goDoCommand('cmd_selectAll');
+				if(selection)this.setSelectionRange(start,end);
+				
+				goDoCommandParams('cmd_insertText', paramString(replaceResult));
+				this.element.select();
+				if(!selection)this.setSelectionRange(start,start);
+				else this.setSelectionRange(start, start + replaceResult.length);
+				
+				codetch.setStatusMsg("Replace successful");
+				this.scrollLines();
+				return results;
+			]]></body>
+		</method>
+		<method name="insertTab">
+			<body>
+				this.indent();
+			</body>
+		</method>
+		<method name="indent">
+			<body><![CDATA[
+				if(this.selectionStart==this.selectionEnd)
+					return goDoCommandParams('cmd_insertText', paramString(GetStringPref('tabchar')));
+				var start = this.selectionStart;
+				var end = this.selectionEnd;
+
+				var selection = this.source.substring(start, end);
+				if(selection.match(/\n/)){
+					this.element.selectionEnd = start;
+					goDoCommand('cmd_selectLinePrevious');
+					var t = GetStringPref('tabchar');
+					var s = this.element.selectionStart;
+					this.setSelectionRange(s,end);
+					this.selection = this.selection.split(/\n/).join('\n'+t);
+					this.selectionStart = start+t.length
+					return true;
+				}
+				return goDoCommandParams('cmd_insertText', paramString(GetStringPref('tabchar')));
+			]]>
+			</body>
+		</method>
+		<method name="outdent">
+			<body><![CDATA[
+				var t = GetStringPref('tabchar');
+				var start = this.selectionStart;
+				var end = this.selectionEnd;
+				if(start==end){
+					goDoCommand('cmd_selectCharPrevious');
+					if(this.selection.match(t))return goDoCommand('cmd_delete');
+					else return this.selectionEnd = this.selectionStart;
+				}
+
+				var selection = this.source.substring(start, end);
+				var r = eval('/\\n'+t+'/');
+				if(selection.match(r)){
+					this.selectionEnd = start;
+					goDoCommand('cmd_selectLinePrevious');
+					var s = this.selectionStart;
+					this.setSelectionRange(s,end);
+					this.selection = this.selection.split(r).join('\n');
+					this.selectionStart = start-t.length
+					return true;
+				}
+				return true;
+			]]>
+			</body>
+		</method>
+		<method name="insertFragment">
+			<parameter name="frag"/>
+			<body>
+				goDoCommandParams('cmd_insertText', paramString(frag.convertToUnix()));
+				this.updateLines();
+			</body>
+		</method>
+		<method name="print">
+			<body><![CDATA[
+				var code = this.source;
+				var iframe = document.getElementById('utility-frame');
+				
+				var idoc = iframe.contentWindow.document;
+				code = code.replace(/</g, '&lt;');
+				idoc.open();
+				idoc.write('<pre>' + code + '</pre>');
+				idoc.close();
+			
+				iframe.contentWindow.focus();
+				iframe.contentWindow.print();
+			]]></body>
+		</method>
+  	</implementation>
+  </binding>
+
+  <binding id="codeEditorHTML" extends="chrome://codetch/content/editorBindings.xml#codeViewBox">
+	<handlers>
+		<handler event="focus" phase="target"><![CDATA[
+			var par = this.parentHandler;
+			if(par.panels['design'].editor && par.panels['design'].editor.documentModified){
+				//par.panels['design'].editor.resetModificationCount();
+				this.refresh();
+			}
+		]]></handler>
+		<handler event="change">
+			this.parentHandler.lastEditor = this;
+			this.parentHandler.panels['design'].refresh();
+		</handler>
+		<handler event="input"><![CDATA[
+			if(GetBoolPref('autorefresh') && this.parentHandler.panels['design'].selected){
+					this.parentHandler.panels['design'].refresh();
+			}
+		]]></handler>
+	</handlers>
+	<implementation>
+		<method name="refresh">
+			<body>
+				this.source = this.parentHandler.lastEditor.source;
+			</body>
+		</method>
+	</implementation>
+  </binding>
+
+  <binding id="codeHighlightedEditor" extends="chrome://codetch/content/editorbindings/editorRoot.xml#rootEditorPanel">
+    <content>
+		<xul:editor type="content-primary" editortype="html" flex="1" context="editorSourceContext" xbl:inherits="disabled,selected"/>
+		<xul:textbox class="lines" multiline="true" flex="0" cols="4" wrap="off" xbl:inherits="disabled,selected" onmousedown="debugLog(this.selectionStart);" />
+    </content>
+	<implementation>
+		<constructor>
+		try {
+			//this.element.contentDocument.designMode = 'on';
+			//this.source = "<br />";
+			//this.editor.resetModificationCount();
+			this.element.makeEditable('html',false);
+			this.initObs();
+			this._parser = new ParseMaster;
+		}catch (e) {alert(e)}
+		</constructor>
+		<property name="parser" onget="return this._parser;" />
+		<property name="document">
+			<getter>
+				return this.element.contentDocument;
+			</getter>
+		</property>
+		<property name="editor">
+			<getter>
+				return this.element.getEditor(this.element.contentWindow);
+			</getter>
+		</property>
+		<property name="htmleditor">
+			<getter>
+				return this.element.getHTMLEditor(this.element.contentWindow);
+			</getter>
+		</property>
+		<method name="setParser">
+			<parameter name="lang"/>
+			<body>
+				this._parser = new ParseMaster;
+			</body>
+		</method>
+	</implementation>
+	<handlers>
+		<handler event="focus" phase="target">
+			this.parentNode.parentNode.lastEditor = this;
+		</handler>
+		<handler event="click">
+			this.parentNode.parentNode.lastEditor = this;
+		</handler>
+	</handlers>
+  </binding>
+  
+  
+  <!-- =====================================================================
+  HTML Design Editor
+  ===================================================================== -->
+  <binding id="designViewBox" extends="chrome://codetch/content/editorbindings/editorRoot.xml#rootEditorPanel">
+    <content>
+		<xul:editor class="design-frame" flex="1" src="about:blank" xbl:inherits="disabled,src" onclick="this.parentNode.parentNode.parentNode.lastEditor = this.parentNode" />
+    </content>
+	<handlers>
+		<handler event="focus" phase="target">
+			if(this.disabled) return false;
+			this.element.makeEditable('html',false);
+			if(this.element.contentDocument.designMode!='on')this.element.contentDocument.designMode= 'on';
+			this.element.contentWindow.focus();
+			this.initObs();
+		</handler>
+		<handler event="mouseup"><![CDATA[
+			this.setStatus();
+			//goUpdateUndoMenuItems();
+		]]></handler>
+	</handlers>
+  	<implementation>
+		<constructor>
+		try {
+			//this.element.contentDocument.designMode = 'on';
+			//this.source = "<br />";
+			//this.editor.resetModificationCount();
+			this.element.makeEditable('html',false);
+			this.initObs();
+		}catch (e) {debugLog(e)}
+		</constructor>
+		<property name="scrollTop" onget="return this.window.scrollY" onset="this.window.scrollY = val" />
+		<property name="scrollLeft" onget="return this.window.scrollX" onset="this.window.scrollX = val" />
+		<property name="document" onget="return this.element.contentDocument;" />
+		<property name="window" onget="return this.element.contentWindow;" />
+		<property name="editor" onget="return this.element.getEditor(this.element.contentWindow);" />
+		<property name="htmleditor" onget="return this.element.getHTMLEditor(this.element.contentWindow);" />
+		<property name="source">
+			<setter>
+			try{
+				this.element.makeEditable('html',false);
+				this.htmleditor.rebuildDocumentFromSource('');
+				this.htmleditor.rebuildDocumentFromSource(val);
+				this.editor.resetModificationCount();
+				}catch(e){debugLog(e)}
+			</setter>
+			<getter>
+				//this.element.makeEditable('html',false);
+				var flags;
+				/* flags = (editor.documentCharacterSet == "ISO-8859-1")
+					? 32768  // OutputEncodeLatin1Entities
+					: 16384; // OutputEncodeBasicEntities
+				flags = 1024; */
+				flags = 0;
+				return this.htmleditor.outputToString("text/html", flags);
+			</getter>
+		</property>
+		<method name="setStatus">
+			<body><![CDATA[
+				document.getElementById('line-type-status').label = this.parentHandler.lineFormat.capitalize();
+				var node = this.htmleditor.getSelectionContainer(),
+				text =  '<'+node.nodeName.toLowerCase()+(node.id?'#'+node.id:'')+'>',
+				parent = node.parentNode;
+				while(parent){
+					if(parent.tagName)text = '<'+parent.nodeName.toLowerCase()+(parent.id?'#'+parent.id:'')+'>' + text;
+					parent = parent.parentNode;
+				}
+				this.statusbar.value = text;
+			]]></body>
+		</method>
+		<method name="refresh">
+			<body>
+				this.source = this.parentHandler.lastEditor.source;
+			</body>
+		</method>
+		<method name="refreshPath">
+			<body>
+				var loadFlags = Components.interfaces.nsIWebNavigation.LOAD_FLAGS_BYPASS_CACHE;
+				this.element.webNavigation.loadURI(this.getAttribute('src'),loadFlags,null,null,null);
+			</body>
+		</method>
+		<method name="focusEvent">
+			<body>
+			//alert('design');
+			</body>
+		</method>
+		<method name="editEvent">
+			<body>
+				alert(this.editor.getModificationCount());
+			</body>
+		</method>
+		<method name="initObs">
+			<body>
+				//this.editor.addEditActionListener();
+				try{
+				this.editor.addDocumentStateListener(designDocListener);
+				}catch(e){debugLog('initObs\n'+e)}
+				//this.editor.addEditorObserver(designObserver);
+			</body>
+		</method>
+		<method name="insertTab">
+			<parameter name="replacement"/>
+			<body><![CDATA[
+				goDoCommandParams('cmd_insertText', paramString(GetStringPref('tabchar')));
+			]]></body>
+		</method>
+		<method name="insertFragment">
+			<parameter name="frag"/>
+			<body>
+				return this.htmleditor.insertHTML(frag);
+			</body>
+		</method>
+		<method name="print">
+			<body>
+				return this.element.contentWindow.print();
+			</body>
+		</method>
+  	</implementation>
+  </binding>
+
+  <!-- =====================================================================
+  Previews
+  ===================================================================== -->
+  <binding id="previewViewBox" extends="chrome://codetch/content/editorbindings/editorRoot.xml#rootPanel">
+    <content>
+		<xul:browser flex="1" class="preview-frame" src="chrome://codetch/content/blank.html" type="content" xbl:inherits="disabled"/>
+    </content>
+	<handlers>
+		<handler event="focus" phase="target">
+			this.refresh();
+			this.element.focus();
+		</handler>
+	</handlers>
+  	<implementation>
+		<constructor>
+		</constructor>
+		<property name="scrollTop" onget="return this.window.scrollY" onset="this.window.scrollY = val" />
+		<property name="scrollLeft" onget="return this.window.scrollX" onset="this.window.scrollX = val" />
+		<property name="document" onget="return this.element.contentDocument;" />
+		<property name="window" onget="return this.element.contentWindow;" />
+		<property name="source">
+			<setter><![CDATA[
+				var win = this.document;
+				win.open();
+				win.write(val);
+				win.close();
+        	]]></setter>
+			<getter>
+				return null;
+        	</getter>
+		</property>
+		<method name="refresh">
+			<body>
+				var y = this.element.contentWindow.pageYOffset;
+				var x = this.element.contentWindow.pageXOffset;
+				this.source = this.parentHandler.lastEditor.source;
+
+				this.element.contentWindow.scrollTo(x,y);
+        	</body>
+		</method>
+		<method name="print">
+			<body>
+				this.refresh();
+				return this.element.contentWindow.print();
+			</body>
+		</method>
+  	</implementation>
+  </binding>
+
+  <binding id="previewHTML" extends="chrome://codetch/content/editorBindings.xml#previewViewBox">
+    <content>
+		<xul:editor flex="1" class="preview-frame" src="about:blank" type="content" xbl:inherits="disabled"/>
+    </content>
+  	<implementation>
+		<property name="source">
+			<setter>
+			try{
+				this.element.makeEditable('html',false);
+				this.element.getHTMLEditor(this.element.contentWindow).rebuildDocumentFromSource('');
+				this.element.getHTMLEditor(this.element.contentWindow).rebuildDocumentFromSource(val);
+				this.element.editingSession.tearDownEditorOnWindow(this.element.contentWindow);
+				//UE.makeEditable('html',false);
+			}catch(ex){}
+			</setter>
+			<getter>
+				return this.parentHandler.lastEditor.source;
+			</getter>
+		</property>
+		<method name="refreshPath">
+			<body>
+				var loadFlags = Components.interfaces.nsIWebNavigation.LOAD_FLAGS_BYPASS_CACHE;
+				this.element.webNavigation.loadURI(this.getAttribute('src'),loadFlags,null,null,null);
+			</body>
+		</method>
+  	</implementation>
+  </binding>
+
+  <binding id="previewXML" extends="chrome://codetch/content/editorBindings.xml#previewViewBox">
+  	<implementation>
+		<property name="source">
+			<setter>
+				this.document.location = "data:application/xml," + encodeURIComponent(val);
+			</setter>
+			<getter>
+				return this.parentHandler.lastEditor.source;
+			</getter>
+		</property>
+  	</implementation>
+  </binding>
+
+  <binding id="previewXUL" extends="chrome://codetch/content/editorBindings.xml#previewViewBox">
+  	<implementation>
+		<property name="source">
+			<setter>
+				this.document.location = "data:application/vnd.mozilla.xul+xml," + encodeURIComponent(val);
+			</setter>
+			<getter>
+				return this.parentHandler.lastEditor.source;
+			</getter>
+		</property>
+  	</implementation>
+  </binding>
+  
+  <binding id="previewJS" extends="chrome://codetch/content/editorBindings.xml#previewViewBox">
+  	<implementation>
+		<property name="source">
+			<setter><![CDATA[
+				var iframe = document.getElementById('utility-frame');
+				
+				var idoc = iframe.contentWindow.document;
+				code = code.replace(/</g, '&lt;');
+				idoc.open();
+				idoc.write('<html><head><script type="text/javascript">' + val + '</script></head><body></body></html>');
+				idoc.close();
+				//this.element.contentDocument.location = "data:application/vnd.mozilla.xul+xml," + encodeURIComponent(val);
+			]]></setter>
+			<getter>
+				return this.parentHandler.lastEditor.source;
+			</getter>
+		</property>
+  	</implementation>
+  </binding>
+  
+  <!-- =====================================================================
+  Reference View
+  ===================================================================== -->
+  <binding id="referenceViewBox" extends="chrome://codetch/content/editorbindings/editorRoot.xml#rootPanel">
+    <content>
+		<xul:toolbox><xul:toolbar align="center">
+			<xul:toolbarbutton class="back-button toolbarbutton-1" label="Back" oncommand="this.parentNode.parentNode.parentNode.goBack()"/>
+			<xul:toolbarbutton class="next-button toolbarbutton-1" label="Forward" oncommand="this.parentNode.parentNode.parentNode.goForward()"/>
+			<xul:toolbarbutton class="reload-button toolbarbutton-1" label="Refresh" oncommand="this.parentNode.parentNode.parentNode.refresh()"/>
+			<xul:toolbarseparator />
+			<xul:textbox type="autocomplete" flex="100" enablehistory="true" disablehistory="false" searchSessions="history" autocompletesearch="history"
+			onselect="this.parentNode.parentNode.parentNode.loadURI()" value=""/>
+			<xul:toolbarbutton class="go-button toolbarbutton-1" label="Display" oncommand="this.parentNode.parentNode.parentNode.loadURI()"/>
+			<xul:toolbarbutton class="browse-button toolbarbutton-1" label="Browse..." oncommand="this.parentNode.parentNode.parentNode.loadURI(getFilePath())"/>
+		</xul:toolbar></xul:toolbox>
+		<xul:browser flex="1" class="reference-frame" type="content" src="chrome://codetch/locale/pages/ref.xhtml" xbl:inherits="disabled,src" />
+    </content>
+  	<implementation>
+		<constructor>
+			this.init();
+		</constructor>
+		<destructor>
+			if(this.element)
+				this.element.removeProgressListener(this._ppl);
+			this.element.destroy();
+			this._ppl = null;
+			debugLog('destroy');
+		</destructor>
+		<property name="element" onget="return document.getAnonymousNodes(this)[1];" />
+		<property name="scrollTop" onget="return this.window.scrollY" onset="try{return this.window.scrollY = val}catch(e){}" />
+		<property name="scrollLeft" onget="return this.window.scrollX" onset="try{return this.window.scrollX = val}catch(e){}" />
+		<property name="window" onget="return this.element.contentWindow;" />
+		<property name="toolbar" onget="return document.getAnonymousNodes(this)[0].firstChild;" />
+		<property name="addressBar" onget="return this.toolbar.childNodes[4];" />
+		<method name="goBack">
+			<body>
+			try{
+				this.element.contentWindow.focus();
+				if(this.element.webNavigation.canGoBack)
+					this.element.webNavigation.goBack();
+			}catch(ex){}
+			</body>
+		</method>
+		<method name="goForward">
+			<body>
+			try{
+				this.element.contentWindow.focus();
+				if(this.element.webNavigation.canGoForward)
+					this.element.webNavigation.goForward();
+			}catch(ex){}
+			</body>
+		</method>
+		<method name="setURI">
+			<parameter name="path"/>
+			<body>
+				this.addressBar.value = this.element.currentURI.spec;
+			</body>
+		</method>
+		<method name="loadURI">
+			<parameter name="path"/>
+			<body>
+				if(!path) path = this.addressBar.value;
+				if(!path) return;
+				this.setAttribute('src', path);
+				//this.element.loadURI(path);
+				this.addressBar.value = path;
+			</body>
+		</method>
+		<method name="refresh">
+			<body>
+				this.element.reload();
+			</body>
+		</method>
+		<method name="reload">
+			<body>
+				this.element.reload();
+			</body>
+		</method>
+		<method name="print">
+			<body>
+				return this.element.contentWindow.print();
+			</body>
+		</method>
+		<method name="init">
+			<body>
+			if(this.element)
+				this.element.addProgressListener(this.PageProgressListener(),
+					Components.interfaces.nsIWebProgress.NOTIFY_STATE_DOCUMENT);
+			</body>
+		</method>
+
+      <method name="PageProgressListener">
+        <body>
+        <![CDATA[
+          if(!this._ppl)
+			this._ppl = {
+            mTabBrowser: this,
+            mTab: this.doc.tab,
+            mBrowser: this.element,
+            mBlank: false,
+            mLastURI: null,
+
+            onProgressChange : function (aWebProgress, aRequest,
+                                         aCurSelfProgress, aMaxSelfProgress,
+                                         aCurTotalProgress, aMaxTotalProgress)
+            {
+              
+            },
+
+            onStateChange : function(aWebProgress, aRequest, aStateFlags, aStatus)
+            {
+              if (!aRequest)
+                return;
+
+              var oldBlank = this.mBlank;
+
+              const nsIWebProgressListener = Components.interfaces.nsIWebProgressListener;
+              const nsIChannel = Components.interfaces.nsIChannel;
+
+              if (aStateFlags & nsIWebProgressListener.STATE_START &&
+                  aStateFlags & nsIWebProgressListener.STATE_IS_NETWORK) {
+
+                if (!this.mBlank) {
+                  //this.mTab.setAttribute("busy", "true");
+                  this.mTabBrowser.mIsBusy = true;
+                }
+              }
+              else if (aStateFlags & nsIWebProgressListener.STATE_STOP &&
+                       aStateFlags & nsIWebProgressListener.STATE_IS_NETWORK) {
+
+                if (this.mBlank)
+                  this.mBlank = false;
+
+                //this.mTab.removeAttribute("busy");
+
+                var location = aRequest.QueryInterface(nsIChannel).URI;
+
+                this.mTabBrowser.mIsBusy = false;
+                this.mTabBrowser.setURI(location);
+              }
+            },
+
+            onLocationChange : function(aWebProgress, aRequest, aLocation)
+            {
+              if (aWebProgress.DOMWindow == this.mBrowser.contentWindow &&
+                  aWebProgress.isLoadingDocument)
+                return;
+				  this.mTabBrowser.addressBar.value = aLocation.spec;
+            },
+
+            onStatusChange : function(aWebProgress, aRequest, aStatus, aMessage)
+            {
+			
+            },
+
+            onSecurityChange : function(aWebProgress, aRequest, aState){},
+			
+			onLinkIconAvailable: function() {},
+
+            QueryInterface : function(aIID)
+            {
+              if (aIID.equals(Components.interfaces.nsIWebProgressListener) ||
+                  aIID.equals(Components.interfaces.nsISupportsWeakReference) ||
+                  aIID.equals(Components.interfaces.nsISupports))
+                return this;
+              throw Components.results.NS_NOINTERFACE;
+            }
+          };
+		  
+		  return this._ppl;
+        ]]>
+        </body>
+      </method>
+  	</implementation>
+  </binding>
+</bindings>

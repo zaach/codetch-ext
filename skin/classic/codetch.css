@@ -1,0 +1,451 @@
+
+@import url("chrome://communicator/skin/");
+@import url("chrome://global/skin/");
+@import url("chrome://codetch/skin/toolbar.css");
+/*
+@import url("chrome://codetch/skin/tabs.css");
+*/
+/*
+a[href^="http://"]:after { content: url('chrome://help/skin/Weblink.png'); }
+*/
+
+.url {color: blue; text-decoration: underline !important; cursor: pointer}
+
+toolbar[hidden="true"] {
+	visibility: hidden!important;
+}
+
+/* about
+------------------------------------------------------*/
+#aboutCodetch {
+  padding: 0px 0px 10px 0px;
+}
+
+#aboutCase{
+   background: url("chrome://codetch/skin/about.png") #fff no-repeat;
+   padding: 7px;
+   padding-top: 212px;
+   color: #000000;
+}
+
+#version {
+  font-weight: bold;
+  color: #9f9f9f;
+}
+
+#codetch-find {
+	padding: 10px;
+}
+
+ #groove {
+   margin-top: 0px;
+ }
+/* new
+------------------------------------------------------*/
+
+#new-panels  tree{
+	border: 0 !important;
+	margin: 0 !important;
+}
+
+
+
+/* sidebar
+------------------------------------------------------*/
+#toolboxPanel{
+	min-width: 150px;
+}
+
+#toolboxPanel tabpanels, #editor-arena tabpanels{
+-moz-appearance: none;
+	margin:0;
+}
+#toolboxPanel splitter{
+	border: 0;
+}
+#sidebar-box {
+  background-color: Window;
+}
+
+#file-root-item {
+	list-style-image: url("chrome://codetch/skin/newicons/folder.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+
+.panel-box tree,.panel-box textbox,.panel-box toolbar{
+	margin:0;
+	border: 0;
+}
+.panel-box > *{
+	margin:0;
+}
+.mini-bar {
+}
+.mini-bar button{
+	padding: 0px!important;
+	-moz-box-align: center;
+	-moz-box-orient: vertical;
+	font-size: 10px;
+	line-height: .2em!important;
+	height: 14px!important;
+}
+#snippet-newfolder-btn,#filetree-newfolder-btn{
+	list-style-image: url("chrome://codetch/skin/newicons/new-dir.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+#snippet-new-btn,#filetree-new-btn{
+	list-style-image: url("chrome://codetch/skin/newicons/new-snippet.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+#snippet-del-btn,#filetree-del-btn{
+	list-style-image: url("chrome://codetch/skin/newicons/trash.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+#snippet-edit-btn{
+	list-style-image: url("chrome://codetch/skin/newicons/edit-snippet.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+
+/* editor area
+------------------------------------------------------*/
+/**/
+#editor-tabs tab{
+	max-width: 250px;
+	min-width: 30px;
+	list-style-image: url("chrome://codetch/skin/newicons/page.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); 
+	height: auto;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+#editor-tabs tab[busy="true"]{
+	list-style-image: url("chrome://codetch/skin/newicons/Throbber-small.gif") !important;
+	-moz-image-region: rect(0px, 16px, 16px, 0px); 
+}
+#editor-tabs tab.editor-tab{
+	list-style-image: url("chrome://codetch/skin/newicons/text-editor.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); 
+}
+#editor-tabs tab.editor-tab[readonly="true"]{
+	list-style-image: url("chrome://codetch/skin/newicons/read-only.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); 
+}
+
+#editor-tabs tab.browser-page-tab,
+#editor-tabs tab.local-page-tab{
+	list-style-image: url("chrome://codetch/skin/newicons/remote.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); 
+}
+#editor-tabs {
+	border-bottom: 1px solid ThreeDLightShadow  !important;
+}
+#editor-tabs, #insert-tabs  {
+	padding-top: 1px;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+
+tab[selected="true"] {
+	font-weight: bold;
+}
+
+
+/**/
+
+
+#insert-panels toolbox{
+	-moz-box-orient: horizontal;
+-moz-appearance: none !important;
+}
+
+#insert-panels toolbar{
+-moz-appearance: none !important;
+	margin:0 !important;
+	border: 0 !important;
+	min-height: 34px;
+}
+toolbarbutton colorpicker[type="button"] {
+	-moz-appearance: none !important;
+	visibility: collapse;
+	border: 0;
+	padding: 0;
+	height: 12px;
+	width: 6px;
+}
+toolbarbutton colorpicker[type="button"] popup{
+	visibility: visible;
+}
+#editor-toolbox .toolbarbutton-1{
+	-moz-box-align: center;
+	-moz-box-orient: vertical;
+}
+toolbarbutton[disabled=true] image{
+	-moz-opacity: 0.3;
+}
+
+tabbox, tabpanels{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+#support-panels .panel-box tabpanels{
+	-moz-appearance: none;
+	margin:0;
+	border: 0;
+}
+
+.toggle-bar toolbarbutton {
+	padding: 0px !important;
+	margin:0px !important;
+}
+statusbar toolbarbutton {
+	padding: 0px !important;
+	margin:0px !important;
+	height: 20px;
+}
+statusbar toolbarbutton *, statusbar toolbarbutton .toolbarbutton-text{
+	padding: 0px !important;
+	margin: 0px;
+}
+statusbar .toolbarbutton-text{
+  margin-top: -3px!important;
+}
+
+/* buttons
+------------------------------------------------------*/
+.root-item {
+	list-style-image: url("chrome://codetch/skin/newicons/root.png")!important;
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+
+.new-button {
+	list-style-image: url("chrome://codetch/skin/newicons/new.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.dirup-button {
+	list-style-image: url("chrome://codetch/skin/newicons/up-one-dir.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.browse-button, #find-dir-btn {
+	list-style-image: url("chrome://codetch/skin/newicons/open.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.rename-button, #filetree-rename-btn{
+	list-style-image: url("chrome://codetch/skin/newicons/rename.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.stop-button {
+	list-style-image: url("chrome://codetch/skin/newicons/stop.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.reload-button, #reload-dir-btn {
+	list-style-image: url("chrome://codetch/skin/newicons/reload.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.back-button {
+	list-style-image: url("chrome://codetch/skin/newicons/back.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.next-button {
+	list-style-image: url("chrome://codetch/skin/newicons/next.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.up-button {
+	list-style-image: url("chrome://codetch/skin/newicons/up.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.down-button {
+	list-style-image: url("chrome://codetch/skin/newicons/down.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.tab-button {
+	list-style-image: url("chrome://codetch/skin/newicons/newtab.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.close-button {
+	list-style-image: url("chrome://codetch/skin/newicons/close.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+.closesml-button {
+	list-style-image: url("chrome://codetch/skin/newicons/close-sml.png");
+	-moz-image-region: rect(0px, 12px, 12px, 0px); /*()*/
+}
+.go-button {
+	list-style-image: url("chrome://codetch/skin/newicons/go.png")!important;
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+
+toolbarbutton.code-view {
+	list-style-image: url("chrome://codetch/skin/newicons/code.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton.design-view {
+	list-style-image: url("chrome://codetch/skin/newicons/design.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton.preview-view {
+	list-style-image: url("chrome://codetch/skin/newicons/preview.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton.reference-view{
+	list-style-image: url("chrome://codetch/skin/newicons/reference.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+toolbarbutton.rotate-orient{
+	list-style-image: url("chrome://codetch/skin/newicons/rotate-page.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px); /*()*/
+}
+/* grippy/spitter
+------------------------------------------------------*/
+splitter > grippy {
+  display: -moz-box !important;
+}
+splitter {
+}
+
+
+/* misc2
+------------------------------------------------------*/
+
+#output-buffer {
+	font-family: -moz-fixed;
+}
+
+listitem.default {
+  font-weight: bold;
+}
+
+
+#utility-editor {
+	visibility: hidden;
+}
+
+
+.status {
+  -moz-appearance: statusbar!important;
+  border-top: 1px solid ThreeDLightShadow;
+  border-left: 1px solid ThreeDShadow;
+  border-right: 1px solid ThreeDHighlight;
+  border-bottom: 1px solid ThreeDHighlight;
+  background-color: -moz-Dialog;
+  font: message-box;
+}
+
+
+
+/* bindings
+------------------------------------------------------*/
+toolbox toolbar {
+	-moz-binding: url("chrome://codetch/content/toolbarBindings.xml#toolbarBtnToggle");
+}
+
+.floater {
+  -moz-binding: url("chrome://codetch/content/floaterBindings.xml#floater");
+}
+#editor-tabs {
+	-moz-binding: url("chrome://codetch/content/editorboxBindings.xml#editorbox");
+}
+
+.panel-box {
+	-moz-binding: url("chrome://codetch/content/panelBindings.xml#panelBox");
+}
+
+.browser-page-box {
+  -moz-binding: url("chrome://codetch/content/editorbindings/panelRoot.xml#rootBrowserPage");
+}
+[src^="chrome://"].browser-page-box {
+  -moz-binding: url("chrome://codetch/content/editorbindings/panelRoot.xml#rootChromePage");
+}
+
+tabpanel[filehandler="default"] {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#editorBox");
+	-moz-box-orient: vertical;
+}
+/*
+tabpanel[filehandler="default"] {
+  -moz-binding: url("chrome://codetch/content/editorBindings.xml#editorBox");
+	-moz-box-orient: vertical;
+}
+*/
+
+.forecolor-btn{
+	list-style-image: url("chrome://codetch/skin/newicons/textcolor.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+	-moz-binding: url("chrome://codetch/content/colorBindings.xml#colorbutton");
+	-moz-box-pack: end;
+	-moz-box-align: end;
+}
+
+.bgcolor-btn{
+	-moz-binding: url("chrome://codetch/content/colorBindings.xml#colorbutton");
+	list-style-image: url("chrome://codetch/skin/newicons/bgcolor.gif");
+	-moz-image-region: rect(0px, 21px, 21px, 0px); /*()*/
+	-moz-box-pack: end;
+	-moz-box-align: end;
+}
+/* ::::: splitter grippy ::::: */
+  
+splitter > grippy {
+  display: -moz-box !important;
+  cursor: pointer;
+  border-top: 1px solid ThreeDShadow;
+  border-bottom: 1px solid ThreeDShadow;
+  min-width: 5px;
+  min-height: 55px;
+  background-color: ThreeDShadow;
+  background-repeat: no-repeat;
+}
+
+splitter > grippy:hover {
+  background-color: #CCCCFF;
+}
+
+splitter[orient="vertical"] > grippy {
+  border-top: none;
+  border-right: 1px solid ThreeDShadow;
+  border-bottom: none;
+  border-left: 1px solid ThreeDShadow;;
+  min-width: 55px!important;
+  min-height: 5px!important;
+}
+  
+/* ..... normal state ..... */
+
+/* vertical grippies */
+splitter[collapse="before"] > grippy {
+  background-image: url("chrome://codetch/skin/splitter/grip-vrt-before.gif")!important;
+}
+
+splitter[collapse="after"] > grippy {
+  background-image: url("chrome://codetch/skin/splitter/grip-vrt-after.gif")!important;
+}
+
+/* horizontal grippies */
+splitter[collapse="before"][orient="vertical"] > grippy {
+  background-image: url("chrome://codetch/skin/splitter/grip-hrz-before.gif")!important;
+}  
+
+splitter[collapse="after"][orient="vertical"] > grippy {
+  background-image: url("chrome://codetch/skin/splitter/grip-hrz-after.gif")!important;
+}  
+  
+/* ..... collapsed state ..... */
+
+/* vertical grippies */
+splitter[collapse="before"][state="collapsed"] > grippy {
+  background-image: url("chrome://codetch/skin/splitter/grip-vrt-after.gif")!important;
+}
+
+splitter[collapse="after"][state="collapsed"] > grippy {
+  background-image: url("chrome://codetch/skin/splitter/grip-vrt-before.gif")!important;
+}
+
+/* horizontal grippies */
+splitter[collapse="before"][state="collapsed"][orient="vertical"] > grippy {
+  background-image: url("chrome://codetch/skin/splitter/grip-hrz-after.gif")!important;
+}  
+
+splitter[collapse="after"][state="collapsed"][orient="vertical"] > grippy {
+  background-image: url("chrome://codetch/skin/splitter/grip-hrz-before.gif")!important;
+}  

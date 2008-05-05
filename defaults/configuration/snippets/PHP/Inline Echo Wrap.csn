@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippet name="Shorthand Echo Wrap" description="Wraps text to echo" type="wrap" preview="code"><insertText location="beforeSelection"><![CDATA[<?=]]></insertText><insertText location="afterSelection"><![CDATA[?>]]></insertText></snippet>

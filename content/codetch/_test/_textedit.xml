@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<bindings id="textedit"
+          xmlns="http://www.mozilla.org/xbl"
+          xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns:xbl="http://www.mozilla.org/xbl">
+  <binding id="sheditor" extends="chrome://global/content/bindings/editor.xml#editor">
+	<handlers>
+		<handler event="keyup">
+			var keyCode = (event.charCode) ? event.charCode : ((event.keyCode) ? event.keyCode : ((event.which) ? event.which : 0));
+			switch(keyCode){
+				//case event.DOM_VK_RETURN:
+				case event.DOM_VK_SPACE:
+				case event.DOM_VK_DELETE:
+				case event.DOM_VK_PERIOD:
+					nodeData();
+				break;
+			}
+		</handler>
+		<handler event="keydown" keycode="vk_return" action="//nodeData();" />
+		<handler event="keyup" keycode="vk_return" action="nodeData();" />
+		<handler event="keyup" keycode="vk_quote" action="nodeData();" />
+		<handler event="keyup" keycode="vk_quote" modifiers="shift" action="nodeData();" />
+		<handler event="keyup" keycode="vk_back" action="nodeData();" />
+		<handler event="keyup" keycode="vk_slash" action="nodeData();" />
+	</handlers>
+  </binding>
+</bindings>

@@ -1,0 +1,37 @@
+<!ENTITY prefs.title "Codetch indstillinger">
+<!ENTITY label.general "Generelt">
+<!ENTITY label.format "Formattering">
+<!ENTITY label.configuration "Configuration">
+<!ENTITY label.snippets "Snippets">
+<!ENTITY label.codeformat "Kode editor">
+<!ENTITY prefs.defaultdoctype "Standard ny filtype">
+<!ENTITY prefs.loadtabset "Genåben faneblade ved opstart">
+<!ENTITY prefs.filehistorylength "Max længde af filhistorik">
+<!ENTITY prefs.clearlist "Ryd liste">
+<!ENTITY prefs.tabchar "Tabulator tegn">
+<!ENTITY prefs.autorefresh "Realtids redigerings fremvisning">
+<!ENTITY prefs.codewrap "Ombryd linjer (virker ikke!)">
+<!ENTITY prefs.codefont "Skrifttype">
+<!ENTITY prefs.codefontsize "Skriftstørrelse">
+<!ENTITY prefs.codecolor "Tekstfarve">
+<!ENTITY prefs.codebg "Baggrundsfarve">
+<!ENTITY prefs.codelinenumcolor "Line Number Color">
+<!ENTITY prefs.codelinenumbg "Line Number Background">
+<!ENTITY prefs.codecss "Tilpassede CSS layouts">
+<!ENTITY prefs.codecssdescription "Brug CSS her du vil have anvendt i kodeboksen.">
+<!ENTITY prefs.previewtmp "Ekstern fremvisning ved hjælp af midlertidige filer">
+<!ENTITY prefs.openinreference "Hent valideringer og bogmærker i reference visning">
+<!ENTITY prefs.welcomescreen "Enable welcome screen">
+<!ENTITY label.browseconfig "Browse configuration directory">
+<!ENTITY label.directories "Directories">
+<!ENTITY prefs.snippetdir "Snippet directory">
+<!ENTITY prefs.templatedir "Template directory">
+<!ENTITY prefs.projectdir "Project directory">
+<!ENTITY label.editbrowsers "Ekstern browser liste">
+<!ENTITY label.setdefault "Sæt som standard">
+<!ENTITY label.remove "Fjern">
+<!ENTITY label.addbrowser "Tilføj/rediger browser">
+<!ENTITY label.changebrowser "Tilføj/rediger">
+<!ENTITY label.path "Sti">
+<!ENTITY label.name "Navn">
+<!ENTITY label.new "Ryd">
