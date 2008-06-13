@@ -6,8 +6,8 @@ var CMD_SETS = false;
 var RCMD_SETS = true;
 
 const DEBUG_ALERT = false;
-const DEBUG_MODE = false;
-const DEBUG_CONSOLE = false;
+const DEBUG_MODE = true;
+const DEBUG_CONSOLE = true;
 
 const nsIWebNavigation = Components.interfaces.nsIWebNavigation;
 const pageLoaderIface = Components.interfaces.nsIWebPageDescriptor;
@@ -462,8 +462,10 @@ var codetch = {
 	try {
 		var p = osPath(path);
 		var newfile = FileIO.open(p);
-		if(newfile && newfile.exists() && newfile.isFile())return (importit)?this.importFile(newfile):this.openFile(newfile, options);
-		else if(newfile.isFile()) throw 'The file is missing or has been moved.';
+		if(newfile && newfile.exists() && newfile.isFile())
+		  return (importit)?this.importFile(newfile):this.openFile(newfile, options);
+		else if(newfile.isFile())
+		  throw 'The file is missing or has been moved.';
 	}catch (ex){
 		alert(p+'\n'+localize('OpenPathFail'));
 		debugLog(ex);

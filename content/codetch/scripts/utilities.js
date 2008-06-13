@@ -1,6 +1,6 @@
 
-const XULNS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
-const DOCNS = 'http://doctypes.codetch.com/rdf#';
+var XULNS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+var DOCNS = 'http://doctypes.codetch.com/rdf#';
 
 var gLocalFonts = null;
 var gStringBundle = null;
@@ -131,14 +131,14 @@ function ConfirmAdvanced(dialogTitle, dialogMsg, okButtonText, cancelButtonText,
 function infoWin(img, title, message)
 {
 	///*
-    const params = Components.classes["@mozilla.org/embedcomp/dialogparam;1"]
+    var params = Components.classes["@mozilla.org/embedcomp/dialogparam;1"]
                              .createInstance(Components.interfaces.nsIDialogParamBlock);
     params.SetNumberStrings(3);
     params.SetString(0, img);
     params.SetString(1, title);
     params.SetString(2, message);
 	//params = {title:title,img:img,message:message};
-    const ww = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
+    var ww = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
                          .getService(Components.interfaces.nsIWindowWatcher);
     return ww.openWindow(null, "chrome://codetch/content/dialogs/info.xul", "info", "chrome,all,centerscreen,alwaysRaised,dialog,modal=no,resizable=no", params);
 	//*/

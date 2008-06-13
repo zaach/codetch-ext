@@ -874,7 +874,7 @@
 			this.element.makeEditable('html',false);
 			this.initObs();
 			this._parser = new ParseMaster;
-		}catch (e) {alert(e)}
+		}catch (e) {debugLog(e)}
 		</constructor>
 		<property name="parser" onget="return this._parser;" />
 		<property name="document">
@@ -997,7 +997,7 @@
 		</method>
 		<method name="editEvent">
 			<body>
-				alert(this.editor.getModificationCount());
+				debugLog(this.editor.getModificationCount());
 			</body>
 		</method>
 		<method name="initObs">
@@ -1167,7 +1167,7 @@
 			<xul:toolbarbutton class="go-button toolbarbutton-1" label="Display" oncommand="this.parentNode.parentNode.parentNode.loadURI()"/>
 			<xul:toolbarbutton class="browse-button toolbarbutton-1" label="Browse..." oncommand="this.parentNode.parentNode.parentNode.loadURI(getFilePath())"/>
 		</xul:toolbar></xul:toolbox>
-		<xul:browser flex="1" class="reference-frame" type="content" src="chrome://codetch/locale/pages/ref.xhtml" xbl:inherits="disabled,src" />
+		<xul:browser flex="1" class="reference-frame" type="content" src="chrome://codetch/content/pages/ref.xhtml" xbl:inherits="disabled,src" />
     </content>
   	<implementation>
 		<constructor>

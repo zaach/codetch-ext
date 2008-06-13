@@ -3,6 +3,7 @@
 .panel-box .title-bar {
   -moz-appearance: toolbox;
   height: 20px;
+  cursor: pointer;
 }
 .panel-title {
   -moz-binding: url("chrome://codetch/content/panelBindings.xml#panelButton");

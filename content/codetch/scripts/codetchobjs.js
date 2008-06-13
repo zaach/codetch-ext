@@ -1,3 +1,4 @@
+
 var _p;
 
  /*  CodetchTab - wrapper for  tab/panel
@@ -429,8 +430,11 @@ _p.loadOpenOptions = function(options)
 	
 	if(options.lastPanelView)
 		this.panel.lastPanel = this.panel.panels[options.lastPanelView];
-	this.scrollTop = options.scrollTop;
-	this.scrollLeft = options.scrollLeft;
+		
+	try{
+	if(options.scrollTop)this.scrollTop = options.scrollTop;
+	if(options.scrollLeft)this.scrollLeft = options.scrollLeft;
+	}catch(e){debuglog(e)}
 };
 
 CodetchTab.prototype.__defineGetter__("leafName",function()
