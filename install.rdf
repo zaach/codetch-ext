@@ -40,7 +40,7 @@
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <RDF:Description RDF:about="urn:mozilla:install-manifest">
         <em:id>{420ed894-c19f-4318-a83f-bacae374db28}</em:id>
-        <em:version>0.4.1pre</em:version>
+        <em:version>0.4.1rc1</em:version>
         <em:name>Codetch</em:name>
         <em:description>A file editing application.</em:description>
         <em:creator>Zachary Carter</em:creator>
