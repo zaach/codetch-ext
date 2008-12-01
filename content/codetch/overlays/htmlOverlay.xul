@@ -129,7 +129,7 @@
 			<toolbarbutton id="common-html-em-btn" tooltiptext="&label.em;" command="cmd_em"/>
 			<toolbarbutton id="common-html-p-btn" label="&label.paragraph;" hidden="true" oncommand="goDoCommandParams('cmd_formatBlock', paramString('p'))" observes="cmd_formatBlock"/>
 			<toolbarseparator id="htmlc-separator-2" />
-			<toolbarbutton id="common-html-forecolor-btn" tooltiptext="&label.forecolor;" class="toolbarbutton-1" oncolorchange="goDoCommandParams('cmd_forecolor', paramString(this.color))" observes="cmd_forecolor"/>
+			<toolbarbutton id="common-html-forecolor-btn" tooltiptext="&label.forecolor;" class="toolbarbutton-1" oncolorchange="goDoCommandParams('cmd_forecolor', paramString(this.color));debugLog('color pressed'); " observes="cmd_forecolor"/>
 			<toolbarbutton id="common-html-bgcolor-btn" tooltiptext="&label.bgcolor;" class="toolbarbutton-1" oncolorchange="goDoCommandParams('cmd_hilitecolor', paramString(this.color))" observes="cmd_hilitecolor"/>
 		</toolbar>
 		</toolbox>

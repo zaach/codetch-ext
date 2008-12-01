@@ -1187,33 +1187,7 @@ function renameFile(path, filename){
 		debugLog(e);
 		return false;
 	}
-}
-/* Deprecated, just here for future reference if needed
-var gSiteXML = document.implementation.createDocument("","",null);
-function loadSiteXML()
-{
-	try{
-		var importFile = FileIO.open(getCodetchPath());
-		importFile.append("sites.xml");
-		if(!importFile || !importFile.exists())
-			copyDoctypes();
-		if(importFile && importFile.exists())
-			gSiteXML.loadXML(FileIO.read(importFile));
-		return gSiteXML;
-	}catch(e){
-		debugLog(e);
-		return false;
-	}
-}
-
-function saveSiteXML()
-{
-	var importFile = FileIO.open(getDoctypesPath());
-	importFile.append("sites.xml");
-	if(importFile)
-		FileIO.write(importFile, gSiteXML.xml);
-}
-*/
+}
 
 // also deprecated
 function buildSiteMenu(menuPopup)
@@ -1281,7 +1255,7 @@ function loadLocalFiles(path, set)
 	if(dir && !dir.isDirectory()) path = getBrowserPath(dir.parent.path);
 	if(path){
 		path = path.replace('file:///Root','NC:FilesRoot');
-		gLocalFileTree.setAttribute('ref', path)
+		gLocalFileTree.setAttribute('ref', path);
 		if(set) document.getElementById('file-site-list').label=osPath(path.replace('NC:FilesRoot','Root'));
 		gLocalFileTree.builder.rebuild();
 	}
@@ -2097,10 +2071,14 @@ function init()
 
 	if(gLocalFileTree.ref!='NC:FilesRoot')
 		document.getElementById('file-site-list').label = osPath(gLocalFileTree.ref);
-    var itemNode = document.createElementNS(XULNS, "menuitem");
-        itemNode.setAttribute("label", userDocsDir().path);
-        itemNode.setAttribute("value", userDocsDir().path);
-	document.getElementById('file-site-list').appendChild(itemNode);
+		
+  var itemNode = document.createElementNS(XULNS, "menuitem");
+  itemNode.setAttribute("label", userDocsDir().path);
+  itemNode.setAttribute("value", getBrowserPath(userDocsDir().path));
+
+	document.getElementById('file-site-list-popup').appendChild(itemNode);
+	
+	//alert(document.getElementById('file-site-list').childNodes.length);
 
 	// set default menu lengths
 	gViewMenuCount = document.getElementById('view-popup').childNodes.length;

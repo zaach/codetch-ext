@@ -310,16 +310,16 @@
 	<handlers>
 		<handler event="focus" phase="target">
 			//event.target.scrollToSelect();
-			debugLog('focus-target: '+this.endLine);
+			//debugLog('focus-target: '+this.endLine);
 		</handler>
 		<handler event="focus">
-			debugLog('focus: '+this.endLine);
+			//debugLog('focus: '+this.endLine);
 			this._restorePosition();
 			this.updateLines();
 			this.setStatus();
 		</handler>
 		<handler event="blur">
-			debugLog('blur: '+this.endLine);
+			//debugLog('blur: '+this.endLine);
 			this._savePosition();
 		</handler>
 		<handler event="change">
@@ -915,7 +915,7 @@
   ===================================================================== -->
   <binding id="designViewBox" extends="chrome://codetch/content/editorbindings/editorRoot.xml#rootEditorPanel">
     <content>
-		<xul:editor class="design-frame" flex="1" src="about:blank" xbl:inherits="disabled,src" onclick="this.parentNode.parentNode.parentNode.lastEditor = this.parentNode" />
+		<xul:editor class="design-frame" flex="1" src="about:blank" xbl:inherits="disabled,src" type="content" onclick="this.parentNode.parentNode.parentNode.lastEditor = this.parentNode" />
     </content>
 	<handlers>
 		<handler event="focus" phase="target">

@@ -25,9 +25,8 @@
    onclose    = "return closeMainWindow();"
    onunload   = "return unloadApp();"
    windowtype = "mozilla:codetch"
-   sizemode   = "maximized"
-   width      = "800"
-   height     = "600"
+   width      = "980"
+   height     = "700"
    persist    = "sizemode screenX screenY width height">
 
 <script type="application/x-javascript" src="chrome://global/content/globalOverlay.js" />

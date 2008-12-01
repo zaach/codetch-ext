@@ -167,14 +167,14 @@ tab[selected="true"] {
 }
 toolbarbutton colorpicker[type="button"] {
 	-moz-appearance: none !important;
-	visibility: collapse;
+	visibility: visible;
 	border: 0;
 	padding: 0;
 	height: 12px;
-	width: 6px;
+	width: 1px;
 }
 toolbarbutton colorpicker[type="button"] popup{
-	visibility: visible;
+	visibility: visible!important;
 }
 #editor-toolbox .toolbarbutton-1{
 	-moz-box-align: center;

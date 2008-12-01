@@ -122,8 +122,11 @@ initCommandUpdateTrigger();
 
 ]]>
 </script>
-<textbox onselect="alert('selected');" /><button label="setup" oncommand="window.open('chrome://codetch/content/test.xul','','chrome, modal');"/>
-<editor id="editorobj" src="http://localhost/xul" flex="1"/>
+<vbox flex="1">
+<textbox onselect="alert('selected');" /><button label="setup" oncommand="window.open('chrome://codetch/content/_test.xul','','chrome, modal');"/>
+<editor id="editorobj" src="chrome://codetch/content/blank.html" flex="1" type="content"/>
     <button label="Edit" oncommand="this.previousSibling.makeEditable('html',false);"/>
     <button label="setup" oncommand="setup();"/>
+		<colorpicker type="button" onclick="//event.stopPropagation();"  onchange="alert('blah');"/><button label="colors" oncommand="this.previousSibling.showPopup()"/>
+</vbox>
 </window>
