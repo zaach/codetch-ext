@@ -11,6 +11,9 @@ locale	codetch	da-DK	locale/da-DK/codetch/
 locale	codetch	fr-FR	locale/fr-FR/codetch/
 locale	codetch	it-IT	locale/it-IT/codetch/
 locale	codetch	pl-PL	locale/pl-PL/codetch/
+locale	codetch	pt-BR	locale/pt-BR/codetch/
+locale	codetch	ru-RU	locale/ru-RU/codetch/
+locale	codetch	nl-NL	locale/nl-NL/codetch/
 
 skin	codetch	classic/1.0	skin/classic/
 style	chrome://global/content/customizeToolbar.xul	chrome://codetch/skin/toolbar-button.css
