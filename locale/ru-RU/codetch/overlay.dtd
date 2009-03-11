@@ -1,0 +1,14 @@
+<!ENTITY tooltip-codetch "Редактировать в Codetch">
+<!ENTITY menu-codetch "Codetch">
+<!ENTITY codetch.accesskey "C">
+<!ENTITY toolbar-codetch "Codetch">
+<!ENTITY codetch.float "Плавающее окно">
+<!ENTITY codetch.float.accesskey "П">
+<!ENTITY codetch.tab "Вкладка">
+<!ENTITY codetch.tab.accesskey "В">
+<!ENTITY codetch.launchtab "По умолчанию открывать во вкладке">
+<!ENTITY codetch.launchtab.accesskey "м">
+<!ENTITY codetch.editonlaunch "При запуске редактировать текущую страницу">
+<!ENTITY codetch.editonlaunch.accesskey "р">
+<!ENTITY codetch.options "Настройки…">
+<!ENTITY codetch.options.accesskey "Н">

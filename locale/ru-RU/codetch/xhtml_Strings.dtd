@@ -1,0 +1,14 @@
+<!ENTITY newtabgroup.title "Новая группа вкладок">
+<!ENTITY newtabgroup.organize "Объедините ваши наборы файлов… при помощи групп вкладок!">
+<!ENTITY newtabgroup.info.part.one "Вы создали новую группу вкладок!">
+<!ENTITY newtabgroup.info.part.two "Несмотря на то, что на заднем плане у вас могут быть открыты другие файлы, видимы будут только те документы, которые вы открываете в пределах текущей группы. Нажмите">
+<!ENTITY newtabgroup.info.part.three "чтобы переключаться между группами вкладок или создать новую.">
+<!ENTITY ref.title "Словарь терминов">
+<!ENTITY ref.resources "Возможности">
+<!ENTITY welcome.title "Добро пожаловать">
+<!ENTITY welcome.message "Добро пожаловать в Codetch">
+<!ENTITY welcome.revamp "Ищите обновления на codetch.com… рано или поздно!">
+<!ENTITY welcome.site "Официальный сайт">
+<!ENTITY welcome.mozupdate.page "Страница загрузки на сайте дополнений Mozilla">
+<!ENTITY welcome.thanks "Благодарим за использование Codetch! Свяжитесь с нами через">
+<!ENTITY welcome.sendbugs "или пошлите сообщение об ошибке на">

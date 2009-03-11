@@ -5,8 +5,8 @@
 <!ENTITY newtabgroup.info.part.three "to switch between tab groups or create a new one.">
 <!ENTITY ref.title "Glossary">
 <!ENTITY ref.resources "Resources">
-<!ENTITY welcome.title "Welcome">
-<!ENTITY welcome.message "Welcome to Codetch">
+<!ENTITY welcome.title "Welkom">
+<!ENTITY welcome.message "Welkom bij Codetch">
 <!ENTITY welcome.revamp "Look for a revamp of Codetch.com... eventually!">
 <!ENTITY welcome.site "Official Site">
 <!ENTITY welcome.mozupdate.page "Mozilla Update download page">

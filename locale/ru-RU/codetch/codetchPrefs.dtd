@@ -1,0 +1,37 @@
+<!ENTITY prefs.title "Codetch — Настройки">
+<!ENTITY label.general "Общие">
+<!ENTITY label.format "Форматирование">
+<!ENTITY label.configuration "Конфигурация">
+<!ENTITY label.snippets "Фрагменты">
+<!ENTITY label.codeformat "Редактор кода">
+<!ENTITY prefs.defaultdoctype "Расширение по умолчанию для нового файла">
+<!ENTITY prefs.loadtabset "Вновь открывать вкладки при запуске">
+<!ENTITY prefs.filehistorylength "Максимальный размер истории последних файлов">
+<!ENTITY prefs.clearlist "Очистить список">
+<!ENTITY prefs.tabchar "Символ(ы) табуляции">
+<!ENTITY prefs.autorefresh "Живой предпросмотр редактирования">
+<!ENTITY prefs.codewrap "Перенос строк кода по словам (не работает!)">
+<!ENTITY prefs.codefont "Шрифт">
+<!ENTITY prefs.codefontsize "Размер шрифта">
+<!ENTITY prefs.codecolor "Цвет текста">
+<!ENTITY prefs.codebg "Цвет фона">
+<!ENTITY prefs.codelinenumcolor "Цвет нумерации строк">
+<!ENTITY prefs.codelinenumbg "Фон нумерации строк">
+<!ENTITY prefs.codecss "Пользовательские CSS стили">
+<!ENTITY prefs.codecssdescription "Используйте здесь любой CSS код, который вы хотите применить к полю кода.">
+<!ENTITY prefs.previewtmp "Для внешнего предпросмотра использовать временные файлы">
+<!ENTITY prefs.openinreference "Загружать проверку подлинности в справочном представлении">
+<!ENTITY prefs.welcomescreen "Включить экран приглашения">
+<!ENTITY label.browseconfig "Просмотреть каталог конфигурации">
+<!ENTITY label.directories "Каталоги">
+<!ENTITY prefs.snippetdir "Каталог фрагментов">
+<!ENTITY prefs.templatedir "Временный каталог">
+<!ENTITY prefs.projectdir "Каталог проекта">
+<!ENTITY label.editbrowsers "Список внешних браузеров">
+<!ENTITY label.setdefault "Установить по умолчанию">
+<!ENTITY label.remove "Удалить">
+<!ENTITY label.addbrowser "Добавить/Изменить просмотрщик">
+<!ENTITY label.changebrowser "Добавить/Изменить">
+<!ENTITY label.path "Путь">
+<!ENTITY label.name "Обозначение">
+<!ENTITY label.new "Очистить">

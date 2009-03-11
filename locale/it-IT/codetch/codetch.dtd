@@ -1,5 +1,5 @@
 <!ENTITY window.title "Codetch">
-<!ENTITY window.welcome "Benvenuto in Codetch">
+<!ENTITY window.welcome "Benvenuti in Codetch">
 <!ENTITY menu.file "File">
 <!ENTITY menu.file.accesskey "F">
 <!ENTITY menu.open "Apri file...">
@@ -27,7 +27,7 @@
 <!ENTITY menu.saveas "Salva con nome...">
 <!ENTITY menu.saveas.key "K">
 <!ENTITY menu.saveas.accesskey "n">
-<!ENTITY menu.saveastemplate "Salva template...">
+<!ENTITY menu.saveastemplate "Salva modello...">
 <!ENTITY menu.saveastemplate.accesskey "t">
 <!ENTITY menu.saveall "Salva tutti">
 <!ENTITY menu.saveall.accesskey "t">
@@ -49,7 +49,7 @@
 <!ENTITY menu.print.key "P">
 <!ENTITY menu.groupwith "Raggruppa con">
 <!ENTITY menu.groupwith.accesskey "G">
-<!ENTITY label.rename "Rinonima">
+<!ENTITY label.rename "Rinomina">
 <!ENTITY label.rename.accesskey "R">
 <!ENTITY menu.exit "Esci">
 <!ENTITY menu.exit.key "Q">
@@ -88,8 +88,8 @@
 <!ENTITY menu.tolower "In minuscolo">
 <!ENTITY menu.tolower.accesskey "l">
 <!ENTITY menu.tolower.key "L">
-<!ENTITY menu.totitle "To Title case">
-<!ENTITY menu.totitle.accesskey "T">
+<!ENTITY menu.totitle "Prima maiuscola">
+<!ENTITY menu.totitle.accesskey "P">
 <!ENTITY menu.totitle.key "T">
 <!ENTITY menu.prefs "Opzioni...">
 <!ENTITY menu.prefs.key "O">
@@ -101,21 +101,21 @@
 <!ENTITY menu.gotoline.accesskey "r">
 <!ENTITY menu.modify "Formattazione">
 <!ENTITY menu.modify.accesskey "t">
-<!ENTITY menu.lineformat "">
-<!ENTITY menu.lineformat.accesskey "">
-<!ENTITY label.windows "">
-<!ENTITY label.windows.accesskey "">
-<!ENTITY label.unix "">
-<!ENTITY label.unix.accesskey "">
-<!ENTITY label.mac "">
-<!ENTITY label.mac.accesskey "">
+<!ENTITY menu.lineformat "Formato di fine linea">
+<!ENTITY menu.lineformat.accesskey "l">
+<!ENTITY label.windows "Windows">
+<!ENTITY label.windows.accesskey "W">
+<!ENTITY label.unix "Unix">
+<!ENTITY label.unix.accesskey "U">
+<!ENTITY label.mac "Mac">
+<!ENTITY label.mac.accesskey "M">
 <!ENTITY menu.view "Visualizza">
 <!ENTITY menu.view.accesskey "V">
 <!ENTITY menu.linenums "Numeri di riga">
 <!ENTITY menu.linenums.key "L">
 <!ENTITY menu.linenums.accesskey "r">
-<!ENTITY menu.sidebardir "">
-<!ENTITY menu.sidebardir.accesskey "">
+<!ENTITY menu.sidebardir "Barra laterale a destra">
+<!ENTITY menu.sidebardir.accesskey "d">
 <!ENTITY menu.help "Aiuto">
 <!ENTITY menu.help.accesskey "A">
 <!ENTITY menu.helpcontents "Contenuti della guida">
@@ -158,10 +158,10 @@
 <!ENTITY label.orientation.accesskey "O">
 <!ENTITY label.orientation.tooltip "Orientamento delle visualizzazioni">
 <!ENTITY label.sidebar "Barra laterale">
-<!ENTITY label.sidebar.accesskey "l">
+<!ENTITY label.sidebar.accesskey "B">
 <!ENTITY label.results "Risultati">
 <!ENTITY label.results.accesskey "R">
-<!ENTITY label.inserttoolbox "Inserisci pannelo">
+<!ENTITY label.inserttoolbox "Inserisci pannello">
 <!ENTITY label.inserttoolbox.accesskey "p">
 <!ENTITY label.insert "Inserisci">
 <!ENTITY label.insert.accesskey "I">
@@ -172,7 +172,7 @@
 <!ENTITY label.toolboxdock "Barre degli strumenti sotto le schede">
 <!ENTITY label.toolboxdock.accesskey "s">
 <!ENTITY label.filetoolbar "Barra generale">
-<!ENTITY label.filetoolbar.accesskey "F">
+<!ENTITY label.filetoolbar.accesskey "B">
 <!ENTITY label.tabgroups "Gruppi di schede">
 <!ENTITY label.tabgroups.accesskey "G">
 <!ENTITY label.newtabgroup "Nuovo gruppo di schede">
@@ -195,7 +195,7 @@
 <!ENTITY label.underline.accesskey "S">
 <!ENTITY label.strike "Barrato">
 <!ENTITY label.strike.accesskey "r">
-<!ENTITY label.tt "Teletype">
+<!ENTITY label.tt "Testo non formattato">
 <!ENTITY label.tt.accesskey "T">
 <!ENTITY label.em "Enfasi">
 <!ENTITY label.em.key "E">
@@ -351,20 +351,20 @@
 <!ENTITY label.refresh.accesskey "R">
 <!ENTITY label.externalpreview "Avvia anteprima esterna">
 <!ENTITY label.externalpreview.accesskey "e">
-<!ENTITY label.editbrowserlist "Modifica lista dei browser...">
+<!ENTITY label.editbrowserlist "Modifica elenco dei browser...">
 <!ENTITY label.editbrowserlist.accesskey "M">
 <!ENTITY label.previewin "Anteprima in">
 <!ENTITY label.extensionbrowser "Browser di Codetch">
 <!ENTITY label.extensionbrowser.accesskey "C">
 <!ENTITY label.extensionbrowsertip "Anteprima nel browser di Codetch">
-<!ENTITY label.usetempfile "Usa file temporanei">
+<!ENTITY label.usetempfile "Utilizza file temporanei">
 <!ENTITY label.usetempfile.accesskey "t">
 <!ENTITY label.print "Stampa">
 <!ENTITY label.print.accesskey "m">
-<!ENTITY label.launch "">
-<!ENTITY label.launch.accesskey "">
-<!ENTITY label.run "">
-<!ENTITY label.run.accesskey "">
+<!ENTITY label.launch "Lancia">
+<!ENTITY label.launch.accesskey "L">
+<!ENTITY label.run "Avvia">
+<!ENTITY label.run.accesskey "A">
 <!ENTITY label.browsertoolbar "Barra di navigazione">
 <!ENTITY label.browsertoolbar.accesskey "B">
 <!ENTITY label.reload "Ricarica anteprima">
@@ -407,7 +407,7 @@
 <!ENTITY label.case.accesskey "D">
 <!ENTITY label.wrap "Dall&apos;inizio">
 <!ENTITY label.wrap.accesskey "i">
-<!ENTITY label.regex "Usa espressione regolare">
+<!ENTITY label.regex "Utilizza espressione regolare">
 <!ENTITY label.regex.accesskey "e">
 <!ENTITY label.inselection "Testo selezionato">
 <!ENTITY label.inselection.accesskey "s">
@@ -430,20 +430,20 @@
 <!ENTITY label.type.accesskey "T">
 <!ENTITY label.insertblock "Inserisci blocco">
 <!ENTITY label.insertblock.accesskey "b">
-<!ENTITY label.wrapselection "A capo la selezione">
-<!ENTITY label.wrapselection.accesskey "w">
+<!ENTITY label.wrapselection "Manda a capo la selezione">
+<!ENTITY label.wrapselection.accesskey "M">
 <!ENTITY label.insertcode "Inserisci codice">
 <!ENTITY label.insertcode.accesskey "c">
 <!ENTITY label.insertbefore "Inserisci prima">
 <!ENTITY label.insertbefore.accesskey "p">
 <!ENTITY label.insertafter "Inserisci dopo">
 <!ENTITY label.insertafter.accesskey "d">
-<!ENTITY label.previewtype "Preview type">
-<!ENTITY label.previewtype.accesskey "P">
-<!ENTITY label.setastreeroot "Imposta come root dell&apos;albero">
-<!ENTITY label.setastreeroot.accesskey "r">
+<!ENTITY label.previewtype "Tipo di anteprima">
+<!ENTITY label.previewtype.accesskey "a">
+<!ENTITY label.setastreeroot "Imposta come cartella principale dell&apos;albero">
+<!ENTITY label.setastreeroot.accesskey "I">
 <!ENTITY label.uponelevel "Sali di un livello">
 <!ENTITY label.uponelevel.accesskey "l">
 <!ENTITY label.tags "Tag">
 <!ENTITY label.tags.accesskey "T">
-<!ENTITY description.tags "I tag sono descrittivi, un listato di parole chiave separato da spazi che aiutano nella categorizzazione (es. &apos;PHP MySQL class&apos;).">
+<!ENTITY description.tags "I tag sono descrittivi, un elenco di parole chiave separato da spazi che aiutano nella categorizzazione (es. &apos;PHP MySQL class&apos;).">

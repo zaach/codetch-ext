@@ -1,0 +1,14 @@
+<!ENTITY newtabgroup.title "Nouveau groupe d&apos;onglets">
+<!ENTITY newtabgroup.organize "Organisez vos séries de fichiers… avec des groupes d&apos;onglets !">
+<!ENTITY newtabgroup.info.part.one "Vous avez créé un nouveau groupe d&apos;onglets !">
+<!ENTITY newtabgroup.info.part.two "Vous avez la possibilité d&apos;avoir d&apos;autres fichiers ouverts en arrière-plan, seuls seront visibles les documents que vous ouvrez avec le groupe en cours. Cliquez sur">
+<!ENTITY newtabgroup.info.part.three "pour passer d&apos;un groupe d&apos;onglets à l&apos;autre ou pour en créer un nouveau.">
+<!ENTITY ref.title "Glossaire">
+<!ENTITY ref.resources "Ressources">
+<!ENTITY welcome.title "Bienvenue">
+<!ENTITY welcome.message "Bienvenue dans Codetch">
+<!ENTITY welcome.revamp "Vous attendiez le renouveau de codetch.com… le voilà enfin !">
+<!ENTITY welcome.site "Site officiel">
+<!ENTITY welcome.mozupdate.page "Page de téléchargement sur Mozilla Add-ons">
+<!ENTITY welcome.thanks "Merci d&apos;utiliser Codetch ! Vous pouvez nous joindre à">
+<!ENTITY welcome.sendbugs "ou signaler un bogue à">

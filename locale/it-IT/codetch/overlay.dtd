@@ -1,14 +1,14 @@
-<!ENTITY tooltip-codetch "">
-<!ENTITY menu-codetch "">
-<!ENTITY codetch.accesskey "">
-<!ENTITY toolbar-codetch "">
-<!ENTITY codetch.float "">
-<!ENTITY codetch.float.accesskey "">
-<!ENTITY codetch.tab "">
-<!ENTITY codetch.tab.accesskey "">
-<!ENTITY codetch.launchtab "">
-<!ENTITY codetch.launchtab.accesskey "">
-<!ENTITY codetch.editonlaunch "">
-<!ENTITY codetch.editonlaunch.accesskey "">
-<!ENTITY codetch.options "">
-<!ENTITY codetch.options.accesskey "">
+<!ENTITY tooltip-codetch "Codetch">
+<!ENTITY menu-codetch "Codetch">
+<!ENTITY codetch.accesskey "t">
+<!ENTITY toolbar-codetch "Codetch">
+<!ENTITY codetch.float "Nuova finestra">
+<!ENTITY codetch.float.accesskey "N">
+<!ENTITY codetch.tab "Nuova scheda">
+<!ENTITY codetch.tab.accesskey "s">
+<!ENTITY codetch.launchtab "Apri per impostazione predefinita in una scheda">
+<!ENTITY codetch.launchtab.accesskey "A">
+<!ENTITY codetch.editonlaunch "Modifica in Codetch">
+<!ENTITY codetch.editonlaunch.accesskey "M">
+<!ENTITY codetch.options "Opzioni">
+<!ENTITY codetch.options.accesskey "O">

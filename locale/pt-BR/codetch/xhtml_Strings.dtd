@@ -1,0 +1,14 @@
+<!ENTITY newtabgroup.title "Novo Grupo de Aba">
+<!ENTITY newtabgroup.organize "Organizar seu conjunto de arquivox… com Tab Groups!">
+<!ENTITY newtabgroup.info.part.one "Você criou um novo Tab Group!">
+<!ENTITY newtabgroup.info.part.two "Enquanto você tiver outros arquivos abrindo em segundo plano, somente os documentos que você abriu dentro do grupo atual serão visíveis. Clique na">
+<!ENTITY newtabgroup.info.part.three "para alternar entre tab groups ou criar um novo.">
+<!ENTITY ref.title "Glossário">
+<!ENTITY ref.resources "Recursos">
+<!ENTITY welcome.title "Bem-vindo">
+<!ENTITY welcome.message "Bem-vindo ao Codetch">
+<!ENTITY welcome.revamp "Veja a renoveção do Codetch.com… no futuro!">
+<!ENTITY welcome.site "Site Oficial">
+<!ENTITY welcome.mozupdate.page "Página de download Mozilla">
+<!ENTITY welcome.thanks "Obrigado por usar Codetch! Contate-nos em">
+<!ENTITY welcome.sendbugs "ou envie bugs para">

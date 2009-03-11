@@ -1,0 +1,14 @@
+<!ENTITY newtabgroup.title "Nuovo gruppo di schede">
+<!ENTITY newtabgroup.organize "Il raggruppamento delle schede consente una migliore organizzazione dei file.">
+<!ENTITY newtabgroup.info.part.one "Gruppo di schede creato correttamente.">
+<!ENTITY newtabgroup.info.part.two "Mentre sono aperti altri file oltre a quelli del gruppo, solo quelli appartenenti al gruppo schede selezionato saranno visibili. Fare clic su">
+<!ENTITY newtabgroup.info.part.three "per cambiare gruppo schede o crearne uno nuovo.">
+<!ENTITY ref.title "Glossario">
+<!ENTITY ref.resources "Risorse">
+<!ENTITY welcome.title "Benvenuto">
+<!ENTITY welcome.message "Benvenuto in Codetch">
+<!ENTITY welcome.revamp "Controllare periodicamente gli aggiornamenti di Codetch.com">
+<!ENTITY welcome.site "Sito ufficiale">
+<!ENTITY welcome.mozupdate.page "Pagina di download di Mozilla Update">
+<!ENTITY welcome.thanks "Grazie per aver utilizzato Codetch. È possibile contattare gli autori all&apos;indirizzo">
+<!ENTITY welcome.sendbugs "o inviare i bug riscontrati all&apos;indirizzo ">

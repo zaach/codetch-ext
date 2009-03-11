@@ -1,7 +1,7 @@
 <!ENTITY prefs.title "Codetch Preferences">
 <!ENTITY label.general "General">
 <!ENTITY label.format "Formatting">
-<!ENTITY label.configuration "Configuration">
+<!ENTITY label.configuration "Configuratie">
 <!ENTITY label.snippets "Snippets">
 <!ENTITY label.codeformat "Code Editor">
 <!ENTITY prefs.defaultdoctype "Default new file extension">
@@ -13,25 +13,25 @@
 <!ENTITY prefs.codewrap "Wrap code lines (doesn&apos;t work!)">
 <!ENTITY prefs.codefont "Font Face">
 <!ENTITY prefs.codefontsize "Font Size">
-<!ENTITY prefs.codecolor "Text Color">
-<!ENTITY prefs.codebg "Background Color">
-<!ENTITY prefs.codelinenumcolor "Line Number Color">
-<!ENTITY prefs.codelinenumbg "Line Number Background">
+<!ENTITY prefs.codecolor "Tekst Kleur">
+<!ENTITY prefs.codebg "Achtergrond Kleur">
+<!ENTITY prefs.codelinenumcolor "Lijn Nummer Kleur">
+<!ENTITY prefs.codelinenumbg "Lijn Nummer Achtergrond">
 <!ENTITY prefs.codecss "Custom CSS Styles">
 <!ENTITY prefs.codecssdescription "Use any CSS here you wish to be applied to the code box.">
 <!ENTITY prefs.previewtmp "Use temporary files for external preview">
 <!ENTITY prefs.openinreference "Load validations in reference view">
 <!ENTITY prefs.welcomescreen "Enable welcome screen">
 <!ENTITY label.browseconfig "Browse configuration directory">
-<!ENTITY label.directories "Directories">
+<!ENTITY label.directories "Mappen">
 <!ENTITY prefs.snippetdir "Snippet directory">
 <!ENTITY prefs.templatedir "Template directory">
-<!ENTITY prefs.projectdir "Project directory">
+<!ENTITY prefs.projectdir "Projekt map">
 <!ENTITY label.editbrowsers "External Browser List">
 <!ENTITY label.setdefault "Set As Default">
-<!ENTITY label.remove "Remove">
+<!ENTITY label.remove "Verwijderen">
 <!ENTITY label.addbrowser "Add/Edit Browser">
 <!ENTITY label.changebrowser "Add/Change">
-<!ENTITY label.path "Path">
-<!ENTITY label.name "Name">
+<!ENTITY label.path "Pad">
+<!ENTITY label.name "Naam">
 <!ENTITY label.new "Clear">

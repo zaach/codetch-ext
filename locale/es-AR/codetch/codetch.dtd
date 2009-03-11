@@ -361,10 +361,10 @@
 <!ENTITY label.usetempfile.accesskey "U">
 <!ENTITY label.print "Imprimir">
 <!ENTITY label.print.accesskey "I">
-<!ENTITY label.launch "">
-<!ENTITY label.launch.accesskey "">
-<!ENTITY label.run "">
-<!ENTITY label.run.accesskey "">
+<!ENTITY label.launch "Launch">
+<!ENTITY label.launch.accesskey "L">
+<!ENTITY label.run "Run">
+<!ENTITY label.run.accesskey "R">
 <!ENTITY label.browsertoolbar "Barra de Navegación">
 <!ENTITY label.browsertoolbar.accesskey "B">
 <!ENTITY label.reload "Recargar">

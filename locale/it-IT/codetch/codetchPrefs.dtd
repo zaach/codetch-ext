@@ -7,10 +7,10 @@
 <!ENTITY prefs.defaultdoctype "Estensione predefinita per i nuovi file">
 <!ENTITY prefs.loadtabset "Riapri schede all&apos;avvio">
 <!ENTITY prefs.filehistorylength "Lunghezza massima della cronologia dei file recenti">
-<!ENTITY prefs.clearlist "Pulisci lista">
+<!ENTITY prefs.clearlist "Pulisci elenco">
 <!ENTITY prefs.tabchar "Caratteri di tabulazione">
 <!ENTITY prefs.autorefresh "Anteprima in tempo reale">
-<!ENTITY prefs.codewrap "A capo automatico (non funzionante)">
+<!ENTITY prefs.codewrap "A capo automatico">
 <!ENTITY prefs.codefont "Tipo di carattere">
 <!ENTITY prefs.codefontsize "Dimensioni carattere">
 <!ENTITY prefs.codecolor "Colore del testo">
@@ -19,19 +19,19 @@
 <!ENTITY prefs.codelinenumbg "Colore di sfondo dei numeri di riga">
 <!ENTITY prefs.codecss "Codice CSS personalizzato">
 <!ENTITY prefs.codecssdescription "Inserire qui il codice CSS che verrà applicato al campo di testo del codice.">
-<!ENTITY prefs.previewtmp "Usa file temporanei per le anteprime in browser esterni">
+<!ENTITY prefs.previewtmp "Utilizzare file temporanei per le anteprime in browser esterni">
 <!ENTITY prefs.openinreference "Carica le validazioni nella finestra dei riferimenti">
 <!ENTITY prefs.welcomescreen "Attiva finestra di benvenuto">
 <!ENTITY label.browseconfig "Cartella di configurazione del browser">
 <!ENTITY label.directories "Cartelle">
 <!ENTITY prefs.snippetdir "Cartella frammenti di codice">
-<!ENTITY prefs.templatedir "Cartella template">
+<!ENTITY prefs.templatedir "Cartella dei modelli">
 <!ENTITY prefs.projectdir "Cartella progetti">
 <!ENTITY label.editbrowsers "Lista browser esterni">
 <!ENTITY label.setdefault "Imposta come predefinito">
 <!ENTITY label.remove "Rimuovi">
-<!ENTITY label.addbrowser "Aggiungi/Modifica browser">
-<!ENTITY label.changebrowser "Aggiungi/Cambia">
+<!ENTITY label.addbrowser "Aggiungi/modifica browser">
+<!ENTITY label.changebrowser "Aggiungi/modifica">
 <!ENTITY label.path "Cartella">
 <!ENTITY label.name "Nome">
 <!ENTITY label.new "Pulisci">

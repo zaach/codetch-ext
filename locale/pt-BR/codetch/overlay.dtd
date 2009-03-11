@@ -1,14 +1,14 @@
-<!ENTITY tooltip-codetch "Edit with Codetch">
+<!ENTITY tooltip-codetch "Editar com Codetch">
 <!ENTITY menu-codetch "Codetch">
 <!ENTITY codetch.accesskey "C">
 <!ENTITY toolbar-codetch "Codetch">
 <!ENTITY codetch.float "Float">
 <!ENTITY codetch.float.accesskey "F">
-<!ENTITY codetch.tab "Tab">
+<!ENTITY codetch.tab "Aba">
 <!ENTITY codetch.tab.accesskey "T">
-<!ENTITY codetch.launchtab "Default open as tab">
+<!ENTITY codetch.launchtab "Abrir como aba">
 <!ENTITY codetch.launchtab.accesskey "D">
-<!ENTITY codetch.editonlaunch "Edit current page on launch">
+<!ENTITY codetch.editonlaunch "Editar página atual ao executar">
 <!ENTITY codetch.editonlaunch.accesskey "E">
-<!ENTITY codetch.options "Options...">
+<!ENTITY codetch.options "Opções…">
 <!ENTITY codetch.options.accesskey "O">

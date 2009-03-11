@@ -1,0 +1,37 @@
+<!ENTITY prefs.title "Preferências do Codetch">
+<!ENTITY label.general "Geral">
+<!ENTITY label.format "Formatação">
+<!ENTITY label.configuration "Configuração">
+<!ENTITY label.snippets "Snippets">
+<!ENTITY label.codeformat "Editor de Código">
+<!ENTITY prefs.defaultdoctype "Extensão padrão para novo arquivo">
+<!ENTITY prefs.loadtabset "Reabrir abas ao inicializar">
+<!ENTITY prefs.filehistorylength "Quantidade máxima de arquivos recentes no histórico">
+<!ENTITY prefs.clearlist "Limpar Lista">
+<!ENTITY prefs.tabchar "Tabbing Character(s)">
+<!ENTITY prefs.autorefresh "Pré-visualização de edição em tempo real">
+<!ENTITY prefs.codewrap "Quebrar linhas de código (não funciona!)">
+<!ENTITY prefs.codefont "Tipo de fonte">
+<!ENTITY prefs.codefontsize "Tamanho do texto">
+<!ENTITY prefs.codecolor "Cor do texto">
+<!ENTITY prefs.codebg "Cor de fundo">
+<!ENTITY prefs.codelinenumcolor "Cor do número da linha">
+<!ENTITY prefs.codelinenumbg "Número da linha ao fundo">
+<!ENTITY prefs.codecss "Personalizar folhas de estilo">
+<!ENTITY prefs.codecssdescription "Use qualquer folha de estilo que você deseja aqui para ser aplicado a caixa de código.">
+<!ENTITY prefs.previewtmp "Usar arquivos temporários para pré-visualização externa">
+<!ENTITY prefs.openinreference "Carregar validações na visualização de referência">
+<!ENTITY prefs.welcomescreen "Ativar tela de bem-vindo">
+<!ENTITY label.browseconfig "Navegar pelo diretório de configuração">
+<!ENTITY label.directories "Diretórios">
+<!ENTITY prefs.snippetdir "Diretório do Snippet">
+<!ENTITY prefs.templatedir "Diretório de Modelo">
+<!ENTITY prefs.projectdir "Diretório de Projeto">
+<!ENTITY label.editbrowsers "Lista de navegadores externos">
+<!ENTITY label.setdefault "Definir como padrão">
+<!ENTITY label.remove "Remover">
+<!ENTITY label.addbrowser "Adicionar/Editar Navegador">
+<!ENTITY label.changebrowser "Adicionar/Alterar">
+<!ENTITY label.path "Caminho">
+<!ENTITY label.name "Nome">
+<!ENTITY label.new "Limpar">

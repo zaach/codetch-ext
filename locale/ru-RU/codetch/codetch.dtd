@@ -1,0 +1,449 @@
+<!ENTITY window.title "Codetch">
+<!ENTITY window.welcome "Добро пожаловать в Codetch">
+<!ENTITY menu.file "Файл">
+<!ENTITY menu.file.accesskey "Ф">
+<!ENTITY menu.open "Открыть…">
+<!ENTITY menu.open.key "O">
+<!ENTITY menu.open.accesskey "т">
+<!ENTITY menu.openremote "Открыть адрес…">
+<!ENTITY menu.openremote.key "U">
+<!ENTITY menu.openremote.accesskey "к">
+<!ENTITY menu.openrecent "Открыть последние">
+<!ENTITY menu.openrecent.accesskey "р">
+<!ENTITY menu.openallrecent "Открыть все последние">
+<!ENTITY menu.openallrecent.accesskey "т">
+<!ENTITY menu.close "Закрыть">
+<!ENTITY menu.close.key "W">
+<!ENTITY menu.close.accesskey "З">
+<!ENTITY menu.closeall "Закрыть все">
+<!ENTITY menu.closeall.accesskey "в">
+<!ENTITY menu.closeallbut "Закрыть все кроме текущей">
+<!ENTITY menu.closeallbut.accesskey "щ">
+<!ENTITY menu.closetabgroup "Закрыть все в группе">
+<!ENTITY menu.closetabgroup.accesskey "г">
+<!ENTITY menu.save "Сохранить">
+<!ENTITY menu.save.key "S">
+<!ENTITY menu.save.accesskey "х">
+<!ENTITY menu.saveas "Сохранить как…">
+<!ENTITY menu.saveas.key "K">
+<!ENTITY menu.saveas.accesskey "к">
+<!ENTITY menu.saveastemplate "Сохранить как шаблон…">
+<!ENTITY menu.saveastemplate.accesskey "ш">
+<!ENTITY menu.saveall "Сохранить все">
+<!ENTITY menu.saveall.accesskey "ь">
+<!ENTITY label.revert "Вернуться, чтобы сохранить">
+<!ENTITY label.revert.accesskey "ч">
+<!ENTITY label.revertopen "Вернуться, чтобы открыть">
+<!ENTITY label.revertopen.accesskey "ч">
+<!ENTITY menu.import "Импорт…">
+<!ENTITY menu.import.accesskey "м">
+<!ENTITY menu.import.key "I">
+<!ENTITY menu.newdef "Новый по умолчанию">
+<!ENTITY menu.newdef.key "N">
+<!ENTITY menu.newdef.accesskey "Н">
+<!ENTITY menu.new "Новый…">
+<!ENTITY menu.new.key "N">
+<!ENTITY menu.new.accesskey "Н">
+<!ENTITY menu.print "Печать">
+<!ENTITY menu.print.accesskey "П">
+<!ENTITY menu.print.key "P">
+<!ENTITY menu.groupwith "Группировать с">
+<!ENTITY menu.groupwith.accesskey "Г">
+<!ENTITY label.rename "Переименовать">
+<!ENTITY label.rename.accesskey "П">
+<!ENTITY menu.exit "Выход">
+<!ENTITY menu.exit.key "Q">
+<!ENTITY menu.exit.accesskey "В">
+<!ENTITY menu.edit "Правка">
+<!ENTITY menu.edit.accesskey "П">
+<!ENTITY menu.undo "Отменить">
+<!ENTITY menu.undo.key "Z">
+<!ENTITY menu.undo.accesskey "т">
+<!ENTITY menu.redo "Повторить">
+<!ENTITY menu.redo.key "Y">
+<!ENTITY menu.redo.accesskey "П">
+<!ENTITY menu.cut "Вырезать">
+<!ENTITY menu.cut.key "X">
+<!ENTITY menu.cut.accesskey "В">
+<!ENTITY menu.copy "Копировать">
+<!ENTITY menu.copy.key "C">
+<!ENTITY menu.copy.accesskey "К">
+<!ENTITY menu.paste "Вставить">
+<!ENTITY menu.paste.key "V">
+<!ENTITY menu.paste.accesskey "с">
+<!ENTITY menu.selectall "Выделить всё">
+<!ENTITY menu.selectall.key "A">
+<!ENTITY menu.selectall.accesskey "д">
+<!ENTITY menu.delete "Удалить">
+<!ENTITY menu.delete.accesskey "л">
+<!ENTITY menu.duplicateline "Дублировать строку">
+<!ENTITY menu.duplicateline.accesskey "б">
+<!ENTITY menu.duplicateline.key "D">
+<!ENTITY menu.joinlines "Объединить строки">
+<!ENTITY menu.joinlines.accesskey "н">
+<!ENTITY menu.joinlines.key "J">
+<!ENTITY menu.toupper "ПРОПИСНЫЕ">
+<!ENTITY menu.toupper.accesskey "р">
+<!ENTITY menu.toupper.key "U">
+<!ENTITY menu.tolower "строчные">
+<!ENTITY menu.tolower.accesskey "ч">
+<!ENTITY menu.tolower.key "L">
+<!ENTITY menu.totitle "Слова С Большой">
+<!ENTITY menu.totitle.accesskey "ш">
+<!ENTITY menu.totitle.key "T">
+<!ENTITY menu.prefs "Настройки…">
+<!ENTITY menu.prefs.key "P">
+<!ENTITY menu.prefs.accesskey "Н">
+<!ENTITY menu.search "Поиск">
+<!ENTITY menu.search.accesskey "к">
+<!ENTITY menu.gotoline "Перейти на строку…">
+<!ENTITY menu.gotoline.key "G">
+<!ENTITY menu.gotoline.accesskey "П">
+<!ENTITY menu.modify "Изменить">
+<!ENTITY menu.modify.accesskey "з">
+<!ENTITY menu.lineformat "Формат строки">
+<!ENTITY menu.lineformat.accesskey "Ф">
+<!ENTITY label.windows "Windows">
+<!ENTITY label.windows.accesskey "W">
+<!ENTITY label.unix "Unix">
+<!ENTITY label.unix.accesskey "U">
+<!ENTITY label.mac "Mac">
+<!ENTITY label.mac.accesskey "M">
+<!ENTITY menu.view "Вид">
+<!ENTITY menu.view.accesskey "В">
+<!ENTITY menu.linenums "Нумерация строк">
+<!ENTITY menu.linenums.key "L">
+<!ENTITY menu.linenums.accesskey "Н">
+<!ENTITY menu.sidebardir "Боковая панель справа">
+<!ENTITY menu.sidebardir.accesskey "с">
+<!ENTITY menu.help "Справка">
+<!ENTITY menu.help.accesskey "С">
+<!ENTITY menu.helpcontents "Содержание">
+<!ENTITY menu.helpcontents.accesskey "С">
+<!ENTITY menu.about "О Codetch">
+<!ENTITY menu.about.accesskey "C">
+<!ENTITY file.html "HTML документ">
+<!ENTITY file.html.accesskey "H">
+<!ENTITY file.xml "XML файл">
+<!ENTITY file.xml.accesskey "X">
+<!ENTITY file.xul "XUL документ">
+<!ENTITY file.xul.accesskey "U">
+<!ENTITY file.php "PHP документ">
+<!ENTITY file.php.accesskey "P">
+<!ENTITY file.css "CSS файл">
+<!ENTITY file.css.accesskey "C">
+<!ENTITY file.js "Javascript файл">
+<!ENTITY file.js.accesskey "J">
+<!ENTITY file.txt "Текстовый файл">
+<!ENTITY file.txt.accesskey "Т">
+<!ENTITY label.view "Вид">
+<!ENTITY label.view.accesskey "В">
+<!ENTITY label.views "Режим просмотра">
+<!ENTITY label.views.accesskey "Р">
+<!ENTITY label.code "Код">
+<!ENTITY label.code.accesskey "К">
+<!ENTITY label.design "Проект">
+<!ENTITY label.design.accesskey "П">
+<!ENTITY label.preview "Предпросмотр">
+<!ENTITY label.preview.accesskey "р">
+<!ENTITY label.reference "Справочник">
+<!ENTITY label.reference.accesskey "С">
+<!ENTITY label.codedesign "Код и проект">
+<!ENTITY label.codedesign.accesskey "д">
+<!ENTITY label.codepreview "Код и предпросмотр">
+<!ENTITY label.codepreview.accesskey "с">
+<!ENTITY label.codereference "Код и справочник">
+<!ENTITY label.codereference.accesskey "в">
+<!ENTITY label.orientation "Ориентация">
+<!ENTITY label.orientation.accesskey "ц">
+<!ENTITY label.orientation.tooltip "Ориентация разделённых режимов просмотра">
+<!ENTITY label.sidebar "Боковая панель">
+<!ENTITY label.sidebar.accesskey "Б">
+<!ENTITY label.results "Результаты">
+<!ENTITY label.results.accesskey "Р">
+<!ENTITY label.inserttoolbox "Комплект инструментов Вставка">
+<!ENTITY label.inserttoolbox.accesskey "К">
+<!ENTITY label.insert "Вставка">
+<!ENTITY label.insert.accesskey "В">
+<!ENTITY label.toolbox "Комплект инструментов">
+<!ENTITY label.toolbox.accesskey "К">
+<!ENTITY label.toolbars "Панели инструментов">
+<!ENTITY label.toolbars.accesskey "П">
+<!ENTITY label.toolboxdock "Фиксировать панели инструментов под вкладками">
+<!ENTITY label.toolboxdock.accesskey "Ф">
+<!ENTITY label.filetoolbar "Панель инструментов Файл">
+<!ENTITY label.filetoolbar.accesskey "Ф">
+<!ENTITY label.tabgroups "Группы вкладок">
+<!ENTITY label.tabgroups.accesskey "Г">
+<!ENTITY label.newtabgroup "Новая группа вкладок">
+<!ENTITY label.newtabgroup.accesskey "Н">
+<!ENTITY label.files "Файлы">
+<!ENTITY label.files.accesskey "Ф">
+<!ENTITY label.localfiles "Локальные файлы">
+<!ENTITY label.localfiles.accesskey "Л">
+<!ENTITY menu.style "Стиль">
+<!ENTITY menu.style.accesskey "С">
+<!ENTITY label.nostyle "Убрать стиль">
+<!ENTITY label.nostyle.accesskey "б">
+<!ENTITY label.bold "Жирный">
+<!ENTITY label.bold.key "B">
+<!ENTITY label.bold.accesskey "Ж">
+<!ENTITY label.italic "Курсив">
+<!ENTITY label.italic.key "I">
+<!ENTITY label.italic.accesskey "К">
+<!ENTITY label.underline "Подчёркнутый">
+<!ENTITY label.underline.accesskey "U">
+<!ENTITY label.strike "Зачёркнутый">
+<!ENTITY label.strike.accesskey "З">
+<!ENTITY label.tt "Телетайпный">
+<!ENTITY label.tt.accesskey "Т">
+<!ENTITY label.em "Акцентированный">
+<!ENTITY label.em.key "E">
+<!ENTITY label.em.accesskey "к">
+<!ENTITY label.strong "Насыщенный">
+<!ENTITY label.strong.accesskey "Н">
+<!ENTITY label.cite "Цитата">
+<!ENTITY label.cite.accesskey "Ц">
+<!ENTITY label.sub "Подстрочный">
+<!ENTITY label.sub.accesskey "д">
+<!ENTITY label.sup "Надстрочный">
+<!ENTITY label.sup.accesskey "с">
+<!ENTITY label.abbr "Сокр.">
+<!ENTITY label.abbr.accesskey ".">
+<!ENTITY label.acronym "Акроним">
+<!ENTITY label.acronym.accesskey "к">
+<!ENTITY label.var "Переменная">
+<!ENTITY label.var.accesskey "П">
+<!ENTITY label.samp "Пример">
+<!ENTITY label.samp.accesskey "р">
+<!ENTITY label.big "Увеличить шрифт">
+<!ENTITY label.big.accesskey "в">
+<!ENTITY label.small "Уменьшить шрифт">
+<!ENTITY label.small.accesskey "м">
+<!ENTITY menu.paragraph "Формат параграфа">
+<!ENTITY menu.paragraph.accesskey "п">
+<!ENTITY menu.headings "Заголовки">
+<!ENTITY menu.headings.accesskey "З">
+<!ENTITY label.heading1 "Заголовок 1">
+<!ENTITY label.heading1.accesskey "1">
+<!ENTITY label.heading2 "Заголовок 2">
+<!ENTITY label.heading2.accesskey "2">
+<!ENTITY label.heading3 "Заголовок 3">
+<!ENTITY label.heading3.accesskey "3">
+<!ENTITY label.heading4 "Заголовок 4">
+<!ENTITY label.heading4.accesskey "4">
+<!ENTITY label.heading5 "Заголовок 5">
+<!ENTITY label.heading5.accesskey "5">
+<!ENTITY label.heading6 "Заголовок 6">
+<!ENTITY label.heading6.accesskey "6">
+<!ENTITY label.bodytext "Нет">
+<!ENTITY label.bodytext.accesskey "Н">
+<!ENTITY label.paragraph "Параграф">
+<!ENTITY label.paragraph.accesskey "П">
+<!ENTITY label.paragraph.key "P">
+<!ENTITY label.pre "Предформатированный">
+<!ENTITY label.pre.accesskey "д">
+<!ENTITY label.address "Адрес">
+<!ENTITY label.address.accesskey "с">
+<!ENTITY menu.align "Выравнивание">
+<!ENTITY menu.align.accesskey "В">
+<!ENTITY label.alignright "Вправо">
+<!ENTITY label.alignright.accesskey "п">
+<!ENTITY label.aligncenter "По центру">
+<!ENTITY label.aligncenter.accesskey "ц">
+<!ENTITY label.alignleft "Влево">
+<!ENTITY label.alignleft.accesskey "л">
+<!ENTITY label.alignfull "По ширине">
+<!ENTITY label.alignfull.accesskey "ш">
+<!ENTITY menu.lists "Списки">
+<!ENTITY menu.lists.accesskey "С">
+<!ENTITY label.removelist "Убрать список">
+<!ENTITY label.removelist.accesskey "б">
+<!ENTITY label.ul "Маркированный список">
+<!ENTITY label.ul.accesskey "М">
+<!ENTITY label.ol "Нумерованный список">
+<!ENTITY label.ol.accesskey "Н">
+<!ENTITY label.li "Элемент списка">
+<!ENTITY label.li.accesskey "л">
+<!ENTITY label.dl "Список определений">
+<!ENTITY label.dl.accesskey "д">
+<!ENTITY label.dt "Термин определения">
+<!ENTITY label.dt.accesskey "Т">
+<!ENTITY label.dd "Описание определения">
+<!ENTITY label.dd.accesskey "п">
+<!ENTITY label.blockquote "Длинная цитата">
+<!ENTITY label.blockquote.accesskey "Д">
+<!ENTITY label.unblockquote "Убрать длинную цитату">
+<!ENTITY label.unblockquote.accesskey "б">
+<!ENTITY menu.fontface "Шрифт">
+<!ENTITY menu.fontface.accesskey "Ш">
+<!ENTITY menu.fontsize "Размер шрифта">
+<!ENTITY menu.fontsize.accesskey "Р">
+<!ENTITY label.fontsize1 "Сверхмалый">
+<!ENTITY label.fontsize1.accesskey "С">
+<!ENTITY label.fontsize2 "Малый">
+<!ENTITY label.fontsize2.accesskey "М">
+<!ENTITY label.fontsize3 "Средний">
+<!ENTITY label.fontsize3.accesskey "р">
+<!ENTITY label.fontsize4 "Большой">
+<!ENTITY label.fontsize4.accesskey "Б">
+<!ENTITY label.fontsize5 "Сверхбольшой">
+<!ENTITY label.fontsize5.accesskey "в">
+<!ENTITY label.fontsize6 "Очень большой">
+<!ENTITY label.fontsize6.accesskey "ч">
+<!ENTITY label.fontsize7 "Огромный">
+<!ENTITY label.fontsize7.accesskey "г">
+<!ENTITY label.forecolor "Цвет переднего плана">
+<!ENTITY label.forecolor.accesskey "Ц">
+<!ENTITY label.bgcolor "Цвет фона">
+<!ENTITY label.bgcolor.accesskey "в">
+<!ENTITY menu.insert "Вставка">
+<!ENTITY menu.insert.accesskey "В">
+<!ENTITY menu.datetime "Дата/время">
+<!ENTITY menu.datetime.accesskey "Д">
+<!ENTITY label.date "Дата">
+<!ENTITY label.date.accesskey "Д">
+<!ENTITY label.time "Время">
+<!ENTITY label.time.accesskey "В">
+<!ENTITY label.gmtdate "Дата по Гринвичу">
+<!ENTITY label.gmtdate.accesskey "Г">
+<!ENTITY label.shortdate "Краткая дата">
+<!ENTITY label.shortdate.accesskey "К">
+<!ENTITY label.timestamp "Метка времени">
+<!ENTITY label.timestamp.accesskey "М">
+<!ENTITY menu.fileinfo "Информация о файле">
+<!ENTITY menu.fileinfo.accesskey "н">
+<!ENTITY label.filename "Имя">
+<!ENTITY label.filename.accesskey "м">
+<!ENTITY label.fullpath "Полный путь">
+<!ENTITY label.fullpath.accesskey "П">
+<!ENTITY label.filedir "Родительский каталог">
+<!ENTITY label.filedir.accesskey "Р">
+<!ENTITY label.common "Общие">
+<!ENTITY label.common.accesskey "б">
+<!ENTITY label.text "Текст">
+<!ENTITY label.text.accesskey "Т">
+<!ENTITY label.image "Изображения">
+<!ENTITY label.image.accesskey "з">
+<!ENTITY label.hr "Горизонтальная линия">
+<!ENTITY label.hr.accesskey "Г">
+<!ENTITY label.link "Ссылка">
+<!ENTITY label.link.accesskey "С">
+<!ENTITY label.removelink "Убрать ссылку">
+<!ENTITY label.removelink.accesskey "б">
+<!ENTITY label.anchor "Именованный якорь">
+<!ENTITY label.anchor.accesskey "м">
+<!ENTITY label.bookmarks "Закладки">
+<!ENTITY label.bookmarks.accesskey "З">
+<!ENTITY menu.tools "Инструменты">
+<!ENTITY menu.tools.accesskey "н">
+<!ENTITY label.inspect "DOM Inspector">
+<!ENTITY label.inspect.accesskey "D">
+<!ENTITY label.validateHTML "Проверить HTML">
+<!ENTITY label.validateHTML.accesskey "H">
+<!ENTITY label.validateRDF "Проверить RDF">
+<!ENTITY label.validateRDF.accesskey "R">
+<!ENTITY label.validateCSS "Проверить CSS">
+<!ENTITY label.validateCSS.accesskey "C">
+<!ENTITY label.validateXML "Проверить XML">
+<!ENTITY label.validateXML.accesskey "X">
+<!ENTITY label.refresh "Обновить область просмотра">
+<!ENTITY label.refresh.accesskey "б">
+<!ENTITY label.externalpreview "Внешний предпросмотр">
+<!ENTITY label.externalpreview.accesskey "В">
+<!ENTITY label.editbrowserlist "Править список браузеров">
+<!ENTITY label.editbrowserlist.accesskey "П">
+<!ENTITY label.previewin "Предпросмотр в">
+<!ENTITY label.extensionbrowser "Браузер Codetch">
+<!ENTITY label.extensionbrowser.accesskey "C">
+<!ENTITY label.extensionbrowsertip "Предпросмотр в веб-браузере Codetch">
+<!ENTITY label.usetempfile "Использовать временные файлы">
+<!ENTITY label.usetempfile.accesskey "с">
+<!ENTITY label.print "Печать">
+<!ENTITY label.print.accesskey "П">
+<!ENTITY label.launch "Запуск">
+<!ENTITY label.launch.accesskey "З">
+<!ENTITY label.run "Выполнить">
+<!ENTITY label.run.accesskey "В">
+<!ENTITY label.browsertoolbar "Панель инструментов Браузер">
+<!ENTITY label.browsertoolbar.accesskey "Б">
+<!ENTITY label.reload "Перезагрузить">
+<!ENTITY label.reload.accesskey "П">
+<!ENTITY label.back "Назад">
+<!ENTITY label.back.accesskey "Н">
+<!ENTITY label.forward "Вперёд">
+<!ENTITY label.forward.accesskey "В">
+<!ENTITY label.stop "Остановить">
+<!ENTITY label.stop.accesskey "с">
+<!ENTITY label.go "Перейти">
+<!ENTITY label.go.accesskey "П">
+<!ENTITY label.loaduri "Загрузить адрес">
+<!ENTITY label.loaduri.accesskey "З">
+<!ENTITY label.source "Исходный код">
+<!ENTITY label.source.accesskey "х">
+<!ENTITY menu.find "Найти…">
+<!ENTITY menu.find.accesskey "Н">
+<!ENTITY menu.find.key "F">
+<!ENTITY menu.replace "Заменить…">
+<!ENTITY menu.replace.accesskey "З">
+<!ENTITY menu.replace.key "R">
+<!ENTITY label.findandreplace "Поиск и замена">
+<!ENTITY label.findandreplace.accesskey "П">
+<!ENTITY label.find "Поиск">
+<!ENTITY label.find.accesskey "Н">
+<!ENTITY label.findall "Найти все">
+<!ENTITY label.findall.accesskey "в">
+<!ENTITY label.replacewith "Заменить на">
+<!ENTITY label.replacewith.accesskey "З">
+<!ENTITY label.replace "Замена">
+<!ENTITY label.replace.accesskey "З">
+<!ENTITY label.replaceall "Заменить все">
+<!ENTITY label.replaceall.accesskey "в">
+<!ENTITY label.currentfile "Текущий документ">
+<!ENTITY label.currentfile.accesskey "Т">
+<!ENTITY label.allopendocs "Все открытые документы">
+<!ENTITY label.allopendocs.accesskey "В">
+<!ENTITY label.case "Регистрозависимый">
+<!ENTITY label.case.accesskey "Р">
+<!ENTITY label.wrap "Только целые слова">
+<!ENTITY label.wrap.accesskey "ц">
+<!ENTITY label.regex "Регулярные выражения">
+<!ENTITY label.regex.accesskey "г">
+<!ENTITY label.inselection "Выделенный текст">
+<!ENTITY label.inselection.accesskey "В">
+<!ENTITY label.findnext "Найти следующее">
+<!ENTITY label.findnext.accesskey "Н">
+<!ENTITY label.matchallin "Искать в">
+<!ENTITY label.options "Настройки">
+<!ENTITY label.snippets "Фрагменты">
+<!ENTITY label.snippets.accesskey "Ф">
+<!ENTITY label.snippet "Фрагмент">
+<!ENTITY label.snippet.accesskey "Ф">
+<!ENTITY label.insertsnippet "Вставить фрагмент">
+<!ENTITY label.new "Новый">
+<!ENTITY label.newfolder "Новый каталог">
+<!ENTITY label.name "Имя">
+<!ENTITY label.name.accesskey "м">
+<!ENTITY label.description "Описание">
+<!ENTITY label.description.accesskey "п">
+<!ENTITY label.type "Тип">
+<!ENTITY label.type.accesskey "Т">
+<!ENTITY label.insertblock "Вставить блок">
+<!ENTITY label.insertblock.accesskey "б">
+<!ENTITY label.wrapselection "Выбор обёртки">
+<!ENTITY label.wrapselection.accesskey "б">
+<!ENTITY label.insertcode "Вставить код">
+<!ENTITY label.insertcode.accesskey "В">
+<!ENTITY label.insertbefore "Вставить до">
+<!ENTITY label.insertbefore.accesskey "д">
+<!ENTITY label.insertafter "Вставить после">
+<!ENTITY label.insertafter.accesskey "п">
+<!ENTITY label.previewtype "Тип предпросмотра">
+<!ENTITY label.previewtype.accesskey "Т">
+<!ENTITY label.setastreeroot "Установить как корень дерева">
+<!ENTITY label.setastreeroot.accesskey "с">
+<!ENTITY label.uponelevel "На уровень выше">
+<!ENTITY label.uponelevel.accesskey "в">
+<!ENTITY label.tags "Теги">
+<!ENTITY label.tags.accesskey "Т">
+<!ENTITY description.tags "Теги являются описательными, делайте пробелы между отдельными ключевыми словами, что поможет в классификации. (Например, «PHP MySQL class»)">

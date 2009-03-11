@@ -8,7 +8,7 @@
 <!ENTITY menu.openremote "Ouvrir l&apos;adresse…">
 <!ENTITY menu.openremote.key "U">
 <!ENTITY menu.openremote.accesskey "a">
-<!ENTITY menu.openrecent "Ouvrir le fichier récent">
+<!ENTITY menu.openrecent "Ouvrir un fichier récent">
 <!ENTITY menu.openrecent.accesskey "r">
 <!ENTITY menu.openallrecent "Ouvrir tous les fichiers récents">
 <!ENTITY menu.openallrecent.accesskey "t">
