@@ -1187,7 +1187,7 @@ function renameFile(path, filename){
 		debugLog(e);
 		return false;
 	}
-}
+}
 
 // also deprecated
 function buildSiteMenu(menuPopup)

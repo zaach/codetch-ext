@@ -20,7 +20,7 @@
   <!-- =====================================================================
   Editor Box Binding
   ===================================================================== -->
-  <binding id="editorBox" extends="xul:tabpanel">
+  <binding id="editorBox">
 	<resources>
 		<stylesheet src="chrome://codetch/content/editorBindings.css" />
 	</resources>

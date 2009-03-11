@@ -21,7 +21,7 @@
   	</implementation>
   </binding>
   
-  <binding id="rootBrowserPage" extends="xul:tabpanel">
+  <binding id="rootBrowserPage">
 	<resources>
 		<stylesheet src="chrome://codetch/content/editorBindings.css" />
 	</resources>
