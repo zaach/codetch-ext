@@ -3,3 +3,4 @@ CVS
 build.sh
 config_build.sh
 chrome
+*.swp
