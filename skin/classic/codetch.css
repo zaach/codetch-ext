@@ -153,6 +153,9 @@ tab[selected="true"] {
 
 /**/
 
+#insert-tabs tab {
+  -moz-user-focus: ignore !important;
+}
 
 #insert-panels toolbox{
 	-moz-box-orient: horizontal;
@@ -384,68 +387,3 @@ tabpanel[filehandler="default"] {
 	-moz-box-pack: end;
 	-moz-box-align: end;
 }
-/* ::::: splitter grippy ::::: */
-  
-splitter > grippy {
-  display: -moz-box !important;
-  cursor: pointer;
-  border-top: 1px solid ThreeDShadow;
-  border-bottom: 1px solid ThreeDShadow;
-  min-width: 5px;
-  min-height: 55px;
-  background-color: ThreeDShadow;
-  background-repeat: no-repeat;
-}
-
-splitter > grippy:hover {
-  background-color: #CCCCFF;
-}
-
-splitter[orient="vertical"] > grippy {
-  border-top: none;
-  border-right: 1px solid ThreeDShadow;
-  border-bottom: none;
-  border-left: 1px solid ThreeDShadow;;
-  min-width: 55px!important;
-  min-height: 5px!important;
-}
-  
-/* ..... normal state ..... */
-
-/* vertical grippies */
-splitter[collapse="before"] > grippy {
-  background-image: url("chrome://codetch/skin/splitter/grip-vrt-before.gif")!important;
-}
-
-splitter[collapse="after"] > grippy {
-  background-image: url("chrome://codetch/skin/splitter/grip-vrt-after.gif")!important;
-}
-
-/* horizontal grippies */
-splitter[collapse="before"][orient="vertical"] > grippy {
-  background-image: url("chrome://codetch/skin/splitter/grip-hrz-before.gif")!important;
-}  
-
-splitter[collapse="after"][orient="vertical"] > grippy {
-  background-image: url("chrome://codetch/skin/splitter/grip-hrz-after.gif")!important;
-}  
-  
-/* ..... collapsed state ..... */
-
-/* vertical grippies */
-splitter[collapse="before"][state="collapsed"] > grippy {
-  background-image: url("chrome://codetch/skin/splitter/grip-vrt-after.gif")!important;
-}
-
-splitter[collapse="after"][state="collapsed"] > grippy {
-  background-image: url("chrome://codetch/skin/splitter/grip-vrt-before.gif")!important;
-}
-
-/* horizontal grippies */
-splitter[collapse="before"][state="collapsed"][orient="vertical"] > grippy {
-  background-image: url("chrome://codetch/skin/splitter/grip-hrz-after.gif")!important;
-}  
-
-splitter[collapse="after"][state="collapsed"][orient="vertical"] > grippy {
-  background-image: url("chrome://codetch/skin/splitter/grip-hrz-before.gif")!important;
-}  

@@ -1,10 +1,11 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
 .panel-box .title-bar {
-  -moz-appearance: toolbox;
+  -moz-appearance: toolbar;
   height: 20px;
   cursor: pointer;
 }
+
 .panel-title {
   -moz-binding: url("chrome://codetch/content/panelBindings.xml#panelButton");
   -moz-appearance: none;
