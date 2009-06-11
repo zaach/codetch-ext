@@ -1,0 +1,406 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE window [
+<!ENTITY % brandDTD SYSTEM "chrome://global/locale/brand.dtd" >
+%brandDTD;
+<!ENTITY % codetchDTD SYSTEM "chrome://codetch/locale/codetch.dtd" >
+%codetchDTD;
+]>
+
+  <!-- =====================================================================
+  TODO:
+  - add events for beforesave, aftersave, open, close to execute for each panel during event
+  - seperate bindings for doctypes
+  ===================================================================== -->
+<bindings id="bespin"
+          xmlns="http://www.mozilla.org/xbl"
+          xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns:xbl="http://www.mozilla.org/xbl">
+
+<binding id="bespinEditorComponent" extends="chrome://codetch/content/editorbindings/editorRoot.xml#rootEditorPanel">
+    <content>
+      <xul:iframe src="chrome://codetch/content/bespin.html" flex="1" xbl:inherits="disabled,selected"/>
+    </content>
+	<handlers>
+		<handler event="focus" phase="target">
+			//event.target.scrollToSelect();
+			//debugLog('focus-target: '+this.endLine);
+		</handler>
+		<handler event="focus">
+			//debugLog('focus: '+this.endLine);
+			this.setStatus();
+		</handler>
+		<handler event="blur">
+			//debugLog('blur: '+this.endLine);
+		</handler>
+		<handler event="change">
+			this.parentHandler.lastEditor = this;
+		</handler>
+		<handler event="input"><![CDATA[
+			codetch.modify();
+			var ed = this.parentHandler;
+			if(GetBoolPref('autorefresh') && (ed.panels['preview'].selected)){
+				ed.panels['preview'].refresh();
+			}
+			//this.setStatus();
+			//if(this.selection!='')
+			  //this.updateLines();
+		]]></handler>
+	</handlers>
+  	<implementation>
+		<constructor>
+			// why does this have no effect?
+                        //if(!GetBoolPref("codewrap")) this.element.setAttribute('wrap', 'off');
+                        //else this.element.removeAttribute('wrap');
+		</constructor>
+		<destructor>
+			this.element.controllers.removeController(codeFormatController);
+			this.element.controllers.removeController(codeInsertionController);
+		</destructor>
+		<property name="component" onget="return this.element.contentWindow._editorComponent;" />
+		<field name="isNumbered">true</field>
+		<field name="_lineFormat">''</field>
+		<field name="_selectionStart">0</field>
+		<field name="_selectionEnd">0</field>
+		<property name="lineFormat" onget="return this._lineFormat" >
+			<setter>
+				if(this._lineFormat == val)return val; // no change, so just return
+				if(this._lineFormat !='') // set as modified, unless it's blank (like when first opening)
+					codetch.modify();
+				this._lineFormat = val;
+				//this.setStatus();
+				return val;
+			</setter>
+		</property>
+		<property name="scrollTop" onget="return this.element.inputField.scrollTop" >
+			<setter>
+				return 0;
+			</setter>
+		</property>
+		<property name="scrollLeft" onget="return this.element.inputField.scrollLeft" >
+			<setter>
+				return 0;
+			</setter>
+		</property>
+		<property name="source">
+			<setter>
+				this.component.setContent(val);
+			</setter>
+			<getter>
+				return this.component.getContent();
+			</getter>
+		</property>
+		<property name="lines" onget="return this.source.split('\n').length;" />
+		<property name="startLine">
+			<getter>
+				return lines.length;
+			</getter>
+		</property>
+		<property name="endLine">
+			<getter>
+				return lines.length;
+			</getter>
+		</property>
+		<property name="selectionStart" onget="return 0;" onset="return 0;" />
+		<property name="selectionEnd" onget="return 0;" onset="return 0;" />
+		<property name="selection" onget="return ''">
+			<setter>
+				this.element.focus();
+                                //var s = this.element.selectionStart, e = this.element.selectionEnd;
+				goDoCommandParams('cmd_insertText', paramString(val));
+                                //this.element.selectionStart = s
+                                //this.element.selectionEnd = s+val.length;
+				return val;
+			</setter>
+		</property>
+		<property name="column">
+			<getter>
+                          //var lines = this.source.substr(0, this.element.selectionEnd).split('\n');
+                          return 0//lines[lines.length-1].length;
+			</getter>
+		</property>
+		</method>
+		<method name="scrollLines">
+			<body><![CDATA[
+				var t = this.element.inputField.scrollTop;
+				//debugLog(this.lines+'+'+t);
+				this.lineNumbers.inputField.scrollTop = t;
+			]]></body>
+		</method>
+		<method name="setStatus">
+			<body>
+			document.getElementById('line-type-status').label = this.lineFormat.capitalize();
+			var val = '';
+			this.statusbar.value = val;
+			</body>
+		</method>
+		<method name="scrollToSelect">
+			<parameter name="num"/>
+			<body><![CDATA[
+			]]></body>
+		</method>
+		<method name="goToLine">
+			<parameter name="num"/>
+			<body><![CDATA[
+				this.component.setLineNumber(num);
+				this.setStatus();
+			]]></body>
+		</method>
+		<method name="goToPosition">
+			<parameter name="line"/>
+			<parameter name="start"/>
+			<parameter name="end"/>
+			<body><![CDATA[
+				this.setStatus();
+			]]></body>
+		</method>
+		<method name="setSelectionRange">
+			<parameter name="start"/>
+			<parameter name="end"/>
+			<body><![CDATA[
+			]]></body>
+		</method>
+		<method name="find">
+			<body><![CDATA[
+				//goDoCommand('cmd_viewCode');
+				window.openDialog('chrome://codetch/content/dialogs/find.xul', 'find', 'chrome,dependent,centerscreen,alwaysRaised,modal=no,dialog,resizable=no','find');
+			]]></body>
+		</method>
+		<method name="replace">
+			<body><![CDATA[
+				//goDoCommand('cmd_viewCode');
+				window.openDialog('chrome://codetch/content/dialogs/find.xul', 'find', 'chrome,dependent,centerscreen,alwaysRaised,modal=no,dialog,resizable=no','replace');
+			]]></body>
+		</method>
+		<method name="findNext">
+			<parameter name="query"/>
+			<parameter name="cases"/>
+			<parameter name="isRegex"/>
+			<parameter name="wrap"/>
+			<parameter name="selection"/>
+			<body><![CDATA[
+    if (query == "") {
+        codetch.setStatusMsg("No search string entered.");
+        return false;
+    }
+	var end = this.selectionEnd;
+	var contentStr = this.source.slice(end);
+    var ignoreCaseStr = (cases==true) ? '':'i';
+
+    if(!isRegex)query = stripChars(query);
+    var pattern = new RegExp(query, ignoreCaseStr);
+    var searchResult = contentStr.match(pattern);
+
+	var position = searchResult?searchResult.index+end:end;
+
+    this.element.focus();
+    if (searchResult) {
+
+		this.element.select();
+        this.setSelectionRange(position, position + searchResult[0].length);
+		var str = this.source.substring(position, position + searchResult[0].length);
+        goDoCommand('cmd_charNext'); // scroll to word hack
+		goDoCommand('cmd_charPrevious');
+
+		this.element.select();
+        this.setSelectionRange(position, position + searchResult[0].length);
+		this.scrollLines();
+
+		codetch.setStatusMsg("Search successful");
+
+        return searchResult;
+    }else{
+		if(wrap){
+			searchResult = this.source.match(pattern);
+			goDoCommand('cmd_beginLine');
+			this.setSelectionRange(0,0);
+			this.scrollLines();
+			if (searchResult) return this.findNext(query, cases, isRegex, wrap);
+			else {codetch.setStatusMsg("Search unsuccessful");return false;}
+		}
+	}
+				codetch.setStatusMsg("Search unsuccessful");
+    return false;
+			]]></body>
+		</method>
+		<method name="replaceText">
+			<parameter name="replacement"/>
+			<body><![CDATA[
+				//this.element.focus();
+				(replacement)?goDoCommandParams('cmd_insertText', paramString(replacement)):goDoCommand('cmd_delete');
+				return true;
+			]]></body>
+		</method>
+		<method name="findAll">
+			<parameter name="query"/>
+			<parameter name="replacement"/>
+			<parameter name="cases"/>
+			<parameter name="isRegex"/>
+			<parameter name="wrap"/>
+			<parameter name="selection"/>
+			<body><![CDATA[
+				if (query == "") {
+				    codetch.setStatusMsg("No search string entered.");
+				    return false;
+				}
+				if(!selection)this.selectionStart = 0;
+				var start = this.selectionStart;
+				var end = this.selectionEnd;
+
+				var contentStr = selection?this.selection:this.source;
+				//var allLines = contentStr.split(/\n/);
+				var os = selection?start:0;
+
+				var ignoreCaseStr = (cases==true) ? '':'i';
+
+				if(!isRegex)query = stripChars(query);
+				var pattern = new RegExp(query, ignoreCaseStr);
+
+				var r,line=this.startLine, index= 0;
+				var results = [];
+				var file = this.parentHandler.getAttribute("src");
+				var fileid = this.parentHandler.getAttribute("id");
+
+				while((r = contentStr.slice(index).match(pattern, replacement))){
+					r.absoluteIndex = r.index+index+os;
+					index += r.index+r[0].length;
+					var lines = r.input.substr(0, r.index).split(/\n/);
+					r.line = lines.length;
+					r.context = r.input.split(/\n/)[lines.length-1];
+					line += r.line-1;
+					r.absoluteLine = line;
+					r.column =r.absoluteColumn= lines[lines.length-1].length;
+					if(results[results.length-1] && results[results.length-1].absoluteLine == r.absoluteLine)
+						r.absoluteColumn += results[results.length-1].absoluteColumn+(replacement?replacement.length:results[results.length-1][0].length);
+					r.file = file; r.panel = 'code';r.fileid = fileid;
+					results.push(r);
+				}
+
+				if(!results.length){codetch.setStatusMsg("Search unsuccessful");return false;}
+
+				if(!selection)this.setSelectionRange(start, end);
+				this.scrollLines();
+				//this.element.focus();
+				codetch.setStatusMsg("Search successful");
+				return results;
+			]]></body>
+		</method>
+		<method name="replaceAll">
+			<parameter name="query"/>
+			<parameter name="replacement"/>
+			<parameter name="cases"/>
+			<parameter name="isRegex"/>
+			<parameter name="wrap"/>
+			<parameter name="selection"/>
+			<body><![CDATA[
+				if (query == "") {
+				    codetch.setStatusMsg("No search string entered.");
+				    return false;
+				}
+				var results = this.findAll(query, replacement, cases, isRegex, wrap, selection);
+				results['replacement'] = replacement;
+				var start = this.selectionStart;
+				var end = this.selectionEnd;
+
+				var contentStr = selection?this.selection:this.source;
+				var ignoreCaseStr = (cases==true) ? '':'i';
+
+				if(!isRegex)query = stripChars(query);
+				var pattern = new RegExp(query, 'g'+ignoreCaseStr);
+
+				var replaceResult = contentStr.replace(pattern, replacement);
+				if(!replaceResult){codetch.setStatusMsg("Replace unsuccessful");return false;}
+
+				//this.element.select();
+				goDoCommand('cmd_selectAll');
+				if(selection)this.setSelectionRange(start,end);
+				
+				goDoCommandParams('cmd_insertText', paramString(replaceResult));
+				this.element.select();
+				if(!selection)this.setSelectionRange(start,start);
+				else this.setSelectionRange(start, start + replaceResult.length);
+				
+				codetch.setStatusMsg("Replace successful");
+				this.scrollLines();
+				return results;
+			]]></body>
+		</method>
+		<method name="insertTab">
+			<body>
+				this.indent();
+			</body>
+		</method>
+		<method name="indent">
+			<body><![CDATA[
+				if(this.selectionStart==this.selectionEnd)
+					return goDoCommandParams('cmd_insertText', paramString(GetStringPref('tabchar')));
+				var start = this.selectionStart;
+				var end = this.selectionEnd;
+
+				var selection = this.source.substring(start, end);
+				if(selection.match(/\n/)){
+					this.element.selectionEnd = start;
+					goDoCommand('cmd_selectLinePrevious');
+					var t = GetStringPref('tabchar');
+					var s = this.element.selectionStart;
+					this.setSelectionRange(s,end);
+					this.selection = this.selection.split(/\n/).join('\n'+t);
+					this.selectionStart = start+t.length
+					return true;
+				}
+				return goDoCommandParams('cmd_insertText', paramString(GetStringPref('tabchar')));
+			]]>
+			</body>
+		</method>
+		<method name="outdent">
+			<body><![CDATA[
+				var t = GetStringPref('tabchar');
+				var start = this.selectionStart;
+				var end = this.selectionEnd;
+				if(start==end){
+					goDoCommand('cmd_selectCharPrevious');
+					if(this.selection.match(t))return goDoCommand('cmd_delete');
+					else return this.selectionEnd = this.selectionStart;
+				}
+
+				var selection = this.source.substring(start, end);
+				var r = eval('/\\n'+t+'/');
+				if(selection.match(r)){
+					this.selectionEnd = start;
+					goDoCommand('cmd_selectLinePrevious');
+					var s = this.selectionStart;
+					this.setSelectionRange(s,end);
+					this.selection = this.selection.split(r).join('\n');
+					this.selectionStart = start-t.length
+					return true;
+				}
+				return true;
+			]]>
+			</body>
+		</method>
+		<method name="insertFragment">
+			<parameter name="frag"/>
+			<body>
+				goDoCommandParams('cmd_insertText', paramString(frag.convertToUnix()));
+			</body>
+		</method>
+		<method name="print">
+			<body><![CDATA[
+				var code = this.source;
+				var iframe = document.getElementById('utility-frame');
+				
+				var idoc = iframe.contentWindow.document;
+				code = code.replace(/</g, '&lt;');
+				idoc.open();
+				idoc.write('<pre>' + code + '</pre>');
+				idoc.close();
+			
+				iframe.contentWindow.focus();
+				iframe.contentWindow.print();
+			]]></body>
+		</method>
+  	</implementation>
+  </binding>
+
+
+</bindings>

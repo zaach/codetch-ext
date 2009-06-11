@@ -6,8 +6,8 @@ var CMD_SETS = false;
 var RCMD_SETS = true;
 
 const DEBUG_ALERT = false;
-const DEBUG_MODE = false;
-const DEBUG_CONSOLE = false;
+const DEBUG_MODE = true;
+const DEBUG_CONSOLE = true;
 
 const nsIWebNavigation = Components.interfaces.nsIWebNavigation;
 const pageLoaderIface = Components.interfaces.nsIWebPageDescriptor;

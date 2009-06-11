@@ -30,7 +30,8 @@ tabpanel[filehandler="default"]  {
 }
 
 tabpanel[filehandler="default"] .editor-code{
-  -moz-binding: url("chrome://codetch/content/editorBindings.xml#codeViewBox");
+  -moz-binding: url("chrome://codetch/content/editorbindings/bespin.xml#bespinEditorComponent");
+  /*-moz-binding: url("chrome://codetch/content/editorBindings.xml#codeViewBox");*/
 }
 .editor-code textbox{
 	margin:0;
