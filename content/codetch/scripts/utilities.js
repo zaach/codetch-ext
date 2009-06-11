@@ -29,11 +29,11 @@ function fileBrowse(mode, defaultDir)
 		fp.defaultString = doc.leafName;
 	}
 	var res=fp.show();
-	if (res==nsIFilePicker.returnOK || nsIFilePicker.returnReplace ){
-		var thefile=fp.file;
-		return thefile;
-	}else{
-		return false;
+	if (res===nsIFilePicker.returnCancel){
+          return false;
+        }else{
+          var thefile=fp.file;
+          return thefile;
 	}
 }
 

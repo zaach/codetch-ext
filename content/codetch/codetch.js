@@ -418,8 +418,8 @@ var codetch = {
 		var str = FileIO.read(newfile, 'UTF-8');
 	}catch (ex){
 		alert(localize('OpenFileFail'));
-		debugLog(newfile.path+'-----\n'+ex);
-		removeRecentFile(newfile.path);
+		debugLog(ex);
+		//removeRecentFile(newfile.path);
 		return false;
 	}
 		if(newfile){

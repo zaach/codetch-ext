@@ -185,6 +185,7 @@ toolbarbutton colorpicker[type="button"] popup{
 }
 toolbarbutton[disabled=true] image{
 	-moz-opacity: 0.3;
+	opacity: 0.3;
 }
 
 tabbox, tabpanels{
