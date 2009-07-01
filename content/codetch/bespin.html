@@ -30,7 +30,13 @@
 
     <!-- begin script tags -->
 	<script>
-		var djConfig = { parseOnLoad: false, isDebug: false, debugAtAllCosts: false };
+          var _editorComponent = {
+            setContent: function (txt){
+              this._content = txt;
+            }
+            
+          };
+		var djConfig = { parseOnLoad: true, isDebug: false, debugAtAllCosts: false };
 	</script>
 
     <script src="lib/dojo/dojo.js"></script>
@@ -38,17 +44,23 @@
 
 
 	<script>
-        var _editorComponent;
 
         // Loads and configures the objects that the editor needs
         // You can use dojo.addOnLoad(...); but for that you will need to load up dojo.js first
         window.onload = function() {
             _editorComponent = new bespin.editor.Component('editor', {
-                language: "",
+                content: codetchEditor._source,
+                language: codetchEditor.parentHandler.doctype,
                 set: {
-                    strictlines: 'on'
+                    strictlines: 'on',
+                    cursorblink: 250
                 }
             });
+
+            _editorComponent.setFocus(true);
+
+            if(codetchEditor)
+              codetchEditor.initComponent(_editorComponent);
         };
 
         function copyToTextarea() {
@@ -66,10 +78,6 @@
     </script> 
   </head>
 <body>
-    <div id="editor" style="height: 100%;">var foo = "whee";
-
-function flubber() {
-    return "tweeble";
-}</div>
+    <div id="editor" style="height: 100%;">Loading...</div>
 </body>
 </html>

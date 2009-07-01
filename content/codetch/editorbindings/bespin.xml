@@ -19,7 +19,7 @@
 
 <binding id="bespinEditorComponent" extends="chrome://codetch/content/editorbindings/editorRoot.xml#rootEditorPanel">
     <content>
-      <xul:iframe src="chrome://codetch/content/bespin.html" flex="1" xbl:inherits="disabled,selected"/>
+      <xul:iframe src="chrome://codetch/content/bespin.html" flex="1" onload="this.parentNode.initComponent()" xbl:inherits="disabled,selected"/>
     </content>
 	<handlers>
 		<handler event="focus" phase="target">
@@ -28,7 +28,9 @@
 		</handler>
 		<handler event="focus">
 			//debugLog('focus: '+this.endLine);
+                        this.component.setFocus(true);
 			this.setStatus();
+                        codetch._sourceInput = true;
 		</handler>
 		<handler event="blur">
 			//debugLog('blur: '+this.endLine);
@@ -49,6 +51,9 @@
 	</handlers>
   	<implementation>
 		<constructor>
+                        this.element.contentWindow.codetchEditor = this;
+			this.element.controllers.appendController(codeFormatController);
+			this.element.controllers.appendController(codeInsertionController);
 			// why does this have no effect?
                         //if(!GetBoolPref("codewrap")) this.element.setAttribute('wrap', 'off');
                         //else this.element.removeAttribute('wrap');
@@ -57,7 +62,9 @@
 			this.element.controllers.removeController(codeFormatController);
 			this.element.controllers.removeController(codeInsertionController);
 		</destructor>
+		<property name="bespin" onget="return this.element.contentWindow.bespin;" />
 		<property name="component" onget="return this.element.contentWindow._editorComponent;" />
+		<property name="editor" onget="return this.component.editor;" />
 		<field name="isNumbered">true</field>
 		<field name="_lineFormat">''</field>
 		<field name="_selectionStart">0</field>
@@ -72,19 +79,20 @@
 				return val;
 			</setter>
 		</property>
-		<property name="scrollTop" onget="return this.element.inputField.scrollTop" >
+		<property name="scrollTop" onget="return 0" >
 			<setter>
 				return 0;
 			</setter>
 		</property>
-		<property name="scrollLeft" onget="return this.element.inputField.scrollLeft" >
+		<property name="scrollLeft" onget="return 0" >
 			<setter>
 				return 0;
 			</setter>
 		</property>
 		<property name="source">
 			<setter>
-				this.component.setContent(val);
+                          this.component? this.component.setContent(val) : 
+                          this._source = val;
 			</setter>
 			<getter>
 				return this.component.getContent();
@@ -93,12 +101,12 @@
 		<property name="lines" onget="return this.source.split('\n').length;" />
 		<property name="startLine">
 			<getter>
-				return lines.length;
+				return this.lines.length;
 			</getter>
 		</property>
 		<property name="endLine">
 			<getter>
-				return lines.length;
+				return this.lines.length;
 			</getter>
 		</property>
 		<property name="selectionStart" onget="return 0;" onset="return 0;" />
@@ -119,6 +127,15 @@
                           return 0//lines[lines.length-1].length;
 			</getter>
 		</property>
+		<method name="initComponent">
+			<parameter name="component"/>
+			<body><![CDATA[
+                        debugLog('Loaded component.'+this.parentHandler.doctype);
+                        /*if(this._source)*/
+                          /*component.setContent(this._source);*/
+
+                        /*this.bespin.publish("settings:language", { language: this.parentHandler.doctype });*/
+			]]></body>
 		</method>
 		<method name="scrollLines">
 			<body><![CDATA[
@@ -130,7 +147,7 @@
 		<method name="setStatus">
 			<body>
 			document.getElementById('line-type-status').label = this.lineFormat.capitalize();
-			var val = '';
+			var val = ' ';
 			this.statusbar.value = val;
 			</body>
 		</method>

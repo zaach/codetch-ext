@@ -832,7 +832,7 @@
   	</implementation>
   </binding>
 
-  <binding id="codeEditorHTML" extends="chrome://codetch/content/editorBindings.xml#codeViewBox">
+  <binding id="codeEditorHTML" extends="chrome://codetch/content/editorbindings/bespin.xml#bespinEditorComponent">
 	<handlers>
 		<handler event="focus" phase="target"><![CDATA[
 			var par = this.parentHandler;
